@@ -19,7 +19,7 @@ void World::initTerrain() {
 	std::vector<Point3d*> points;
 	for (int i=0; i<=_width; i++) {
 		for (int j=0; j<=_height; j++) {
-			points.push_back( new Point3d( i*2.0, j*2.0, 0 ) );
+			points.push_back( new Point3d( i, j, 0 ) );
 		}
 	}
 
