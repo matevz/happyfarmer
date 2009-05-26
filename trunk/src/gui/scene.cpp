@@ -1,5 +1,6 @@
 #include <string>
 #include "gui/scene.h"
+#include "gui/screen.h"
 #include "core/world.h"
 #include "core/tile.h"
 #include "core/point3d.h"
@@ -7,7 +8,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-Vertex v;
+const float Scene::SCROLL_FACTOR = 0.8;
 
 Scene::Scene( World *w )
  : _world(w) {
@@ -24,7 +25,7 @@ bool Scene::initScene() {
 
 	alutInit(0, 0);
 
-	setCamera( 10.0, 10.0, 10.0, 5.0, 5.0, 0.0);
+	setCamera( 10, 10, 2 );
 
 	return true;
 }
@@ -40,8 +41,12 @@ void Scene::startScene() {
  * Draws the whole scene.
  */
 void Scene::draw() {
-	glPushMatrix();
-	glTranslatef(0.0,0.0,0.0);
+    glOrtho( (3-_zoomLevel+1)*(-Screen::SCREEN_WIDTH/128), (3-_zoomLevel+1)*(Screen::SCREEN_WIDTH/128), (3-_zoomLevel+1)*(-Screen::SCREEN_HEIGHT/128), (3-_zoomLevel+1)*(Screen::SCREEN_HEIGHT/128), -500, 500 );
+
+    glPushMatrix();
+	glRotatef( 60.0f, 1.0f, 0.0f, 0.0f );
+	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );
+	glTranslatef( -_cameraXPos, -_cameraYPos, 0 );
 	glCallList(_terrain);
 	glPopMatrix();
 }
@@ -102,9 +107,29 @@ void Scene::loadTerrain() {
 }
 
 void Scene::zoomIn() {
-	setCamera( cameraXPos()-5, cameraYPos()-5, cameraZPos()-5, cameraXOri()-5, cameraYOri()-5, cameraZOri()-5 );
+	if (_zoomLevel<3) {
+		setCamera( _cameraXPos, _cameraYPos, _zoomLevel+1 );
+	}
 }
 
 void Scene::zoomOut() {
-	setCamera( cameraXPos()+5, cameraYPos()+5, cameraZPos()+5, cameraXOri()+5, cameraYOri()+5, cameraZOri()+5 );
+	if (_zoomLevel>0) {
+		setCamera( _cameraXPos, _cameraYPos, _zoomLevel-1 );
+	}
+}
+
+void Scene::moveDown() {
+	setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+}
+
+void Scene::moveUp() {
+	setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+}
+
+void Scene::moveRight() {
+	setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+}
+
+void Scene::moveLeft() {
+	setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
 }

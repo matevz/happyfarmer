@@ -21,7 +21,7 @@ void MainWin::show() {
 	Screen::initGl();
 	resizeWindow(Screen::SCREEN_WIDTH, Screen::SCREEN_HEIGHT);
 
-	_scene = new Scene( new World( 10, 10 ) );
+	_scene = new Scene( new World( 100, 100 ) );
 	_scene->startScene();
 
 	float deltaX,deltaY,deltaZ,crossX,crossY,crossZ ;
@@ -42,10 +42,12 @@ void MainWin::show() {
 				resizeWindow(event.resize.w, event.resize.h);
 				break;
 			case SDL_KEYDOWN:
-				handleKeyPress(&event.key.keysym);
+				handleKeyPress(event.key.keysym);
 				break;
-			case SDL_MOUSEMOTION:
+			case SDL_MOUSEMOTION: {
+				handleMouseMotion(event.motion);
 				break;
+			}
 			case SDL_MOUSEBUTTONDOWN:
 				if (event.button.button==SDL_BUTTON_WHEELUP) {
 					_scene->zoomIn();
@@ -63,11 +65,6 @@ void MainWin::show() {
 
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
         glLoadIdentity();
-        //glOrtho( 8.0, -8.0, -8.0, 8.0, 0.001f, 100.0f );
-        gluPerspective( 45.0f, ((float)Screen::SCREEN_WIDTH)/Screen::SCREEN_HEIGHT, 0.001f, 300.0f );
-
-        gluLookAt( _scene->cameraXPos(), _scene->cameraYPos(), _scene->cameraZPos(), _scene->cameraXOri(), _scene->cameraYOri(), _scene->cameraZOri(), 0.0, 0.0, 1.0 );
-
         _scene->draw();
         SDL_GL_SwapBuffers();
 
@@ -106,10 +103,10 @@ bool MainWin::resizeWindow(int width, int height) {
 }
 
 /*!
- Function to handle key press events.
- */
-void MainWin::handleKeyPress(SDL_keysym *keysym) {
-	switch (keysym->sym) {
+	Function to handle key press events.
+*/
+void MainWin::handleKeyPress(SDL_keysym& keysym) {
+	switch (keysym.sym) {
 	case SDLK_ESCAPE:
 		Screen::quit(0);
 		break;
@@ -121,4 +118,24 @@ void MainWin::handleKeyPress(SDL_keysym *keysym) {
 	}
 
 	return;
+}
+
+/*!
+	Function to handle mouse move events.
+*/
+void MainWin::handleMouseMotion(SDL_MouseMotionEvent& evt) {
+	if ( !_scene ) return;
+
+	if ( evt.x < 10 ) {
+		_scene->moveLeft();
+	}
+	if ( evt.x > Screen::SCREEN_WIDTH-10 ) {
+		_scene->moveRight();
+	}
+	if ( evt.y < 10 ) {
+		_scene->moveUp();
+	}
+	if ( evt.y > Screen::SCREEN_HEIGHT-10 ) {
+		_scene->moveDown();
+	}
 }
