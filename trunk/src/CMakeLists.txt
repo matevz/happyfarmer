@@ -17,6 +17,7 @@ SET( LibObj
 
 SET( Control
 	control/modelloader.cpp
+	control/resource.cpp
 )
 
 ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${LibObj} ${Control} main.cpp )
