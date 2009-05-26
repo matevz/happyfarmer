@@ -2,8 +2,8 @@
 #include <GL/glu.h>
 #include "gui/screen.h"
 
-int Screen::SCREEN_WIDTH = 800;
-int Screen::SCREEN_HEIGHT = 600;
+int Screen::SCREEN_WIDTH = 1024;
+int Screen::SCREEN_HEIGHT = 768;
 int Screen::SCREEN_BPP = 32;
 SDL_Surface *Screen::surface = 0;
 int Screen::videoFlags = 0;
@@ -68,31 +68,28 @@ bool Screen::initGl() {
 	glEnable(GL_TEXTURE_2D);
 
 	// Enable smooth shading
-	glShadeModel(GL_SMOOTH);
+	glShadeModel(GL_FLAT);
 
 	// Set the background black
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	// Depth buffer setup
-	glClearDepth(1.0f);
+	//glClearDepth(1.0f);
 
 	// Enables Depth Testing
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
 	// The Type Of Depth Test To Do
-	glDepthFunc(GL_LEQUAL);
-
-	// Really Nice Perspective Calculations
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+	//glDepthFunc(GL_LEQUAL);
 
 	// Enable Light One
-	glEnable(GL_LIGHT1);
+	//glEnable(GL_LIGHT1);
 
 	// Full Brightness, 50% Alpha
-	glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
+	//glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
 
 	// Blending Function For Translucency Based On Source Alpha Value
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
 	return true;
 }
