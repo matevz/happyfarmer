@@ -58,10 +58,20 @@ void Scene::loadTerrain() {
 	std::cout << "Loading terrain...";
 	std::cout.flush();
 	GLdouble x_m, y_m, z_m, u_m, v_m;
+
+	SDL_Surface *textureImage;
+	GLuint texture;
+	textureImage = SDL_LoadBMP("src/textures/grass.bmp");
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexImage2D(GL_TEXTURE_2D, 0, 1, textureImage->w, textureImage->h, 0, GL_BGR, GL_UNSIGNED_BYTE, textureImage->pixels );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+
 	_terrain = glGenLists(1);
 	glNewList(_terrain,GL_COMPILE);
+	glBindTexture(GL_TEXTURE_2D, texture);
     glColor3f(   0.0f,  1.0f,  0.0f );
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	for (int x = 0; x < _world->getWidth(); x++) {
 		for (int y = 0; y < _world->getHeight(); y++) {
 			glBegin(GL_QUADS);
@@ -71,31 +81,31 @@ void Scene::loadTerrain() {
 			z_m = _world->getTile(x,y)->getPoint1()->getZ();
 			u_m = 0.0f;
 			v_m = 0.0f;
-			//glTexCoord2d( u_m, v_m );
+			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
 
 			x_m = _world->getTile(x,y)->getPoint2()->getX();
 			y_m = _world->getTile(x,y)->getPoint2()->getY();
 			z_m = _world->getTile(x,y)->getPoint2()->getZ();
-			u_m = 5.0f;
+			u_m = 256.0f;
 			v_m = 0.0f;
-			//glTexCoord2d( u_m, v_m );
+			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
 
 			x_m = _world->getTile(x,y)->getPoint3()->getX();
 			y_m = _world->getTile(x,y)->getPoint3()->getY();
 			z_m = _world->getTile(x,y)->getPoint3()->getZ();
 			u_m = 0.0f;
-			v_m = 5.0f;
-			//glTexCoord2d( u_m, v_m );
+			v_m = 256.0f;
+			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
 
 			x_m = _world->getTile(x,y)->getPoint4()->getX();
 			y_m = _world->getTile(x,y)->getPoint4()->getY();
 			z_m = _world->getTile(x,y)->getPoint4()->getZ();
-			u_m = 5.0f;
-			v_m = 5.0f;
-			//glTexCoord2d( u_m, v_m );
+			u_m = 256.0f;
+			v_m = 256.0f;
+			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
 
 			glEnd();
@@ -103,6 +113,7 @@ void Scene::loadTerrain() {
 	}
 
 	glEndList();
+	SDL_FreeSurface(textureImage);
 	std::cout << "done." << std::endl;
 }
 
