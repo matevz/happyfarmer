@@ -16,7 +16,8 @@ public:
 	int drawGLScene();
 private:
 	bool resizeWindow( int width, int height );
-	void handleKeyPress( SDL_keysym *keysym );
+	void handleKeyPress( SDL_keysym& );
+	void handleMouseMotion( SDL_MouseMotionEvent& );
 
 	Scene *_scene;
 };
