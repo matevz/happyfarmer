@@ -3,21 +3,21 @@
 
 class Point3d {
 public:
-	Point3d( double x, double y, double z );
+	Point3d( int x, int y, int z );
 	virtual ~Point3d();
 
-	const double& getX() const { return _x; }
-	const double& getY() const { return _y; }
-	const double& getZ() const { return _z; }
+	const int& getX() const { return _x; }
+	const int& getY() const { return _y; }
+	const int& getZ() const { return _z; }
 
-	void setX( double x ) { _x = x; }
-	void setY( double y ) { _y = y; }
-	void setZ( double z ) { _z = z; }
+	void setX( int x ) { _x = x; }
+	void setY( int y ) { _y = y; }
+	void setZ( int z ) { _z = z; }
 
 private:
-	double _x;
-	double _y;
-	double _z;
+	int _x;
+	int _y;
+	int _z;
 };
 
 #endif
