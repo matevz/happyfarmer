@@ -10,6 +10,7 @@
 #include <GL/glu.h>
 
 const float Scene::SCROLL_FACTOR = 0.8;
+const float Scene::HEIGHT_FACTOR = 0.4;
 
 Scene::Scene( World *w )
  : _world(w) {
@@ -78,42 +79,65 @@ void Scene::loadTerrain() {
 			glNormal3f(0.0f, 0.0f, 1.0f);
 			x_m = _world->getTile(x,y)->getPoint1()->getX();
 			y_m = _world->getTile(x,y)->getPoint1()->getY();
-			z_m = _world->getTile(x,y)->getPoint1()->getZ();
+			z_m = -_world->getTile(x,y)->getPoint1()->getZ()*HEIGHT_FACTOR;
 			u_m = 1.0f;
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
-			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
 			x_m = _world->getTile(x,y)->getPoint2()->getX();
 			y_m = _world->getTile(x,y)->getPoint2()->getY();
-			z_m = _world->getTile(x,y)->getPoint2()->getZ();
+			z_m = -_world->getTile(x,y)->getPoint2()->getZ()*HEIGHT_FACTOR;
 			u_m = 1.0f;
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
-			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
 			x_m = _world->getTile(x,y)->getPoint4()->getX();
 			y_m = _world->getTile(x,y)->getPoint4()->getY();
-			z_m = _world->getTile(x,y)->getPoint4()->getZ();
+			z_m = -_world->getTile(x,y)->getPoint4()->getZ()*HEIGHT_FACTOR;
 			u_m = 0.0f;
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
-			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
 			x_m = _world->getTile(x,y)->getPoint3()->getX();
 			y_m = _world->getTile(x,y)->getPoint3()->getY();
-			z_m = _world->getTile(x,y)->getPoint3()->getZ();
+			z_m = -_world->getTile(x,y)->getPoint3()->getZ()*HEIGHT_FACTOR;
 			u_m = 0.0f;
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
-			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
+			glColor3f(0.0f, 1.0f, 0.0f);
 			glEnd();
 		}
+	}
+
+	// horizontal lines
+	for (int x = 0; x < _world->getWidth(); x++) {
+		glBegin(GL_LINE_STRIP);
+		for (int y = 0; y < _world->getHeight()-1; y++) {
+			x_m = _world->getTile(x,y)->getPoint3()->getX();
+			y_m = _world->getTile(x,y)->getPoint3()->getY();
+			z_m = -_world->getTile(x,y)->getPoint3()->getZ()*HEIGHT_FACTOR;
+			glVertex3d( x_m, y_m, z_m );
+		}
+		glColor3f(0.0f, 0.8f, 0.0f);
+		glEnd();
+	}
+
+	// vertical lines
+	for (int y = 0; y < _world->getHeight(); y++) {
+		glBegin(GL_LINE_STRIP);
+		for (int x = 0; x < _world->getWidth()-1; x++) {
+			x_m = _world->getTile(x,y)->getPoint2()->getX();
+			y_m = _world->getTile(x,y)->getPoint2()->getY();
+			z_m = -_world->getTile(x,y)->getPoint2()->getZ()*HEIGHT_FACTOR;
+			glVertex3d( x_m, y_m, z_m );
+		}
+		glColor3f(0.0f, 0.8f, 0.0f);
+		glEnd();
 	}
 
 	glEndList();
