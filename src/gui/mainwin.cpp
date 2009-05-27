@@ -19,7 +19,7 @@ void MainWin::show() {
 	bool done=false;
 	SDL_Event event;
 	Screen::initGl();
-	resizeWindow(Screen::SCREEN_WIDTH, Screen::SCREEN_HEIGHT);
+	Screen::resizeEvent(Screen::getScreenWidth(), Screen::getScreenHeight());
 
 	_scene = new Scene( new World( 100, 100 ) );
 	_scene->startScene();
@@ -30,17 +30,10 @@ void MainWin::show() {
 	while (!done) {
 		while (SDL_PollEvent(&event)) {
 			switch (event.type) {
-			case SDL_VIDEORESIZE:
-				Screen::surface = SDL_SetVideoMode(event.resize.w, event.resize.h, Screen::SCREEN_BPP,
-						Screen::videoFlags);
-				if (!Screen::surface) {
-					fprintf(stderr,
-							"Could not get a surface after resize: %s\n",
-							SDL_GetError());
-					Screen::quit(1);
-				}
-				resizeWindow(event.resize.w, event.resize.h);
+			case SDL_VIDEORESIZE: {
+				Screen::resizeEvent(event.resize.w, event.resize.h);
 				break;
+			}
 			case SDL_KEYDOWN:
 				handleKeyPress(event.key.keysym);
 				break;
@@ -74,35 +67,6 @@ void MainWin::show() {
 }
 
 /*!
- Function to reset our viewport after a window resize.
- */
-bool MainWin::resizeWindow(int width, int height) {
-	// Height / width ration
-	GLfloat ratio;
-
-	// Protect against a divide by zero
-	if (height == 0)
-		height = 1;
-
-	ratio = (GLfloat) width / (GLfloat) height;
-
-	// Setup our viewport.
-	glViewport(0, 0, (GLint) width, (GLint) height);
-
-	// change to the projection matrix and set our viewing volume.
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	// Make sure we're chaning the model view and not the projection
-	glMatrixMode(GL_MODELVIEW);
-
-	// Reset The View
-	glLoadIdentity();
-
-	return true;
-}
-
-/*!
 	Function to handle key press events.
 */
 void MainWin::handleKeyPress(SDL_keysym& keysym) {
@@ -129,13 +93,13 @@ void MainWin::handleMouseMotion(SDL_MouseMotionEvent& evt) {
 	if ( evt.x < 20 ) {
 		_scene->moveLeft();
 	}
-	if ( evt.x > Screen::SCREEN_WIDTH-20 ) {
+	if ( evt.x > Screen::getScreenWidth()-20 ) {
 		_scene->moveRight();
 	}
 	if ( evt.y < 20 ) {
 		_scene->moveUp();
 	}
-	if ( evt.y > Screen::SCREEN_HEIGHT-20 ) {
+	if ( evt.y > Screen::getScreenHeight()-20 ) {
 		_scene->moveDown();
 	}
 }

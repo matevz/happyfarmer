@@ -2,9 +2,9 @@
 #include <GL/glu.h>
 #include "gui/screen.h"
 
-int Screen::SCREEN_WIDTH = 1024;
-int Screen::SCREEN_HEIGHT = 768;
-int Screen::SCREEN_BPP = 32;
+int Screen::DEFAULT_SCREEN_WIDTH = 1024;
+int Screen::DEFAULT_SCREEN_HEIGHT = 768;
+int Screen::DEFAULT_SCREEN_BPP = 32;
 SDL_Surface *Screen::surface = 0;
 int Screen::videoFlags = 0;
 
@@ -49,7 +49,7 @@ bool Screen::initGl() {
 
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	surface = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP,
+	surface = SDL_SetVideoMode(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, DEFAULT_SCREEN_BPP,
 			videoFlags);
 
 	// Verify there is a surface
@@ -92,4 +92,65 @@ bool Screen::initGl() {
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
 	return true;
+}
+
+/*!
+	Function to reset our viewport after a window resize.
+*/
+bool Screen::resizeEvent(int width, int height) {
+	Screen::surface = SDL_SetVideoMode(width, height, Screen::getBpp(), Screen::videoFlags);
+	if (!Screen::surface) {
+		fprintf(stderr,
+		"Could not get a surface after resize: %s\n",
+		SDL_GetError());
+		Screen::quit(1);
+	}
+
+	// Height / width ration
+	GLfloat ratio;
+
+	// Protect against a divide by zero
+	if (height == 0)
+		height = 1;
+
+	ratio = (GLfloat) width / (GLfloat) height;
+
+	// Setup our viewport.
+	glViewport(0, 0, (GLint) width, (GLint) height);
+
+	// change to the projection matrix and set our viewing volume.
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	// Make sure we're chaning the model view and not the projection
+	glMatrixMode(GL_MODELVIEW);
+
+	// Reset The View
+	glLoadIdentity();
+
+	return true;
+}
+
+int Screen::getScreenWidth() {
+	if (surface) {
+		return surface->w;
+	} else {
+		return DEFAULT_SCREEN_WIDTH;
+	}
+}
+
+int Screen::getScreenHeight() {
+	if (surface) {
+		return surface->h;
+	} else {
+		return DEFAULT_SCREEN_HEIGHT;
+	}
+}
+
+int Screen::getBpp() {
+	if (surface) {
+		return surface->format->BitsPerPixel;
+	} else {
+		return DEFAULT_SCREEN_BPP;
+	}
 }
