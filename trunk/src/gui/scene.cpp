@@ -26,7 +26,7 @@ bool Scene::initScene() {
 
 	alutInit(0, 0);
 
-	setCamera( 10, 10, 2 );
+	setCamera( _world->getWidth()/2, _world->getHeight()/2, 2 );
 
 	return true;
 }
@@ -64,25 +64,26 @@ void Scene::loadTerrain() {
 	GLuint texture;
 	textureImage = SDL_LoadBMP(Resource::locateResource("textures/grass.bmp").c_str());
 	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImage->w, textureImage->h, 0, GL_BGR, GL_UNSIGNED_BYTE, textureImage->pixels );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 
 	_terrain = glGenLists(1);
-	glNewList(_terrain,GL_COMPILE);
-    glPolygonMode(GL_FRONT,GL_LINE);
+	glNewList(_terrain, GL_COMPILE);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	for (int x = 0; x < _world->getWidth(); x++) {
 		for (int y = 0; y < _world->getHeight(); y++) {
-			glBegin(GL_TRIANGLE_STRIP);
+			glBegin(GL_QUADS);
 			glNormal3f(0.0f, 0.0f, 1.0f);
 			x_m = _world->getTile(x,y)->getPoint1()->getX();
 			y_m = _world->getTile(x,y)->getPoint1()->getY();
 			z_m = _world->getTile(x,y)->getPoint1()->getZ();
-			u_m = 0.0f;
-			v_m = 0.0f;
+			u_m = 1.0f;
+			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
+			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
 			x_m = _world->getTile(x,y)->getPoint2()->getX();
 			y_m = _world->getTile(x,y)->getPoint2()->getY();
@@ -91,6 +92,16 @@ void Scene::loadTerrain() {
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
+			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
+
+			x_m = _world->getTile(x,y)->getPoint4()->getX();
+			y_m = _world->getTile(x,y)->getPoint4()->getY();
+			z_m = _world->getTile(x,y)->getPoint4()->getZ();
+			u_m = 0.0f;
+			v_m = 0.0f;
+			glTexCoord2d( u_m, v_m );
+			glVertex3d( x_m, y_m, z_m );
+			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
 			x_m = _world->getTile(x,y)->getPoint3()->getX();
 			y_m = _world->getTile(x,y)->getPoint3()->getY();
@@ -99,14 +110,7 @@ void Scene::loadTerrain() {
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
-
-			x_m = _world->getTile(x,y)->getPoint4()->getX();
-			y_m = _world->getTile(x,y)->getPoint4()->getY();
-			z_m = _world->getTile(x,y)->getPoint4()->getZ();
-			u_m = 1.0f;
-			v_m = 1.0f;
-			glTexCoord2d( u_m, v_m );
-			glVertex3d( x_m, y_m, z_m );
+			std::cout << "vertex: " << x_m << ", " << y_m << ", " << z_m << std::endl;
 
 			glEnd();
 		}
@@ -130,17 +134,25 @@ void Scene::zoomOut() {
 }
 
 void Scene::moveDown() {
-	setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraXPos>0 && _cameraYPos>0 ) {
+		setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+	}
 }
 
 void Scene::moveUp() {
-	setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraXPos<_world->getWidth() && _cameraYPos<_world->getHeight() ) {
+		setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+	}
 }
 
 void Scene::moveRight() {
-	setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraXPos<_world->getWidth() && _cameraYPos>0 ) {
+		setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+	}
 }
 
 void Scene::moveLeft() {
-	setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraXPos>0 && _cameraYPos<_world->getHeight()-1 ) {
+		setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+	}
 }
