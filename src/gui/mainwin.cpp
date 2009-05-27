@@ -126,16 +126,16 @@ void MainWin::handleKeyPress(SDL_keysym& keysym) {
 void MainWin::handleMouseMotion(SDL_MouseMotionEvent& evt) {
 	if ( !_scene ) return;
 
-	if ( evt.x < 10 ) {
+	if ( evt.x < 20 ) {
 		_scene->moveLeft();
 	}
-	if ( evt.x > Screen::SCREEN_WIDTH-10 ) {
+	if ( evt.x > Screen::SCREEN_WIDTH-20 ) {
 		_scene->moveRight();
 	}
-	if ( evt.y < 10 ) {
+	if ( evt.y < 20 ) {
 		_scene->moveUp();
 	}
-	if ( evt.y > Screen::SCREEN_HEIGHT-10 ) {
+	if ( evt.y > Screen::SCREEN_HEIGHT-20 ) {
 		_scene->moveDown();
 	}
 }
