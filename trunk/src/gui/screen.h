@@ -7,11 +7,18 @@ class Screen {
 public:
 	static bool initGl();
 	static void quit( int returnCode );
+	static bool resizeEvent( int width, int height );
 
-	static int SCREEN_WIDTH;
-	static int SCREEN_HEIGHT;
-	static int SCREEN_BPP;
+	static int getScreenWidth();
+	static int getScreenHeight();
+	static int getBpp();
+
 	static SDL_Surface *surface;
+
+private:
+	static int DEFAULT_SCREEN_WIDTH;
+	static int DEFAULT_SCREEN_HEIGHT;
+	static int DEFAULT_SCREEN_BPP;
 	static int videoFlags;
 };
 

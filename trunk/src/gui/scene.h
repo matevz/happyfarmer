@@ -54,7 +54,7 @@ private:
 	void loadTerrain();
 
 	static const float SCROLL_FACTOR;
-	static const float HEIGHT_FACTOR;
+	static const float HEIGHT_FACTOR; // Z / X relation
 
 	World  *_world;
 	GLuint  _terrain;   // 3d model of terrain

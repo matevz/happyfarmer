@@ -15,7 +15,6 @@ public:
 	void show();
 	int drawGLScene();
 private:
-	bool resizeWindow( int width, int height );
 	void handleKeyPress( SDL_keysym& );
 	void handleMouseMotion( SDL_MouseMotionEvent& );
 

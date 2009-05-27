@@ -43,7 +43,7 @@ void Scene::startScene() {
  * Draws the whole scene.
  */
 void Scene::draw() {
-    glOrtho( (3-_zoomLevel+1)*(-Screen::SCREEN_WIDTH/128), (3-_zoomLevel+1)*(Screen::SCREEN_WIDTH/128), (3-_zoomLevel+1)*(-Screen::SCREEN_HEIGHT/128), (3-_zoomLevel+1)*(Screen::SCREEN_HEIGHT/128), -500, 500 );
+    glOrtho( (3-_zoomLevel+1)*(-Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(-Screen::getScreenHeight()/128), (3-_zoomLevel+1)*(Screen::getScreenHeight()/128), -500, 500 );
 
     glPushMatrix();
 	glRotatef( 60.0f, 1.0f, 0.0f, 0.0f );
@@ -54,8 +54,8 @@ void Scene::draw() {
 }
 
 /*!
- * Loads the hall.
- */
+	Creates an OpenGL list of 3d vertices of the terrain using the World model.
+*/
 void Scene::loadTerrain() {
 	std::cout << "Loading terrain...";
 	std::cout.flush();
