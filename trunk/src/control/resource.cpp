@@ -1,4 +1,6 @@
 #include <fstream>
+#include <iostream> //debug
+#include <SDL_image.h>
 #include "control/resource.h"
 
 #ifdef WINDOWS32
@@ -35,6 +37,7 @@ string Resource::locateResource( string relPath ) {
 		return path;
 	}
 
+	std::cerr << "Resource::locateResource(): Unable to find " + relPath << std::endl;
 	return "";
 }
 
@@ -50,4 +53,22 @@ string Resource::fixDelimiters( string path ) {
 #endif
 
 	return path;
+}
+
+/*!
+	Loads the PNG file into SDL_Surface structure.
+	Note: This function requires SDL_Image library.
+
+	User needs to delete the returned surface, once used.
+ */
+SDL_Surface *Resource::loadPng( string path ) {
+	SDL_RWops *rwop = SDL_RWFromFile(path.c_str(), "rb");
+	SDL_Surface *image = IMG_LoadPNG_RW(rwop);
+	if(!image) {
+	    std::cerr << "Resource::loadPng(): Error loading " << path << ", error " << IMG_GetError();
+	}
+
+	delete rwop;
+
+	return image;
 }
