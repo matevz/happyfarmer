@@ -8,6 +8,8 @@
 #include <alut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
 const float Scene::SCROLL_FACTOR = 0.8;
 const float Scene::HEIGHT_FACTOR = 0.4;
@@ -63,10 +65,10 @@ void Scene::loadTerrain() {
 
 	SDL_Surface *textureImage;
 	GLuint texture;
-	textureImage = SDL_LoadBMP(Resource::locateResource("textures/grass.bmp").c_str());
+	textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/grass.png"));
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureImage->w, textureImage->h, 0, GL_BGR, GL_UNSIGNED_BYTE, textureImage->pixels );
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 

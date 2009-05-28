@@ -64,32 +64,9 @@ bool Screen::initGl() {
 		quit(1);
 	}
 
-    // Enable Texture Mapping
 	glEnable(GL_TEXTURE_2D);
-
-	// Enable smooth shading
-	glShadeModel(GL_FLAT);
-
-	// Set the background black
+	glShadeModel(GL_SMOOTH);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-	// Depth buffer setup
-	//glClearDepth(1.0f);
-
-	// Enables Depth Testing
-	//glEnable(GL_DEPTH_TEST);
-
-	// The Type Of Depth Test To Do
-	//glDepthFunc(GL_LEQUAL);
-
-	// Enable Light One
-	//glEnable(GL_LIGHT1);
-
-	// Full Brightness, 50% Alpha
-	//glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-
-	// Blending Function For Translucency Based On Source Alpha Value
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
 	return true;
 }
