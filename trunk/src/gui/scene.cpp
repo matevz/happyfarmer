@@ -5,6 +5,7 @@
 #include "core/tile.h"
 #include "core/point3d.h"
 #include "control/resource.h"
+#include "models/modelloader.h"
 #include <alut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -19,8 +20,7 @@ Scene::Scene( World *w )
 	initScene();
 }
 
-Scene::~Scene()
-{
+Scene::~Scene() {
 	alutExit();
 }
 
@@ -30,6 +30,8 @@ bool Scene::initScene() {
 	alutInit(0, 0);
 
 	setCamera( _world->getWidth()/2, _world->getHeight()/2, 2 );
+
+	ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
 
 	return true;
 }
@@ -52,6 +54,7 @@ void Scene::draw() {
 	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );
 	glTranslatef( -_cameraXPos, -_cameraYPos, 0 );
 	glCallList(_terrain);
+	glCallList( ModelLoader::modelList()[0]->objFiles[0].dispList );
 	glPopMatrix();
 }
 
@@ -111,7 +114,7 @@ void Scene::loadTerrain() {
 			glTexCoord2d( u_m, v_m );
 			glVertex3d( x_m, y_m, z_m );
 
-			glColor3f(0.0f, 1.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 1.0f);
 			glEnd();
 		}
 	}

@@ -10,15 +10,15 @@ SET( Gui
 	gui/screen.cpp
 )
 
-SET( LibObj
-	libobj/obj.cpp
-	libobj/obj_parser.cpp
+SET( Models
+	models/objparser.cpp
+	models/modelloader.cpp
+	models/modelloaderparser.cpp
 )
 
 SET( Control
-	control/modelloader.cpp
 	control/resource.cpp
 )
 
-ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${LibObj} ${Control} main.cpp )
+ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${Models} ${Control} main.cpp )
 TARGET_LINK_LIBRARIES( happyfarmer "GL" "GLU" "m" "SDL" "SDL_image" "alut" "ogg" "vorbis" "vorbisfile" )

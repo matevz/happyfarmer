@@ -32,9 +32,32 @@ string Resource::locateResource( string relPath ) {
 		return path;
 	}
 
-	stream.open((path=fixDelimiters(string("src/")+relPath)).c_str());
+	stream.open((path=fixDelimiters(string("data/")+relPath)).c_str());
 	if (stream.is_open()) {
 		return path;
+	}
+
+	std::cerr << "Resource::locateResource(): Unable to find " + relPath << std::endl;
+	return "";
+}
+
+string Resource::locateModel( string relPath ) {
+	string path = relPath;
+	ifstream stream;
+
+	stream.open((path=fixDelimiters(string("models/")+relPath)).c_str());
+	if (stream.is_open()) {
+		return path;
+	}
+
+	stream.open((path=fixDelimiters(string("data/models/")+relPath+".obj")).c_str());
+	if (stream.is_open()) {
+		return path.substr(0, path.length()-4);
+	}
+
+	stream.open((path=fixDelimiters(string("data/models/")+relPath+"_000001.obj")).c_str());
+	if (stream.is_open()) {
+		return path.substr(0, path.length()-11);
 	}
 
 	std::cerr << "Resource::locateResource(): Unable to find " + relPath << std::endl;

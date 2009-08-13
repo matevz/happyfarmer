@@ -7,6 +7,7 @@ struct SDL_Surface;
 class Resource {
 public:
 	static std::string locateResource( std::string relPath );
+	static std::string locateModel( std::string relPath );
 	static SDL_Surface *loadPng( std::string path );
 
 private:
