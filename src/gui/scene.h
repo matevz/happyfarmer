@@ -5,7 +5,7 @@
 #include <GL/gl.h>
 #include <SDL_timer.h> // needed for time
 #include <alut.h>
-#include "control/modelloader.h"
+#include "models/modelloader.h"
 
 class World;
 
