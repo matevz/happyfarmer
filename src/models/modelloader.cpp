@@ -106,7 +106,7 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 
 	_file.parse(filename);
 
-	//we create display lists for all objects of this model at this frame
+	// we create display lists for all objects of this model at this frame
 	dlist = glGenLists( m->objFiles[objFileNo].objects.size() );
 
 	int lightside = GL_FRONT;
@@ -115,11 +115,9 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 	SDL_Surface * textureImage ;
 	GLuint texIndex ;
 
-	//load all the texture for all objects and faces of current objfile
-	for(int j=0; j < m->objFiles[objFileNo].materials.size() ; ++j)
-	{
-		if ( ! m->objFiles[objFileNo].materials[j].map_Kd.empty() )
-		{
+	// load all the textures for all objects and faces of current objfile
+	for(int j=0; j < m->objFiles[objFileNo].materials.size() ; j++) {
+		if ( ! m->objFiles[objFileNo].materials[j].map_Kd.empty() ) {
 			tex.name = m->objFiles[objFileNo].materials[j].map_Kd;
 			textureImage = IMG_Load( m->name.substr(0,m->name.find_last_of('/')+1).append( m->objFiles[objFileNo].materials[j].map_Kd ).c_str() ) ;
 
@@ -138,95 +136,71 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 		}
 	}
 
-	//create display lists for all objects of current objfile
+	// create display lists for all objects of the current objfile
 
-	for(int j=0; j < m->objFiles[objFileNo].objects.size() ; ++j)
-	{
-
+	for(int j=0; j < m->objFiles[objFileNo].objects.size() ; j++) {
+		std::cout << "new list for " << m->objFiles[objFileNo].objects[j].name << std::endl;
 		glNewList(dlist,GL_COMPILE);
 		glDisable(GL_TEXTURE_2D);
 		for(unsigned int i=0; i < m->objFiles[objFileNo].objects[j].faces.size() ; i++) {
-				if(i==0)
-				{
-					glMaterialfv(lightside, GL_AMBIENT, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ka );
-					glMaterialfv(lightside, GL_DIFFUSE, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd );
-					glMaterialfv(lightside, GL_SPECULAR, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ks );
-					glMaterialf(lightside, GL_SHININESS, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ns );
-
-					if ( ! m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd.empty() )
-					{
-						for(int k=0; k < m->objFiles[objFileNo].textures.size(); ++k)
-						{
-							if ( m->objFiles[objFileNo].textures[k].name == m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd)
-							{
-								texIndex = k;
-								k = m->objFiles[objFileNo].textures.size() ;
-							}
-						}
-						glBindTexture(GL_TEXTURE_2D, m->objFiles[objFileNo].textures[texIndex].glName ) ;
-						glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-						glEnable(GL_TEXTURE_2D);
-					}
-				}
-				else if ( m->objFiles[objFileNo].objects[j].faces[i].matIndex != m->objFiles[objFileNo].objects[j].faces[i-1].matIndex )
-				{
+			// introduce new material
+			if (i==0 || m->objFiles[objFileNo].objects[j].faces[i].matIndex != m->objFiles[objFileNo].objects[j].faces[i-1].matIndex) {
+				if (i!=0 && m->objFiles[objFileNo].objects[j].faces[i].matIndex != m->objFiles[objFileNo].objects[j].faces[i-1].matIndex) {
 					glDisable(GL_TEXTURE_2D);
+				}
 
-					glMaterialfv(lightside, GL_AMBIENT, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ka );
-					glMaterialfv(lightside, GL_DIFFUSE, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd );
-					glMaterialfv(lightside, GL_SPECULAR, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ks );
-					glMaterialf(lightside, GL_SHININESS, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ns );
+				glColor3f( m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[0],
+						m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[1],
+						m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[2] );
+//				glMaterialfv(lightside, GL_AMBIENT, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ka );
+//				glMaterialfv(lightside, GL_DIFFUSE, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd );
+//				glMaterialfv(lightside, GL_SPECULAR, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ks );
+//				glMaterialf(lightside, GL_SHININESS, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ns );
 
-					if ( ! m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd.empty() )
-					{
-						for(int k=0; k < m->objFiles[objFileNo].textures.size(); ++k)
-						{
-							if ( m->objFiles[objFileNo].textures[k].name == m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd)
-							{
-								texIndex = k;
-								k = m->objFiles[objFileNo].textures.size() ;
-							}
+				if ( ! m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd.empty() ) {
+					for(int k=0; k < m->objFiles[objFileNo].textures.size(); ++k) {
+						if ( m->objFiles[objFileNo].textures[k].name == m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd) {
+							texIndex = k;
+							k = m->objFiles[objFileNo].textures.size() ;
 						}
-						glBindTexture(GL_TEXTURE_2D, m->objFiles[objFileNo].textures[texIndex].glName ) ;
-						glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-						glEnable(GL_TEXTURE_2D);
 					}
+					glBindTexture(GL_TEXTURE_2D, m->objFiles[objFileNo].textures[texIndex].glName ) ;
+					glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+					glEnable(GL_TEXTURE_2D);
 				}
+			}
 
-				if (hasUVs) // if we have texture coordinates
-				{
+			// texture coordinates
+			if (hasUVs) {
+				glBegin(GL_TRIANGLES);
 
-					glBegin(GL_TRIANGLES);
+				glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[0]].val  );
+				glTexCoord2fv( m->objFiles[objFileNo].uvs[ m->objFiles[objFileNo].objects[j].faces[i].uvIndex[0] ].val ) ;
+				glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[0]].val );
 
-					glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[0]].val  );
-					glTexCoord2fv( m->objFiles[objFileNo].uvs[ m->objFiles[objFileNo].objects[j].faces[i].uvIndex[0] ].val ) ;
-					glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[0]].val );
+				glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[1]].val );
+				glTexCoord2fv( m->objFiles[objFileNo].uvs[ m->objFiles[objFileNo].objects[j].faces[i].uvIndex[1] ].val ) ;
+				glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[1]].val );
 
-					glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[1]].val );
-					glTexCoord2fv( m->objFiles[objFileNo].uvs[ m->objFiles[objFileNo].objects[j].faces[i].uvIndex[1] ].val ) ;
-					glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[1]].val );
+				glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[2]].val );
+				glTexCoord2fv( m->objFiles[objFileNo].uvs[ m->objFiles[objFileNo].objects[j].faces[i].uvIndex[2] ].val ) ;
+				glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[2]].val );
 
-					glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[2]].val );
-					glTexCoord2fv( m->objFiles[objFileNo].uvs[ m->objFiles[objFileNo].objects[j].faces[i].uvIndex[2] ].val ) ;
-					glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[2]].val );
+				glEnd();
+			} else { // no texture coordinates
+				glBegin(GL_TRIANGLES);
 
-  					glEnd();
-				}
-				else // without texture coordinates
-				{
-					glBegin(GL_TRIANGLES);
+				glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[0]].val  );
+				glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[0]].val );
 
-					glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[0]].val  );
-					glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[0]].val );
+				glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[1]].val );
+				glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[1]].val );
 
-					glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[1]].val );
-					glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[1]].val );
+				glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[2]].val );
+				glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[2]].val );
 
-					glNormal3fv( m->objFiles[objFileNo].normals[m->objFiles[objFileNo].objects[j].faces[i].normalIndex[2]].val );
-					glVertex3fv( m->objFiles[objFileNo].vertices[m->objFiles[objFileNo].objects[j].faces[i].vertexIndex[2]].val );
-
-  					glEnd();
-				}
+				glEnd();
+			}
 		}
 		glEndList();
 
@@ -238,14 +212,12 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 		dlist++;
 	}
 
-	//when objectname is empty
-	if ( objectname.empty() )
-	{
+	// when objectname is empty
+	if ( objectname.empty() ) {
 		rvalue = glGenLists(1);
 		glNewList(rvalue,GL_COMPILE);
 
-		for(int i=0; i < m->objFiles[objFileNo].objects.size(); ++i)
-		{
+		for(int i=0; i < m->objFiles[objFileNo].objects.size(); i++) {
 			glCallList(m->objFiles[objFileNo].objects[i].dispList) ;
 		}
 		glEndList();
@@ -254,5 +226,10 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 	}
 
 	//return the list we wanted
-	return (rvalue > -1) ? rvalue : 999999;
+	if (rvalue > -1) {
+		return rvalue;
+	} else {
+		std::cerr << "ModelLoader::loadModel error: Display list not generated." << std::endl;
+		return 999999;
+	}
 }

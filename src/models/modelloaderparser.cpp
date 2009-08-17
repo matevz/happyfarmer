@@ -21,7 +21,6 @@ void ModelLoaderParser::geometric_vertex(const float& x, const float& y, const f
 	t.val[0]=x;
 	t.val[1]=y;
 	t.val[2]=z;
-	std::cout << "added vertx" << std::endl;
 	_model->objFiles[_objFileNo].vertices.push_back(t);
 }
 
@@ -44,7 +43,6 @@ void ModelLoaderParser::object_name(const std::string& s) {
 	ObjObject o;
 	o.name = s;
 	o.dispList = -1;
-	o.faces.clear();
 
 	_model->objFiles[_objFileNo].objects.push_back(o);
 	_objectNo = _model->objFiles[_objFileNo].objects.size()-1;
@@ -82,7 +80,6 @@ void ModelLoaderParser::triangular_face_geometric_vertices(const int& ind1, cons
 
 	l.matIndex = _materialIndex;
 
-	std::cout << "added face1" << std::endl;
 	_model->objFiles[_objFileNo].objects[_objectNo].faces.push_back(l);
 }
 
@@ -103,7 +100,6 @@ void ModelLoaderParser::triangular_face_geometric_vertices_texture_vertices_vert
 
 	l.matIndex = _materialIndex ;
 
-	std::cout << "added face2" << std::endl;
 	_model->objFiles[_objFileNo].objects[_objectNo].faces.push_back(l);
 }
 
@@ -125,7 +121,6 @@ void ModelLoaderParser::triangular_face_geometric_vertices_vertex_normals(const 
 
 	l.matIndex = _materialIndex ;
 
-	std::cout << "added face3" << std::endl;
 	_model->objFiles[_objFileNo].objects[_objectNo].faces.push_back(l);
 }
 
@@ -148,14 +143,12 @@ void ModelLoaderParser::parseMtl(std::string filename) {
   	}
 
   	while( getline(ifs,line) ) {
-  		if(line[0]=='#') continue ; //it is a comment
+  		if ( line[0]=='#' ) continue ; // it is a comment
 
-  		if ( line.size() < 1 ) //blank line
-  		{
+  		if ( line.size() < 1 ) { // blank line
   			blanklines++;
 
-  			if( blanklines==2) //end of material
-  			{
+  			if( blanklines==2 ) { //end of material
   				_model->objFiles[_objFileNo].materials.push_back(_mat);
 
   				_mat.name="";
@@ -173,65 +166,49 @@ void ModelLoaderParser::parseMtl(std::string filename) {
   		ss.str(line);
 
   		while( (ss >> word) && (!brk) ) {
-  			if( word=="newmtl")//we have a new material definition
-  			{
+  			if( word=="newmtl") { // we have a new material definition
   				ss >> word ;
   				brk=true;
   				//at this point, word contains the name of material
 
   				_mat.name=word ;
-  			}
-  			else if (word=="Ka") //ambient rgb
-			{
+  			} else if (word=="Ka") { // ambient rgb
   				ss >> r >> g >> b ;
   				brk=true;
   				_mat.Ka[0] = r;
   				_mat.Ka[1] = g;
   				_mat.Ka[2] = b;
 
-			}
-  			else if (word=="Kd") //diffuse rgb
-			{
+			} else if (word=="Kd") { // diffuse rgb
   				ss >> r >> g >> b ;
   				brk=true;
   				_mat.Kd[0] = r;
   				_mat.Kd[1] = g;
   				_mat.Kd[2] = b;
-			}
-			else if ( word=="Ks") //specular rgb
-			{
+			} else if ( word=="Ks") { // specular rgb
   				ss >> r >> g >> b ;
   				brk=true;
   				_mat.Ks[0] = r;
   				_mat.Ks[1] = g;
   				_mat.Ks[2] = b;
-			}
-			else if (word=="Ns") //material shininess
-  			{
+			} else if (word=="Ns") { // material shininess
   				ss >> r ;
   				brk=true;
   				_mat.Ns = r;
-  			}
-  			else if (word=="Ni") //optical density
-			{
+  			} else if (word=="Ni") { // optical density
   				ss >> r ;
   				brk=true;
   				_mat.Ni = r;
-			}
-  			else if (word=="Tr" || word=="d") //alpha
-  			{
+			} else if (word=="Tr" || word=="d") { // alpha
   				ss >> r ;
   				brk=true;
   				_mat.Tr = r;
   			}
-  			else if (word=="illum") //illumination model
-  			{
+  			else if (word=="illum") { // illumination model
   				ss >> i ;
   				brk=true;
   				_mat.illum = i;
-  			}
-  			else if (word=="map_Kd") //texture file
-  			{
+  			} else if (word=="map_Kd") { // texture file
   				ss >> word ;
   				brk=true;
   				_mat.map_Kd = word ;
