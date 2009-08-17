@@ -23,9 +23,9 @@ void World::initTerrain() {
 	for (int j=0; j<=_height; j++) {
 		for (int i=0; i<=_width; i++) {
 			if (j>_height/2) {
-				points.push_back( new Point3d( i, j, 0 ) );
-			} else {
 				points.push_back( new Point3d( i, j, rand()%2 ) );
+			} else {
+				points.push_back( new Point3d( i, j, 0 ) );
 			}
 		}
 	}

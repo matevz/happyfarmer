@@ -48,9 +48,8 @@ void Scene::startScene() {
  */
 void Scene::draw() {
     glOrtho( (3-_zoomLevel+1)*(-Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(-Screen::getScreenHeight()/128), (3-_zoomLevel+1)*(Screen::getScreenHeight()/128), -500, 500 );
-
     glPushMatrix();
-	glRotatef( 60.0f, 1.0f, 0.0f, 0.0f );
+	glRotatef( -60.0f, 1.0f, 0.0f, 0.0f );
 	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );
 	glTranslatef( -_cameraXPos, -_cameraYPos, 0 );
 	glCallList(_terrain);
@@ -77,6 +76,7 @@ void Scene::loadTerrain() {
 
 	_terrain = glGenLists(1);
 	glNewList(_terrain, GL_COMPILE);
+	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	for (int x = 0; x < _world->getWidth(); x++) {
 		for (int y = 0; y < _world->getHeight(); y++) {
@@ -84,7 +84,7 @@ void Scene::loadTerrain() {
 			glNormal3f(0.0f, 0.0f, 1.0f);
 			x_m = _world->getTile(x,y)->getPoint1()->getX();
 			y_m = _world->getTile(x,y)->getPoint1()->getY();
-			z_m = -_world->getTile(x,y)->getPoint1()->getZ()*HEIGHT_FACTOR;
+			z_m = _world->getTile(x,y)->getPoint1()->getZ()*HEIGHT_FACTOR;
 			u_m = 1.0f;
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
@@ -92,7 +92,7 @@ void Scene::loadTerrain() {
 
 			x_m = _world->getTile(x,y)->getPoint2()->getX();
 			y_m = _world->getTile(x,y)->getPoint2()->getY();
-			z_m = -_world->getTile(x,y)->getPoint2()->getZ()*HEIGHT_FACTOR;
+			z_m = _world->getTile(x,y)->getPoint2()->getZ()*HEIGHT_FACTOR;
 			u_m = 1.0f;
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
@@ -100,7 +100,7 @@ void Scene::loadTerrain() {
 
 			x_m = _world->getTile(x,y)->getPoint4()->getX();
 			y_m = _world->getTile(x,y)->getPoint4()->getY();
-			z_m = -_world->getTile(x,y)->getPoint4()->getZ()*HEIGHT_FACTOR;
+			z_m = _world->getTile(x,y)->getPoint4()->getZ()*HEIGHT_FACTOR;
 			u_m = 0.0f;
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
@@ -108,7 +108,7 @@ void Scene::loadTerrain() {
 
 			x_m = _world->getTile(x,y)->getPoint3()->getX();
 			y_m = _world->getTile(x,y)->getPoint3()->getY();
-			z_m = -_world->getTile(x,y)->getPoint3()->getZ()*HEIGHT_FACTOR;
+			z_m = _world->getTile(x,y)->getPoint3()->getZ()*HEIGHT_FACTOR;
 			u_m = 0.0f;
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
@@ -125,7 +125,7 @@ void Scene::loadTerrain() {
 		for (int y = 0; y < _world->getHeight()-1; y++) {
 			x_m = _world->getTile(x,y)->getPoint3()->getX();
 			y_m = _world->getTile(x,y)->getPoint3()->getY();
-			z_m = -_world->getTile(x,y)->getPoint3()->getZ()*HEIGHT_FACTOR;
+			z_m = _world->getTile(x,y)->getPoint3()->getZ()*HEIGHT_FACTOR;
 			glVertex3d( x_m, y_m, z_m );
 		}
 		glColor3f(0.0f, 0.8f, 0.0f);
@@ -138,7 +138,7 @@ void Scene::loadTerrain() {
 		for (int x = 0; x < _world->getWidth()-1; x++) {
 			x_m = _world->getTile(x,y)->getPoint2()->getX();
 			y_m = _world->getTile(x,y)->getPoint2()->getY();
-			z_m = -_world->getTile(x,y)->getPoint2()->getZ()*HEIGHT_FACTOR;
+			z_m = _world->getTile(x,y)->getPoint2()->getZ()*HEIGHT_FACTOR;
 			glVertex3d( x_m, y_m, z_m );
 		}
 		glColor3f(0.0f, 0.8f, 0.0f);

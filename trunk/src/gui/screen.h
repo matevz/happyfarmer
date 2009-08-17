@@ -6,6 +6,7 @@
 class Screen {
 public:
 	static bool initGl();
+	static bool initAl();
 	static void quit( int returnCode );
 	static bool resizeEvent( int width, int height );
 

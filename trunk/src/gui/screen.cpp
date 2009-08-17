@@ -1,5 +1,6 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <AL/alut.h>
 #include "gui/screen.h"
 
 int Screen::DEFAULT_SCREEN_WIDTH = 800;
@@ -9,6 +10,7 @@ SDL_Surface *Screen::surface = 0;
 int Screen::videoFlags = 0;
 
 void Screen::quit(int returnCode) {
+	alutExit();
 	SDL_Quit();
 }
 
@@ -47,8 +49,6 @@ bool Screen::initGl() {
 		videoFlags |= SDL_HWACCEL;
 	}
 
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
 	surface = SDL_SetVideoMode(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, DEFAULT_SCREEN_BPP,
 			videoFlags);
 
@@ -67,6 +67,23 @@ bool Screen::initGl() {
 	glEnable(GL_TEXTURE_2D);
 	glShadeModel(GL_SMOOTH);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glEnable( GL_DEPTH_TEST );
+	    glEnable( GL_NORMALIZE );
+
+
+	        glCullFace( GL_BACK ) ;
+	        glEnable( GL_CULL_FACE );
+
+	        glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
+	        glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
+
+	    glDepthFunc( GL_LEQUAL );
+	    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
+	return true;
+}
+
+bool Screen::initAl() {
+	alutInit(0, 0);
 
 	return true;
 }
