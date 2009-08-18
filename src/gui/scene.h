@@ -25,6 +25,8 @@ public:
 	///////////////////////////
 	// Getter/Setter methods //
 	///////////////////////////
+	static Scene* getScene() { return _scene; }
+
 	Terrain *getTerrain() { return _terrain; }
 	void setTerrain( Terrain* t ) { _terrain = t; }
 
@@ -71,6 +73,9 @@ private:
 	double   _cameraXPos;
 	double   _cameraYPos;
 	int      _zoomLevel;
+
+	// Static member
+	static Scene *_scene;
 };
 
 #endif /* SCENE_H_ */
