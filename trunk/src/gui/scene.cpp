@@ -4,8 +4,10 @@
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point3d.h"
+#include "core/player.h"
 #include "control/resource.h"
 #include "models/modelloader.h"
+#include "objects/tractor.h"
 #include <alut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -13,33 +15,60 @@
 #include <SDL_image.h>
 
 const float Scene::SCROLL_FACTOR = 0.8;
+const float Scene::TERRAIN_ANGLE = -60.0f;
 
 Scene::Scene( Terrain *t )
- : _terrain(t), _terrainDispList(0) {
+ : _terrain(t), _terrainDispList(0), _timer(0), _speed(0), _userPlayer(0), _objectUpdater(0) {
 	initScene();
 }
 
 Scene::~Scene() {
+	_speed=-1;
+	SDL_WaitThread(_timer, 0);
+	SDL_WaitThread(_objectUpdater, 0);
+
 	alutExit();
 }
 
 bool Scene::initScene() {
 	rebuildTerrain();
 
-	alutInit(0, 0);
+	_timer = SDL_CreateThread(Scene::timerFunc, this);
+	_objectUpdater = SDL_CreateThread(Scene::objectUpdaterFunc, this);
 
 	setCamera( _terrain->getWidth()/2, _terrain->getHeight()/2, 2 );
 
-	ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
+	_userPlayer = new Player("Human1");
+	_playerList.push_back( _userPlayer );
+	addObject( new Tractor( _userPlayer, 0.0, 0.0 ) );
 
 	return true;
 }
 
 /*!
- * Starts the scene.
+ * Timer function which increases the simulation time by the speed factor.
  */
-void Scene::startScene() {
-	startTime();
+int Scene::timerFunc(void *s) {
+	Scene* scene = static_cast<Scene*>(s);
+    while ( scene->_speed != -1 ) {
+        SDL_Delay(40);
+    	scene->_time += 40*scene->_speed;
+    }
+    return 0;
+}
+
+/*!
+ * Function which regularly updates the objects on the scene.
+ */
+int Scene::objectUpdaterFunc(void *s) {
+	Scene* scene = static_cast<Scene*> (s);
+	while (scene->_speed != -1) {
+		SDL_Delay(50);
+		for (unsigned int i=0; i < scene->_objectList.size(); i++) {
+			scene->_objectList[i]->update(scene->_time);
+		}
+	}
+	return 0;
 }
 
 /*!
@@ -48,11 +77,15 @@ void Scene::startScene() {
 void Scene::draw() {
     glOrtho( (3-_zoomLevel+1)*(-Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(-Screen::getScreenHeight()/128), (3-_zoomLevel+1)*(Screen::getScreenHeight()/128), -500, 500 );
     glPushMatrix();
-	glRotatef( -60.0f, 1.0f, 0.0f, 0.0f );
+	glRotatef( TERRAIN_ANGLE, 1.0f, 0.0f, 0.0f );
 	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );
 	glTranslatef( -_cameraXPos, -_cameraYPos, 0 );
 	glCallList(_terrainDispList);
-	glCallList( ModelLoader::modelList()[0]->objFiles[0].dispList );
+
+	for (unsigned int i=0; i<_objectList.size(); i++) {
+		_objectList[i]->draw();
+	}
+
 	glPopMatrix();
 }
 
@@ -148,6 +181,18 @@ void Scene::rebuildTerrain() {
 
 	glEndList();
 	SDL_FreeSurface(textureImage);
+}
+
+void Scene::setCamera( GLfloat x1, GLfloat y1, int zoomLevel ) {
+	_cameraXPos=x1; _cameraYPos=y1; _zoomLevel = zoomLevel;
+
+	ALfloat pos[3] = { x1, y1, 5-zoomLevel };
+	ALfloat vel[3] = { 0, 0, 0 };
+	ALfloat ori[3] = { x1-5, y1-5, 5-zoomLevel-5 };
+
+	alListenerfv(AL_POSITION,    pos);
+	alListenerfv(AL_VELOCITY,    vel);
+	alListenerfv(AL_ORIENTATION, ori);
 }
 
 void Scene::zoomIn() {

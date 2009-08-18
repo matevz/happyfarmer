@@ -9,27 +9,30 @@ int Screen::DEFAULT_SCREEN_BPP = 32;
 SDL_Surface *Screen::surface = 0;
 int Screen::videoFlags = 0;
 
-void Screen::quit(int returnCode) {
+void Screen::cleanup() {
 	alutExit();
 	SDL_Quit();
 }
 
+/*!
+	Initializes graphics subsystem.
+*/
 bool Screen::initGl() {
-	bool done = false;
+	bool error = false;
 	SDL_Event event;
 	const SDL_VideoInfo *videoInfo;
 
 	// initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		fprintf(stderr, "Video initialization failed: %s\n", SDL_GetError());
-		quit(1);
+		error = true;
 	}
 
 	videoInfo = SDL_GetVideoInfo();
 
 	if (!videoInfo) {
 		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
-		quit(1);
+		error = true;
 	}
 
 	videoFlags = SDL_OPENGL; // Enable OpenGL in SDL
@@ -55,49 +58,48 @@ bool Screen::initGl() {
 	// Verify there is a surface
 	if (!surface) {
 		fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
-		quit(1);
+		error = true;
 	}
 
 	// Enable key repeat
 	if ((SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL))) {
 		fprintf(stderr, "Setting keyboard repeat failed: %s\n", SDL_GetError());
-		quit(1);
+		error = true;
 	}
 
 	glEnable(GL_TEXTURE_2D);
 	glShadeModel(GL_SMOOTH);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.6f, 0.0f);
 	glEnable( GL_DEPTH_TEST );
-	    glEnable( GL_NORMALIZE );
 
-
-	        glCullFace( GL_BACK ) ;
-	        glEnable( GL_CULL_FACE );
-
-	        glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	        glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-
-	    glDepthFunc( GL_LEQUAL );
-	    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-	return true;
+	return (!error);
 }
 
+/*!
+	Initializes audio subsystem.
+*/
 bool Screen::initAl() {
-	alutInit(0, 0);
+	bool error = false;
 
-	return true;
+	if (!alutInit(0, 0)) {
+		error = true;
+	}
+
+	return (!error);
 }
 
 /*!
 	Function to reset our viewport after a window resize.
 */
 bool Screen::resizeEvent(int width, int height) {
+	bool error = false;
+
 	Screen::surface = SDL_SetVideoMode(width, height, Screen::getBpp(), Screen::videoFlags);
 	if (!Screen::surface) {
 		fprintf(stderr,
 		"Could not get a surface after resize: %s\n",
 		SDL_GetError());
-		Screen::quit(1);
+		error = true;
 	}
 
 	// Height / width ration
@@ -122,7 +124,7 @@ bool Screen::resizeEvent(int width, int height) {
 	// Reset The View
 	glLoadIdentity();
 
-	return true;
+	return (!error);
 }
 
 int Screen::getScreenWidth() {

@@ -7,7 +7,7 @@ class Screen {
 public:
 	static bool initGl();
 	static bool initAl();
-	static void quit( int returnCode );
+	static void cleanup();
 	static bool resizeEvent( int width, int height );
 
 	static int getScreenWidth();

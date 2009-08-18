@@ -139,12 +139,12 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 	// create display lists for all objects of the current objfile
 
 	for(int j=0; j < m->objFiles[objFileNo].objects.size() ; j++) {
-		std::cout << "new list for " << m->objFiles[objFileNo].objects[j].name << std::endl;
 		glNewList(dlist,GL_COMPILE);
 		glDisable(GL_TEXTURE_2D);
 		for(unsigned int i=0; i < m->objFiles[objFileNo].objects[j].faces.size() ; i++) {
 			// introduce new material
 			if (i==0 || m->objFiles[objFileNo].objects[j].faces[i].matIndex != m->objFiles[objFileNo].objects[j].faces[i-1].matIndex) {
+				// material changed from the previous face
 				if (i!=0 && m->objFiles[objFileNo].objects[j].faces[i].matIndex != m->objFiles[objFileNo].objects[j].faces[i-1].matIndex) {
 					glDisable(GL_TEXTURE_2D);
 				}
