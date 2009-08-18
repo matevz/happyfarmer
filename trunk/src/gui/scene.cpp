@@ -15,7 +15,7 @@
 const float Scene::SCROLL_FACTOR = 0.8;
 
 Scene::Scene( Terrain *t )
- : _terrain(t) {
+ : _terrain(t), _terrainDispList(0) {
 	initScene();
 }
 
@@ -24,7 +24,7 @@ Scene::~Scene() {
 }
 
 bool Scene::initScene() {
-	loadTerrain();
+	rebuildTerrain();
 
 	alutInit(0, 0);
 
@@ -59,9 +59,7 @@ void Scene::draw() {
 /*!
 	Creates an OpenGL list of 3d vertices of the terrain using the World model.
 */
-void Scene::loadTerrain() {
-	std::cout << "Loading terrain...";
-	std::cout.flush();
+void Scene::rebuildTerrain() {
 	GLdouble x_m, y_m, z_m, u_m, v_m;
 
 	SDL_Surface *textureImage;
@@ -73,6 +71,10 @@ void Scene::loadTerrain() {
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 
+    if (_terrainDispList) {
+    	glDeleteLists(_terrainDispList, 1);
+    }
+
 	_terrainDispList = glGenLists(1);
 	glNewList(_terrainDispList, GL_COMPILE);
 	glEnable(GL_TEXTURE_2D);
@@ -83,7 +85,7 @@ void Scene::loadTerrain() {
 			glNormal3f(0.0f, 0.0f, 1.0f);
 			x_m = _terrain->getTile(x,y)->getPoint1()->getX();
 			y_m = _terrain->getTile(x,y)->getPoint1()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint1()->getZ()*Terrain::HEIGHT_FACTOR;
+			z_m = _terrain->getTile(x,y)->getPoint1()->getZ();
 			u_m = 1.0f;
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
@@ -91,7 +93,7 @@ void Scene::loadTerrain() {
 
 			x_m = _terrain->getTile(x,y)->getPoint2()->getX();
 			y_m = _terrain->getTile(x,y)->getPoint2()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint2()->getZ()*Terrain::HEIGHT_FACTOR;
+			z_m = _terrain->getTile(x,y)->getPoint2()->getZ();
 			u_m = 1.0f;
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
@@ -99,7 +101,7 @@ void Scene::loadTerrain() {
 
 			x_m = _terrain->getTile(x,y)->getPoint4()->getX();
 			y_m = _terrain->getTile(x,y)->getPoint4()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint4()->getZ()*Terrain::HEIGHT_FACTOR;
+			z_m = _terrain->getTile(x,y)->getPoint4()->getZ();
 			u_m = 0.0f;
 			v_m = 0.0f;
 			glTexCoord2d( u_m, v_m );
@@ -107,7 +109,7 @@ void Scene::loadTerrain() {
 
 			x_m = _terrain->getTile(x,y)->getPoint3()->getX();
 			y_m = _terrain->getTile(x,y)->getPoint3()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint3()->getZ()*Terrain::HEIGHT_FACTOR;
+			z_m = _terrain->getTile(x,y)->getPoint3()->getZ();
 			u_m = 0.0f;
 			v_m = 1.0f;
 			glTexCoord2d( u_m, v_m );
@@ -124,7 +126,7 @@ void Scene::loadTerrain() {
 		for (int y = 0; y < _terrain->getHeight()-1; y++) {
 			x_m = _terrain->getTile(x,y)->getPoint3()->getX();
 			y_m = _terrain->getTile(x,y)->getPoint3()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint3()->getZ()*Terrain::HEIGHT_FACTOR;
+			z_m = _terrain->getTile(x,y)->getPoint3()->getZ();
 			glVertex3d( x_m, y_m, z_m );
 		}
 		glColor3f(0.0f, 0.8f, 0.0f);
@@ -137,7 +139,7 @@ void Scene::loadTerrain() {
 		for (int x = 0; x < _terrain->getWidth()-1; x++) {
 			x_m = _terrain->getTile(x,y)->getPoint2()->getX();
 			y_m = _terrain->getTile(x,y)->getPoint2()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint2()->getZ()*Terrain::HEIGHT_FACTOR;
+			z_m = _terrain->getTile(x,y)->getPoint2()->getZ();
 			glVertex3d( x_m, y_m, z_m );
 		}
 		glColor3f(0.0f, 0.8f, 0.0f);
@@ -146,7 +148,6 @@ void Scene::loadTerrain() {
 
 	glEndList();
 	SDL_FreeSurface(textureImage);
-	std::cout << "done." << std::endl;
 }
 
 void Scene::zoomIn() {
