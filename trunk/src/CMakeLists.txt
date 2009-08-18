@@ -1,7 +1,7 @@
 SET( Core
 	core/point3d.cpp
 	core/tile.cpp
-	core/world.cpp
+	core/terrain.cpp
 )
 
 SET( Gui
