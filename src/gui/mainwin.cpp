@@ -9,6 +9,8 @@
 #include "gui/screen.h"
 #include "gui/scene.h"
 
+#include "objects/tractor.h"
+
 MainWin::MainWin()
  : _loop(true), _scene(0), _mouseX(50), _mouseY(50) {
 }
@@ -99,6 +101,41 @@ void MainWin::handleKeyPress(SDL_keysym& keysym) {
 	case SDLK_F1:
 		SDL_WM_ToggleFullScreen(Screen::surface);
 		break;
+	case SDLK_LEFT: {
+		Tractor *t = static_cast<Tractor*>(Scene::getScene()->getObjectList()[0]);
+		if (t->dX<0) {
+			t->dX=0.0;
+			t->dY=-0.10;
+		} else if (t->dY<0) {
+			t->dX=0.10;
+			t->dY=0.0;
+		} else if (t->dX>0) {
+			t->dX=0.0;
+			t->dY=0.10;
+		} else if (t->dY>0) {
+			t->dX=-0.10;
+			t->dY=0.0;
+		}
+
+		break;
+	}
+	case SDLK_RIGHT: {
+		Tractor *t = static_cast<Tractor*>(Scene::getScene()->getObjectList()[0]);
+		if (t->dX>0) {
+			t->dX=0.0;
+			t->dY=-0.10;
+		} else if (t->dY>0) {
+			t->dX=0.10;
+			t->dY=0.0;
+		} else if (t->dX<0) {
+			t->dX=0.0;
+			t->dY=0.10;
+		} else if (t->dY<0) {
+			t->dX=-0.10;
+			t->dY=0.0;
+		}
+		break;
+	}
 	default:
 		break;
 	}
