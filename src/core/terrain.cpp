@@ -1,15 +1,17 @@
-#include "core/world.h"
+#include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point3d.h"
 #include <stdlib.h>
 #include <time.h>
 
-World::World( int width, int height )
+const float Terrain::HEIGHT_FACTOR = 0.4;
+
+Terrain::Terrain( int width, int height )
  : _width(width), _height(height) {
 	initTerrain();
 }
 
-World::~World() {
+Terrain::~Terrain() {
 	for (int i=0; i<_width; i++) {
 		for (int j=0; j<_height; j++) {
 			delete getTile(i, j);
@@ -17,7 +19,7 @@ World::~World() {
 	}
 }
 
-void World::initTerrain() {
+void Terrain::initTerrain() {
 	srand ( time(NULL) );
 	std::vector<Point3d*> points;
 	for (int j=0; j<=_height; j++) {

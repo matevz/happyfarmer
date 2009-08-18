@@ -2,7 +2,7 @@
 #include <math.h>
 #include <iostream>
 
-#include "core/world.h"
+#include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point3d.h"
 #include "gui/mainwin.h"
@@ -21,7 +21,7 @@ void MainWin::show() {
 	Screen::initGl();
 	Screen::resizeEvent(Screen::getScreenWidth(), Screen::getScreenHeight());
 
-	_scene = new Scene( new World( 100, 100 ) );
+	_scene = new Scene( new Terrain( 100, 100 ) );
 	_scene->startScene();
 
 	float deltaX,deltaY,deltaZ,crossX,crossY,crossZ ;

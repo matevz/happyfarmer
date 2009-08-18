@@ -7,21 +7,21 @@
 #include <alut.h>
 #include "models/modelloader.h"
 
-class World;
+class Terrain;
 
 using namespace std;
 
 class Scene
 {
 public:
-	Scene( World* );
+	Scene( Terrain* );
 	virtual ~Scene();
 
 	bool initScene();
 	void startScene();
 	void draw( );
-	World *getWorld() { return _world; }
-	void setWorld( World* w ) { _world = w; }
+	Terrain *getTerrain() { return _terrain; }
+	void setTerrain( Terrain* t ) { _terrain = t; }
 
 	///////////////////////////
 	// Getter/Setter methods //
@@ -54,10 +54,9 @@ private:
 	void loadTerrain();
 
 	static const float SCROLL_FACTOR;
-	static const float HEIGHT_FACTOR; // Z / X relation
 
-	World  *_world;
-	GLuint  _terrain;   // 3d model of terrain
+	Terrain  *_terrain;
+	GLuint  _terrainDispList;   // 3d model of terrain
 	int     _deltaTime;
 	double  _cameraXPos;
 	double  _cameraYPos;

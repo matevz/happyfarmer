@@ -5,15 +5,17 @@
 
 class Tile;
 
-class World {
+class Terrain {
 public:
-	World( int width, int height );
-	virtual ~World();
+	Terrain( int width, int height );
+	virtual ~Terrain();
 
 	int getWidth() { return _width; }
 	int getHeight() { return _height; }
 
 	Tile* getTile( int x, int y ) { return _tiles[x*_width + y]; }
+
+	static const float HEIGHT_FACTOR; // Z / X relation
 
 private:
 	void initTerrain();
