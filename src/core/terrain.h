@@ -15,7 +15,7 @@ public:
 
 	Tile* getTile( int x, int y ) { return _tiles[x*_width + y]; }
 
-	static const float HEIGHT_FACTOR; // Z / X relation
+	static const float HEIGHT_FACTOR; // Z / X ratio
 
 private:
 	void initTerrain();

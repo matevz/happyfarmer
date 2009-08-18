@@ -18,6 +18,9 @@ public:
   bool parse(std::istream& istream);
   bool parse(const std::string& filename);
 
+  ///////////////////////////////////////
+  // Reimplement the following methods //
+  ///////////////////////////////////////
   virtual void info(const int&, const std::string&) {}
   virtual void warning(const int&, const std::string&) {}
   virtual void error(const int&, const std::string&) {}

@@ -2,6 +2,8 @@ SET( Core
 	core/point3d.cpp
 	core/tile.cpp
 	core/terrain.cpp
+	core/object.cpp
+	core/player.cpp
 )
 
 SET( Gui
@@ -20,5 +22,9 @@ SET( Control
 	control/resource.cpp
 )
 
-ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${Models} ${Control} main.cpp )
+SET( Objects
+	objects/tractor.cpp
+)
+
+ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${Models} ${Control} ${Objects} main.cpp )
 TARGET_LINK_LIBRARIES( happyfarmer "GL" "GLU" "m" "SDL" "SDL_image" "alut" "ogg" "vorbis" "vorbisfile" )

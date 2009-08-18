@@ -19,6 +19,8 @@ private:
 	void handleMouseMotion( SDL_MouseMotionEvent& );
 
 	Scene *_scene;
+	bool   _loop;
+	int    _mouseX; int _mouseY;
 };
 
 #endif

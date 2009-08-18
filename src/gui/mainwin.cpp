@@ -9,25 +9,37 @@
 #include "gui/screen.h"
 #include "gui/scene.h"
 
-MainWin::MainWin() {
+MainWin::MainWin()
+ : _loop(true), _scene(0), _mouseX(50), _mouseY(50) {
 }
 
 MainWin::~MainWin() {
 }
 
 void MainWin::show() {
-	bool done=false;
+	bool error=false;
 	SDL_Event event;
-	Screen::initGl();
-	Screen::resizeEvent(Screen::getScreenWidth(), Screen::getScreenHeight());
 
-	_scene = new Scene( new Terrain( 100, 100 ) );
-	_scene->startScene();
+	if (!error && !Screen::initGl()) {
+		error = true;
+	}
+
+	if (!error && !Screen::resizeEvent(Screen::getScreenWidth(), Screen::getScreenHeight())) {
+		error = true;
+	}
+
+	if (!error) {
+		_scene = new Scene( new Terrain( 100, 100 ) );
+		_scene->setSpeed( 1 );
+	}
 
 	float deltaX,deltaY,deltaZ,crossX,crossY,crossZ ;
 	float r, phi, theta;
 	float velocity=0.12;
-	while (!done) {
+
+	_loop = !error;
+	unsigned int lastTime = SDL_GetTicks();
+	while (_loop) {
 		while (SDL_PollEvent(&event)) {
 			switch (event.type) {
 			case SDL_VIDEORESIZE: {
@@ -49,21 +61,31 @@ void MainWin::show() {
 				}
 				break;
 			case SDL_QUIT:
-				done = true;
+				_loop = false;
 				break;
 			default:
 				break;
 			}
 		}
 
+		if ( _mouseX < 30 ) { _scene->moveLeft(); }
+		if ( _mouseX > Screen::getScreenWidth()-30 ) { _scene->moveRight(); }
+		if ( _mouseY < 30 ) { _scene->moveUp(); }
+		if ( _mouseY > Screen::getScreenHeight()-30 ) { _scene->moveDown(); }
+
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
         glLoadIdentity();
         _scene->draw();
         SDL_GL_SwapBuffers();
 
+        // frame limiter
+        if (SDL_GetTicks() > lastTime && (SDL_GetTicks() - lastTime) < 25) {
+        	SDL_Delay( 30 - (SDL_GetTicks() - lastTime) );
+        }
+        lastTime=SDL_GetTicks();
 	}
 
-	Screen::quit(0);
+	Screen::cleanup();
 }
 
 /*!
@@ -72,7 +94,7 @@ void MainWin::show() {
 void MainWin::handleKeyPress(SDL_keysym& keysym) {
 	switch (keysym.sym) {
 	case SDLK_ESCAPE:
-		Screen::quit(0);
+		_loop = false;
 		break;
 	case SDLK_F1:
 		SDL_WM_ToggleFullScreen(Screen::surface);
@@ -88,18 +110,6 @@ void MainWin::handleKeyPress(SDL_keysym& keysym) {
 	Function to handle mouse move events.
 */
 void MainWin::handleMouseMotion(SDL_MouseMotionEvent& evt) {
-	if ( !_scene ) return;
-
-	if ( evt.x < 20 ) {
-		_scene->moveLeft();
-	}
-	if ( evt.x > Screen::getScreenWidth()-20 ) {
-		_scene->moveRight();
-	}
-	if ( evt.y < 20 ) {
-		_scene->moveUp();
-	}
-	if ( evt.y > Screen::getScreenHeight()-20 ) {
-		_scene->moveDown();
-	}
+	_mouseX = evt.x;
+	_mouseY = evt.y;
 }

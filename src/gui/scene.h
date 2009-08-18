@@ -8,6 +8,8 @@
 #include "models/modelloader.h"
 
 class Terrain;
+class Player;
+class Object;
 
 using namespace std;
 
@@ -18,28 +20,19 @@ public:
 	virtual ~Scene();
 
 	bool initScene();
-	void startScene();
-	void draw( );
-	Terrain *getTerrain() { return _terrain; }
-	void setTerrain( Terrain* t ) { _terrain = t; }
+	void draw();
 
 	///////////////////////////
 	// Getter/Setter methods //
 	///////////////////////////
-	/*! Returns the current absolute time in miliseconds */
-	int getTime() { return SDL_GetTicks() - _deltaTime; }
+	Terrain *getTerrain() { return _terrain; }
+	void setTerrain( Terrain* t ) { _terrain = t; }
 
-	inline void setCamera( GLfloat x1, GLfloat y1, int zoomLevel ) {
-		_cameraXPos=x1; _cameraYPos=y1; _zoomLevel = zoomLevel;
+	inline const int& getTime() { return _time; }
+	inline const int& getSpeed() { return _speed; }
+	inline void setSpeed( const int& speed ) { _speed = speed; }
 
-		ALfloat pos[3] = { x1, y1, 5-zoomLevel };
-		ALfloat vel[3] = { 0, 0, 0 };
-		ALfloat ori[3] = { x1-5, y1-5, 5-zoomLevel-5 };
-
-		alListenerfv(AL_POSITION,    pos);
-		alListenerfv(AL_VELOCITY,    vel);
-		alListenerfv(AL_ORIENTATION, ori);
-	}
+	void setCamera( GLfloat x1, GLfloat y1, int zoomLevel );
 
 	void zoomIn();
 	void zoomOut();
@@ -48,19 +41,36 @@ public:
 	void moveUp();
 	void moveDown();
 
-private:
-	void startTime() { _deltaTime = SDL_GetTicks(); }
+	Player *getUserPlayer() { return _userPlayer; }
+	void addObject( Object *o ) { _objectList.push_back(o); }
 
+private:
 	void rebuildTerrain();
 
 	static const float SCROLL_FACTOR;
+	static const float TERRAIN_ANGLE; // view angle in degrees
 
-	Terrain  *_terrain;
-	GLuint  _terrainDispList;   // 3d model of terrain
-	int     _deltaTime;
-	double  _cameraXPos;
-	double  _cameraYPos;
-	int     _zoomLevel;
+	// Scene elements
+	Terrain *_terrain;
+	GLuint   _terrainDispList;        // 3d model of terrain
+	std::vector<Player*> _playerList; // list of all players
+	Player              *_userPlayer; // the human player
+	std::vector<Object*> _objectList; // list of all the object in the scene
+
+	// Time
+	int         _time; // absolute simulation time in mseconds
+	int         _speed; // speed factor
+	SDL_Thread *_timer;
+	static int timerFunc(void*);
+
+	// Object management
+	SDL_Thread *_objectUpdater;
+	static int  objectUpdaterFunc(void*);
+
+	// View
+	double   _cameraXPos;
+	double   _cameraYPos;
+	int      _zoomLevel;
 };
 
 #endif /* SCENE_H_ */
