@@ -16,10 +16,12 @@
 
 const float Scene::SCROLL_FACTOR = 0.8;
 const float Scene::TERRAIN_ANGLE = -60.0f;
+Scene *Scene::_scene = 0;
 
 Scene::Scene( Terrain *t )
  : _terrain(t), _terrainDispList(0), _timer(0), _speed(0), _userPlayer(0), _objectUpdater(0) {
 	initScene();
+	Scene::_scene = this;
 }
 
 Scene::~Scene() {

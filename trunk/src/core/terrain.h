@@ -13,7 +13,7 @@ public:
 	int getWidth() { return _width; }
 	int getHeight() { return _height; }
 
-	Tile* getTile( int x, int y ) { return _tiles[x*_width + y]; }
+	Tile* getTile( int x, int y ) { if ((x*_width + y>=0) && (x*_width + y<_tiles.size())) { return _tiles[y*_width + x]; } else { return 0; } }
 
 	static const float HEIGHT_FACTOR; // Z / X ratio
 
