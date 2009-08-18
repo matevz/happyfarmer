@@ -51,7 +51,7 @@ public:
 private:
 	void startTime() { _deltaTime = SDL_GetTicks(); }
 
-	void loadTerrain();
+	void rebuildTerrain();
 
 	static const float SCROLL_FACTOR;
 
