@@ -11,6 +11,9 @@ public:
 
 	void draw();
 	void update( int time );
+
+	float dX;
+	float dY;
 private:
 	GLuint _dispList;
 };

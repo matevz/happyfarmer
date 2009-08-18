@@ -9,6 +9,8 @@
 Tractor::Tractor( Player* p, const float& x, const float& y )
  : Object( p, x, y ) {
 	_dispList = ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
+	dX = 0.10;
+	dY = 0;
 }
 
 Tractor::~Tractor() {
@@ -16,17 +18,32 @@ Tractor::~Tractor() {
 
 void Tractor::draw() {
     glPushMatrix();
+
 	glTranslatef( _x, _y, _z );
+
+	if (dX > 0) {
+    	glRotatef( -90.0f, 0.0, 0.0, 1.0 );
+    }
+    if (dX < 0) {
+    	glRotatef( 90.0f, 0.0, 0.0, 1.0 );
+    }
+    if (dY > 0) {
+    	glRotatef( 0.0f, 0.0, 0.0, 1.0 );
+    }
+    if (dY < 0) {
+    	glRotatef( 180.0f, 0.0, 0.0, 1.0 );
+    }
+
+	glTranslatef( -0.5, -0.5, 0 );
 	glCallList( _dispList );
 	glPopMatrix();
 }
 
 void Tractor::update( int time ) {
-	if ((int)_y < Scene::getScene()->getTerrain()->getHeight()-1) {
-		_y += 0.10;
-		float roundY = _y - (int)_y;
-		Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x, (int)_y );
+	_y += dY;
+	_x += dX;
+	float roundY = _y - (int)_y;
+	Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x, (int)_y );
 
-		_z = (tile->getPoint1()->getZ()+tile->getPoint2()->getZ()+tile->getPoint3()->getZ()+tile->getPoint4()->getZ())/4.0;
-	}
+	_z = (tile->getPoint1()->getZ()+tile->getPoint2()->getZ()+tile->getPoint3()->getZ()+tile->getPoint4()->getZ())/4.0;
 }

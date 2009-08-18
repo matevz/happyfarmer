@@ -26,6 +26,7 @@ public:
 	// Getter/Setter methods //
 	///////////////////////////
 	static Scene* getScene() { return _scene; }
+	std::vector<Object*>& getObjectList() { return _objectList; }
 
 	Terrain *getTerrain() { return _terrain; }
 	void setTerrain( Terrain* t ) { _terrain = t; }
