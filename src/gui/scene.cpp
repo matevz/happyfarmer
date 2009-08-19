@@ -19,6 +19,7 @@
 // new game
 #include "objects/tractor.h"
 #include "objects/grass.h"
+#include "objects/fence.h"
 
 const float Scene::SCROLL_FACTOR = 0.8;
 const float Scene::TERRAIN_ANGLE = -60.0f;
@@ -43,7 +44,7 @@ bool Scene::initScene() {
 
 	for (unsigned int x=0; x<_terrain->getWidth(); x++) {
 		for (unsigned int y=0; y<_terrain->getHeight(); y++) {
-			_terrain->getTile(x,y)->addObject( new Grass(0,x,y) );
+			_terrain->getTile(x,y)->addObject( new Grass(0,_terrain->getTile(x,y)) );
 		}
 	}
 	rebuildTerrain();
@@ -56,6 +57,22 @@ bool Scene::initScene() {
 	_userPlayer = new Player("Human1");
 	_playerList.push_back( _userPlayer );
 	addMovingObject( new Tractor( _userPlayer, 0.0, 0.0 ) );
+	_terrain->getTile(10,10)->addObject( new Fence(_userPlayer, _terrain->getTile(10,10)) );
+	_terrain->getTile(11,10)->addObject( new Fence(_userPlayer, _terrain->getTile(11,10)) );
+	_terrain->getTile(12,10)->addObject( new Fence(_userPlayer, _terrain->getTile(12,10)) );
+	_terrain->getTile(13,10)->addObject( new Fence(_userPlayer, _terrain->getTile(13,10)) );
+	_terrain->getTile(10,11)->addObject( new Fence(_userPlayer, _terrain->getTile(10,11)) );
+	_terrain->getTile(11,11)->addObject( new Fence(_userPlayer, _terrain->getTile(11,11)) );
+	_terrain->getTile(12,11)->addObject( new Fence(_userPlayer, _terrain->getTile(12,11)) );
+	_terrain->getTile(13,11)->addObject( new Fence(_userPlayer, _terrain->getTile(13,11)) );
+	_terrain->getTile(10,12)->addObject( new Fence(_userPlayer, _terrain->getTile(10,12)) );
+	_terrain->getTile(11,13)->addObject( new Fence(_userPlayer, _terrain->getTile(11,13)) );
+	_terrain->getTile(12,14)->addObject( new Fence(_userPlayer, _terrain->getTile(12,14)) );
+	_terrain->getTile(13,15)->addObject( new Fence(_userPlayer, _terrain->getTile(13,15)) );
+	_terrain->getTile(11,10)->addObject( new Fence(_userPlayer, _terrain->getTile(11,10)) );
+	_terrain->getTile(12,11)->addObject( new Fence(_userPlayer, _terrain->getTile(12,11)) );
+	_terrain->getTile(13,12)->addObject( new Fence(_userPlayer, _terrain->getTile(13,12)) );
+	_terrain->getTile(14,13)->addObject( new Fence(_userPlayer, _terrain->getTile(14,13)) );
 
 	return true;
 }

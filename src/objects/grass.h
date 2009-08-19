@@ -1,12 +1,12 @@
 #ifndef GRASS_H_
 #define GRASS_H_
 
-#include "core/object.h"
+#include "core/stationaryobject.h"
 #include <GL/gl.h>
 
-class Grass : public Object {
+class Grass : public StationaryObject {
 public:
-	Grass( Player*, const float&, const float&);
+	Grass( Player*, Tile* );
 	virtual ~Grass();
 
 	void draw( const unsigned long long& time );

@@ -6,9 +6,14 @@
 #include "core/tile.h"
 #include "core/point3d.h"
 
+GLuint Tractor::_dispList = 0;
+
 Tractor::Tractor( Player* p, const float& x, const float& y )
- : MovingObject( p, x, y ) {
-	_dispList = ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
+ : MovingObject( p, x, y, 0 ) {
+	if (!Tractor::_dispList) {
+		_dispList = ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
+	}
+
 	dX = 0.10;
 	dY = 0;
 }
@@ -35,7 +40,7 @@ void Tractor::draw( const unsigned long long& time ) {
     }
 
 	glTranslatef( -0.5, -0.5, 0 );
-	glCallList( _dispList );
+	glCallList( Tractor::_dispList );
 	glPopMatrix();
 }
 

@@ -15,7 +15,7 @@ public:
 	float dX;
 	float dY;
 private:
-	GLuint _dispList;
+	static GLuint _dispList;
 };
 
 #endif /* TRACTOR_H_ */
