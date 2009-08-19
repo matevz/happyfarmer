@@ -3,6 +3,7 @@ SET( Core
 	core/tile.cpp
 	core/terrain.cpp
 	core/object.cpp
+	core/movingobject.cpp
 	core/player.cpp
 )
 
@@ -24,6 +25,7 @@ SET( Control
 
 SET( Objects
 	objects/tractor.cpp
+	objects/grass.cpp
 )
 
 ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${Models} ${Control} ${Objects} main.cpp )

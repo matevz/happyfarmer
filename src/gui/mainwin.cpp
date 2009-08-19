@@ -31,7 +31,7 @@ void MainWin::show() {
 	}
 
 	if (!error) {
-		_scene = new Scene( new Terrain( 100, 100 ) );
+		_scene = new Scene();
 		_scene->setSpeed( 1 );
 	}
 

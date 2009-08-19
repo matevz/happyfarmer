@@ -7,7 +7,7 @@
 #include "core/point3d.h"
 
 Tractor::Tractor( Player* p, const float& x, const float& y )
- : Object( p, x, y ) {
+ : MovingObject( p, x, y ) {
 	_dispList = ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
 	dX = 0.10;
 	dY = 0;
@@ -16,7 +16,7 @@ Tractor::Tractor( Player* p, const float& x, const float& y )
 Tractor::~Tractor() {
 }
 
-void Tractor::draw() {
+void Tractor::draw( const unsigned long long& time ) {
     glPushMatrix();
 
 	glTranslatef( _x, _y, _z );
@@ -39,7 +39,7 @@ void Tractor::draw() {
 	glPopMatrix();
 }
 
-void Tractor::update( int time ) {
+void Tractor::update( const unsigned long long& time ) {
 	_y += dY;
 	_x += dX;
 	float roundY = _y - (int)_y;

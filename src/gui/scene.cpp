@@ -1,27 +1,33 @@
 #include <string>
-#include "gui/scene.h"
-#include "gui/screen.h"
-#include "core/terrain.h"
-#include "core/tile.h"
-#include "core/point3d.h"
-#include "core/player.h"
-#include "control/resource.h"
-#include "models/modelloader.h"
-#include "objects/tractor.h"
+#include <algorithm>
 #include <alut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "gui/scene.h"
+#include "gui/screen.h"
+#include "core/terrain.h"
+#include "core/tile.h"
+#include "core/point3d.h"
+#include "core/player.h"
+#include "core/movingobject.h"
+#include "control/resource.h"
+#include "models/modelloader.h"
+
+// new game
+#include "objects/tractor.h"
+#include "objects/grass.h"
+
 const float Scene::SCROLL_FACTOR = 0.8;
 const float Scene::TERRAIN_ANGLE = -60.0f;
 Scene *Scene::_scene = 0;
 
-Scene::Scene( Terrain *t )
- : _terrain(t), _terrainDispList(0), _timer(0), _speed(0), _userPlayer(0), _objectUpdater(0) {
-	initScene();
+Scene::Scene()
+ : _terrainDispList(0), _timer(0), _speed(0), _userPlayer(0), _objectUpdater(0) {
 	Scene::_scene = this;
+	initScene();
 }
 
 Scene::~Scene() {
@@ -33,6 +39,13 @@ Scene::~Scene() {
 }
 
 bool Scene::initScene() {
+	_terrain = new Terrain( 128, 128 );
+
+	for (unsigned int x=0; x<_terrain->getWidth(); x++) {
+		for (unsigned int y=0; y<_terrain->getHeight(); y++) {
+			_terrain->getTile(x,y)->addObject( new Grass(0,x,y) );
+		}
+	}
 	rebuildTerrain();
 
 	_timer = SDL_CreateThread(Scene::timerFunc, this);
@@ -42,7 +55,7 @@ bool Scene::initScene() {
 
 	_userPlayer = new Player("Human1");
 	_playerList.push_back( _userPlayer );
-	addObject( new Tractor( _userPlayer, 0.0, 0.0 ) );
+	addMovingObject( new Tractor( _userPlayer, 0.0, 0.0 ) );
 
 	return true;
 }
@@ -54,7 +67,7 @@ int Scene::timerFunc(void *s) {
 	Scene* scene = static_cast<Scene*>(s);
     while ( scene->_speed != -1 ) {
         SDL_Delay(40);
-    	scene->_time += 40*scene->_speed;
+    	scene->_time += static_cast<int>(40*scene->_speed);
     }
     return 0;
 }
@@ -82,10 +95,18 @@ void Scene::draw() {
 	glRotatef( TERRAIN_ANGLE, 1.0f, 0.0f, 0.0f );
 	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );
 	glTranslatef( -_cameraXPos, -_cameraYPos, 0 );
-	glCallList(_terrainDispList);
+
+	for (unsigned int x=0; x<getTerrain()->getWidth(); x++) {
+		for (unsigned int y=0; y<getTerrain()->getHeight(); y++) {
+			Tile *t = getTerrain()->getTile(x,y);
+			for (unsigned int i=0; i<t->getObjectList().size(); i++) {
+				t->getObjectList()[i]->draw( _time );
+			}
+		}
+	}
 
 	for (unsigned int i=0; i<_objectList.size(); i++) {
-		_objectList[i]->draw();
+		_objectList[i]->draw( _time );
 	}
 
 	glPopMatrix();
@@ -94,95 +115,14 @@ void Scene::draw() {
 /*!
 	Creates an OpenGL list of 3d vertices of the terrain using the World model.
 */
+#include "objects/grass.h"
 void Scene::rebuildTerrain() {
-	GLdouble x_m, y_m, z_m, u_m, v_m;
-
-	SDL_Surface *textureImage;
-	GLuint texture;
-	textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/grass.png"));
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-
-    if (_terrainDispList) {
-    	glDeleteLists(_terrainDispList, 1);
-    }
-
-	_terrainDispList = glGenLists(1);
-	glNewList(_terrainDispList, GL_COMPILE);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture);
 	for (int x = 0; x < _terrain->getWidth(); x++) {
 		for (int y = 0; y < _terrain->getHeight(); y++) {
-			glBegin(GL_QUADS);
-			glNormal3f(0.0f, 0.0f, 1.0f);
-			x_m = _terrain->getTile(x,y)->getPoint1()->getX();
-			y_m = _terrain->getTile(x,y)->getPoint1()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint1()->getZ();
-			u_m = 1.0f;
-			v_m = 1.0f;
-			glTexCoord2d( u_m, v_m );
-			glVertex3d( x_m, y_m, z_m );
-
-			x_m = _terrain->getTile(x,y)->getPoint2()->getX();
-			y_m = _terrain->getTile(x,y)->getPoint2()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint2()->getZ();
-			u_m = 1.0f;
-			v_m = 0.0f;
-			glTexCoord2d( u_m, v_m );
-			glVertex3d( x_m, y_m, z_m );
-
-			x_m = _terrain->getTile(x,y)->getPoint4()->getX();
-			y_m = _terrain->getTile(x,y)->getPoint4()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint4()->getZ();
-			u_m = 0.0f;
-			v_m = 0.0f;
-			glTexCoord2d( u_m, v_m );
-			glVertex3d( x_m, y_m, z_m );
-
-			x_m = _terrain->getTile(x,y)->getPoint3()->getX();
-			y_m = _terrain->getTile(x,y)->getPoint3()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint3()->getZ();
-			u_m = 0.0f;
-			v_m = 1.0f;
-			glTexCoord2d( u_m, v_m );
-			glVertex3d( x_m, y_m, z_m );
-
-			glColor3f(1.0f, 1.0f, 1.0f);
-			glEnd();
+			Object *o = _terrain->getTile(x,y)->getObjectList()[0];
+			static_cast<Grass*>(o)->rebuild();
 		}
 	}
-
-	// horizontal lines
-	for (int x = 0; x < _terrain->getWidth(); x++) {
-		glBegin(GL_LINE_STRIP);
-		for (int y = 0; y < _terrain->getHeight()-1; y++) {
-			x_m = _terrain->getTile(x,y)->getPoint3()->getX();
-			y_m = _terrain->getTile(x,y)->getPoint3()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint3()->getZ();
-			glVertex3d( x_m, y_m, z_m );
-		}
-		glColor3f(0.0f, 0.8f, 0.0f);
-		glEnd();
-	}
-
-	// vertical lines
-	for (int y = 0; y < _terrain->getHeight(); y++) {
-		glBegin(GL_LINE_STRIP);
-		for (int x = 0; x < _terrain->getWidth()-1; x++) {
-			x_m = _terrain->getTile(x,y)->getPoint2()->getX();
-			y_m = _terrain->getTile(x,y)->getPoint2()->getY();
-			z_m = _terrain->getTile(x,y)->getPoint2()->getZ();
-			glVertex3d( x_m, y_m, z_m );
-		}
-		glColor3f(0.0f, 0.8f, 0.0f);
-		glEnd();
-	}
-
-	glEndList();
-	SDL_FreeSurface(textureImage);
 }
 
 void Scene::setCamera( GLfloat x1, GLfloat y1, int zoomLevel ) {
@@ -195,6 +135,21 @@ void Scene::setCamera( GLfloat x1, GLfloat y1, int zoomLevel ) {
 	alListenerfv(AL_POSITION,    pos);
 	alListenerfv(AL_VELOCITY,    vel);
 	alListenerfv(AL_ORIENTATION, ori);
+}
+
+/*!
+ * Removes the given \a object.
+ * Return True, if the object was found. Otherwise False.
+ */
+bool Scene::removeMovingObject( MovingObject *o ) {
+	std::vector<MovingObject*>::iterator pos = std::find(_objectList.begin(), _objectList.end(), o);
+
+	if (pos != _objectList.end()) {
+		_objectList.erase(pos);
+		return true;
+	} else {
+		return false;
+	}
 }
 
 void Scene::zoomIn() {
