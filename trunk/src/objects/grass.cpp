@@ -7,8 +7,8 @@
 
 GLuint Grass::_texture = 0;
 
-Grass::Grass(Player* p, const float& x, const float& y)
- : Object(p, x, y), _dispList(0) {
+Grass::Grass(Player* p, Tile* t)
+ : StationaryObject(p, t), _dispList(0) {
 	rebuild();
 }
 

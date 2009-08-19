@@ -6,10 +6,11 @@ class Model;
 
 class Object {
 public:
-	Object( Player* owner, const float& x, const float& y );
+	Object( Player* owner, const float& x, const float& y, const float& z );
 	virtual ~Object();
 
 	virtual void draw( const unsigned long long& time ) {};
+	virtual void rebuild() {};
 
 protected:
 	Player *_owner;

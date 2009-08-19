@@ -4,16 +4,28 @@
 #include <vector>
 
 class Point3d;
-class Object;
+class StationaryObject;
 
 class Tile {
 public:
 	Tile( int x, int y, Point3d *p1, Point3d *p2, Point3d *p3, Point3d *p4 );
 	virtual ~Tile();
 
-	const std::vector<Object*>& getObjectList() { return _objectList; }
-	void addObject( Object* o ) { _objectList.push_back(o); }
-	bool removeObject( Object* o );
+	const std::vector<StationaryObject*>& getObjectList() { return _objectList; }
+	void addObject( StationaryObject* o, bool rebuildNeighbors=true );
+	bool removeObject( StationaryObject* o, bool rebuildNeighbors=true );
+	void rebuild();
+
+	template<class T>
+	bool contains() {
+		for (unsigned int i=0; i<_objectList.size(); i++) {
+			if (dynamic_cast<T*>(_objectList[i])) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	int getX() { return _x; }
 	int getY() { return _y; }
@@ -42,7 +54,7 @@ private:
 	////////////////////////
 	// Non-moving objects //
 	////////////////////////
-	std::vector<Object*> _objectList;
+	std::vector<StationaryObject*> _objectList;
 };
 
 #endif
