@@ -1,12 +1,19 @@
 #ifndef TILE_H_
 #define TILE_H_
 
+#include <vector>
+
 class Point3d;
+class Object;
 
 class Tile {
 public:
 	Tile( int x, int y, Point3d *p1, Point3d *p2, Point3d *p3, Point3d *p4 );
 	virtual ~Tile();
+
+	const std::vector<Object*>& getObjectList() { return _objectList; }
+	void addObject( Object* o ) { _objectList.push_back(o); }
+	bool removeObject( Object* o );
 
 	int getX() { return _x; }
 	int getY() { return _y; }
@@ -23,10 +30,19 @@ public:
 private:
 	int _x; // top-left corner
 	int _y;
-	Point3d *_point1; // top-left
-	Point3d *_point2; // top-right
-	Point3d *_point3; // bottom-left
-	Point3d *_point4; // bottom-right
+
+	/////////////
+	// Terrain //
+	/////////////
+	Point3d *_point1; // bottom
+	Point3d *_point2; // right
+	Point3d *_point3; // top
+	Point3d *_point4; // left
+
+	////////////////////////
+	// Non-moving objects //
+	////////////////////////
+	std::vector<Object*> _objectList;
 };
 
 #endif

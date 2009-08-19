@@ -21,6 +21,8 @@ Terrain::~Terrain() {
 
 void Terrain::initTerrain() {
 	srand ( time(NULL) );
+
+	// first build the 3d points shared between the tiles
 	std::vector<Point3d*> points;
 	for (int j=0; j<=_height; j++) {
 		for (int i=0; i<=_width; i++) {
@@ -32,13 +34,14 @@ void Terrain::initTerrain() {
 		}
 	}
 
+	// second assign the generated points to the tiles
 	for (int j=0; j<_height; j++) {
 		for (int i=0; i<_width; i++) {
 			_tiles.push_back(
 				new Tile(
 					i, j,
 					points[j*(_width+1)+i], points[j*(_width+1)+i+1],
-					points[(j+1)*(_width+1)+i], points[(j+1)*(_width+1)+i+1]
+					points[(j+1)*(_width+1)+i+1], points[(j+1)*(_width+1)+i]
 				)
 			);
 		}
