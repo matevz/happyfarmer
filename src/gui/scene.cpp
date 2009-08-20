@@ -1,5 +1,6 @@
 #include <string>
 #include <algorithm>
+#include <math.h>
 #include <alut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -20,9 +21,11 @@
 #include "objects/tractor.h"
 #include "objects/grass.h"
 #include "objects/fence.h"
+#include "objects/road.h"
 
 const float Scene::SCROLL_FACTOR = 0.8;
 const float Scene::TERRAIN_ANGLE = -60.0f;
+const float Scene::MAGNIFIER_FACTOR = 256;
 Scene *Scene::_scene = 0;
 
 Scene::Scene()
@@ -74,6 +77,16 @@ bool Scene::initScene() {
 	_terrain->getTile(13,12)->addObject( new Fence(_userPlayer, _terrain->getTile(13,12)) );
 	_terrain->getTile(14,13)->addObject( new Fence(_userPlayer, _terrain->getTile(14,13)) );
 
+	_terrain->getTile(24,13)->addObject( new Road(_userPlayer, _terrain->getTile(24,13)) );
+	_terrain->getTile(25,13)->addObject( new Road(_userPlayer, _terrain->getTile(25,13)) );
+	_terrain->getTile(26,13)->addObject( new Road(_userPlayer, _terrain->getTile(26,13)) );
+	_terrain->getTile(24,14)->addObject( new Road(_userPlayer, _terrain->getTile(24,14)) );
+	_terrain->getTile(25,14)->addObject( new Road(_userPlayer, _terrain->getTile(25,14)) );
+	_terrain->getTile(26,14)->addObject( new Road(_userPlayer, _terrain->getTile(26,14)) );
+	_terrain->getTile(24,15)->addObject( new Road(_userPlayer, _terrain->getTile(24,15)) );
+	_terrain->getTile(25,15)->addObject( new Road(_userPlayer, _terrain->getTile(25,15)) );
+	_terrain->getTile(26,15)->addObject( new Road(_userPlayer, _terrain->getTile(26,15)) );
+
 	return true;
 }
 
@@ -103,11 +116,20 @@ int Scene::objectUpdaterFunc(void *s) {
 	return 0;
 }
 
+void Scene::mouseMoveEvent( const unsigned short& x, const unsigned short& y ) {
+	float sceneX, sceneY;
+
+	sceneX = _cameraXPos - (3-_zoomLevel+1)*(Screen::getScreenWidth()/(MAGNIFIER_FACTOR/2))/sqrt(2) +
+	         (3-_zoomLevel+1)*((x*2)/MAGNIFIER_FACTOR)/sqrt(2);
+
+	std::cout << sceneX << std::endl;
+}
+
 /*!
  * Draws the whole scene.
  */
 void Scene::draw() {
-    glOrtho( (3-_zoomLevel+1)*(-Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(Screen::getScreenWidth()/128), (3-_zoomLevel+1)*(-Screen::getScreenHeight()/128), (3-_zoomLevel+1)*(Screen::getScreenHeight()/128), -500, 500 );
+    glOrtho( (3-_zoomLevel+1)*(-Screen::getScreenWidth()/(MAGNIFIER_FACTOR/2)), (3-_zoomLevel+1)*(Screen::getScreenWidth()/(MAGNIFIER_FACTOR/2)), (3-_zoomLevel+1)*(-Screen::getScreenHeight()/(MAGNIFIER_FACTOR/2)), (3-_zoomLevel+1)*(Screen::getScreenHeight()/(MAGNIFIER_FACTOR/2)), -500, 500 );
     glPushMatrix();
 	glRotatef( TERRAIN_ANGLE, 1.0f, 0.0f, 0.0f );
 	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );

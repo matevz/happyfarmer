@@ -5,7 +5,7 @@
 #include <GL/gl.h>
 #include <vector>
 
-class Fence: public StationaryObject {
+class Fence : public StationaryObject {
 public:
 	Fence( Player*, Tile* );
 	virtual ~Fence();
@@ -14,6 +14,8 @@ public:
 	void draw( const unsigned long long& time );
 
 private:
+	void init();
+
 	std::vector<GLuint> _dispLists; // fence parts used in actual object
 
 	static GLuint _dispList;

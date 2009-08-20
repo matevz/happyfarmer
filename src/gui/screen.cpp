@@ -72,6 +72,9 @@ bool Screen::initGl() {
 	glClearColor(0.0f, 0.0f, 0.6f, 0.0f);
 	glEnable( GL_DEPTH_TEST );
 
+	// Enable transparency
+	glEnable (GL_BLEND); glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	return (!error);
 }
 

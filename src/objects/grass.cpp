@@ -9,7 +9,7 @@ GLuint Grass::_texture = 0;
 
 Grass::Grass(Player* p, Tile* t)
  : StationaryObject(p, t), _dispList(0) {
-	rebuild();
+	init();
 }
 
 Grass::~Grass() {
@@ -19,7 +19,7 @@ void Grass::draw( const unsigned long long& time ) {
 	glCallList(_dispList);
 }
 
-void Grass::rebuild() {
+void Grass::init() {
 	// open the texture file
 	if (!Grass::_texture) {
 		SDL_Surface *textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/grass.png"));
@@ -29,7 +29,10 @@ void Grass::rebuild() {
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 	}
+	rebuild();
+}
 
+void Grass::rebuild() {
 	Tile *tile = Scene::getScene()->getTerrain()->getTile((int)_x,(int)_y);
 	GLfloat x_m, y_m, z_m, u_m, v_m;
 

@@ -149,4 +149,6 @@ void MainWin::handleKeyPress(SDL_keysym& keysym) {
 void MainWin::handleMouseMotion(SDL_MouseMotionEvent& evt) {
 	_mouseX = evt.x;
 	_mouseY = evt.y;
+
+	_scene->mouseMoveEvent( evt.x, evt.y );
 }
