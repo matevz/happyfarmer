@@ -14,6 +14,23 @@ GLuint Fence::_dispList8 = 0;
 
 Fence::Fence( Player* p, Tile* t )
  : StationaryObject(p,t) {
+	init();
+}
+
+Fence::~Fence() {
+}
+
+void Fence::draw( const unsigned long long& time ) {
+    glPushMatrix();
+	glTranslatef( _x, _y, _z );
+
+	for (unsigned int i=0; i<_dispLists.size(); i++) {
+		glCallList( _dispLists[i] );
+	}
+	glPopMatrix();
+}
+
+void Fence::init() {
 	if (!Fence::_dispList) {
 		Fence::_dispList = ModelLoader().loadModel( Resource::locateModel("fence/fence") );
 
@@ -53,19 +70,6 @@ Fence::Fence( Player* p, Tile* t )
 		glEndList();
 	}
 	rebuild();
-}
-
-Fence::~Fence() {
-}
-
-void Fence::draw( const unsigned long long& time ) {
-    glPushMatrix();
-	glTranslatef( _x, _y, _z );
-
-	for (unsigned int i=0; i<_dispLists.size(); i++) {
-		glCallList( _dispLists[i] );
-	}
-	glPopMatrix();
 }
 
 void Fence::rebuild() {

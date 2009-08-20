@@ -9,8 +9,9 @@ public:
 	Grass( Player*, Tile* );
 	virtual ~Grass();
 
-	void draw( const unsigned long long& time );
+	void init();
 	void rebuild();
+	void draw( const unsigned long long& time );
 
 private:
 	static GLuint _texture;

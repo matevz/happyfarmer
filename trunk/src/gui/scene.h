@@ -21,6 +21,7 @@ public:
 
 	bool initScene();
 	void draw();
+	void mouseMoveEvent( const unsigned short& x, const unsigned short& y );
 
 	///////////////////////////
 	// Getter/Setter methods //
@@ -53,6 +54,7 @@ private:
 
 	static const float SCROLL_FACTOR;
 	static const float TERRAIN_ANGLE; // view angle in degrees
+	static const float MAGNIFIER_FACTOR;
 
 	// Scene elements
 	Terrain *_terrain;

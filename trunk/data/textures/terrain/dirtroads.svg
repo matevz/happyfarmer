@@ -1,0 +1,1406 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1024"
+   height="1024"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docname="dirtroads.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3609">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0"
+         id="stop3611" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop3613" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3601">
+      <stop
+         style="stop-color:#3f4d3f;stop-opacity:1;"
+         offset="0"
+         id="stop3603" />
+      <stop
+         style="stop-color:#506263;stop-opacity:1;"
+         offset="1"
+         id="stop3605" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3495">
+      <stop
+         style="stop-color:#a8643a;stop-opacity:1;"
+         offset="0"
+         id="stop3497" />
+      <stop
+         style="stop-color:#a86438;stop-opacity:1;"
+         offset="1"
+         id="stop3499" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3501"
+       x1="280"
+       y1="380"
+       x2="480"
+       y2="380"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3607"
+       x1="256"
+       y1="372"
+       x2="488"
+       y2="372"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3615"
+       x1="272"
+       y1="328"
+       x2="392"
+       y2="328"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3623"
+       x1="232"
+       y1="-432"
+       x2="248"
+       y2="-432"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3631"
+       x1="120"
+       y1="-448"
+       x2="136"
+       y2="-448"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3639"
+       x1="120"
+       y1="-320"
+       x2="136"
+       y2="-320"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3647"
+       x1="8"
+       y1="-336"
+       x2="24"
+       y2="-336"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3655"
+       x1="376"
+       y1="-64"
+       x2="392"
+       y2="-64"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3663"
+       x1="376"
+       y1="-192"
+       x2="392"
+       y2="-192"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3671"
+       x1="120"
+       y1="192"
+       x2="136"
+       y2="192"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3679"
+       x1="120"
+       y1="64"
+       x2="136"
+       y2="64"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3687"
+       x1="224"
+       y1="128"
+       x2="232"
+       y2="128"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3695"
+       x1="24"
+       y1="128"
+       x2="32"
+       y2="128"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3703"
+       x1="480"
+       y1="240"
+       x2="512"
+       y2="240"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3705"
+       x1="256"
+       y1="240"
+       x2="288"
+       y2="240"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3707"
+       x1="256"
+       y1="16"
+       x2="288"
+       y2="16"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3709"
+       x1="480"
+       y1="16"
+       x2="512"
+       y2="16"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3733"
+       x1="256"
+       y1="272"
+       x2="288"
+       y2="272"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3737"
+       gradientUnits="userSpaceOnUse"
+       x1="24"
+       y1="24"
+       x2="32"
+       y2="24"
+       gradientTransform="translate(-24,256)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3741"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-23.999999,456)"
+       x1="24"
+       y1="24"
+       x2="32"
+       y2="24" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3823"
+       x1="255.5"
+       y1="128"
+       x2="512.5"
+       y2="128"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3833"
+       x1="32"
+       y1="128"
+       x2="224"
+       y2="128"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3837"
+       gradientUnits="userSpaceOnUse"
+       x1="32"
+       y1="128"
+       x2="224"
+       y2="128"
+       gradientTransform="matrix(0,1,-1,0,256,256)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3847"
+       gradientUnits="userSpaceOnUse"
+       x1="256"
+       y1="272"
+       x2="288"
+       y2="272"
+       gradientTransform="matrix(0,1,-1,0,1024,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3849"
+       gradientUnits="userSpaceOnUse"
+       x1="280"
+       y1="380"
+       x2="480"
+       y2="380"
+       gradientTransform="matrix(0,1,-1,0,1024,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3851"
+       gradientUnits="userSpaceOnUse"
+       x1="272"
+       y1="328"
+       x2="392"
+       y2="328"
+       gradientTransform="matrix(0,1,-1,0,1024,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3853"
+       gradientUnits="userSpaceOnUse"
+       x1="256"
+       y1="372"
+       x2="488"
+       y2="372"
+       gradientTransform="matrix(0,1,-1,0,1024,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3863"
+       gradientUnits="userSpaceOnUse"
+       x1="256"
+       y1="272"
+       x2="288"
+       y2="272"
+       gradientTransform="matrix(-1,0,0,-1,1024,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3865"
+       gradientUnits="userSpaceOnUse"
+       x1="280"
+       y1="380"
+       x2="480"
+       y2="380"
+       gradientTransform="matrix(-1,0,0,-1,1024,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3867"
+       gradientUnits="userSpaceOnUse"
+       x1="272"
+       y1="328"
+       x2="392"
+       y2="328"
+       gradientTransform="matrix(-1,0,0,-1,1024,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3869"
+       gradientUnits="userSpaceOnUse"
+       x1="256"
+       y1="372"
+       x2="488"
+       y2="372"
+       gradientTransform="matrix(-1,0,0,-1,1024,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3879"
+       gradientUnits="userSpaceOnUse"
+       x1="256"
+       y1="272"
+       x2="288"
+       y2="272"
+       gradientTransform="matrix(0,-1,1,0,0,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3881"
+       gradientUnits="userSpaceOnUse"
+       x1="280"
+       y1="380"
+       x2="480"
+       y2="380"
+       gradientTransform="matrix(0,-1,1,0,0,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3883"
+       gradientUnits="userSpaceOnUse"
+       x1="272"
+       y1="328"
+       x2="392"
+       y2="328"
+       gradientTransform="matrix(0,-1,1,0,0,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3885"
+       gradientUnits="userSpaceOnUse"
+       x1="256"
+       y1="372"
+       x2="488"
+       y2="372"
+       gradientTransform="matrix(0,-1,1,0,0,1024)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3889"
+       gradientUnits="userSpaceOnUse"
+       x1="24"
+       y1="128"
+       x2="32"
+       y2="128"
+       gradientTransform="translate(767.99999,-6.2773438e-6)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3893"
+       gradientUnits="userSpaceOnUse"
+       x1="480"
+       y1="16"
+       x2="512"
+       y2="16"
+       gradientTransform="translate(512,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3897"
+       gradientUnits="userSpaceOnUse"
+       x1="480"
+       y1="240"
+       x2="512"
+       y2="240"
+       gradientTransform="translate(512,2.9000001e-6)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3907"
+       x1="800"
+       y1="128"
+       x2="1024"
+       y2="128"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3911"
+       gradientUnits="userSpaceOnUse"
+       x1="8"
+       y1="-336"
+       x2="24"
+       y2="-336"
+       gradientTransform="translate(1008,424)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3917"
+       gradientUnits="userSpaceOnUse"
+       x1="120"
+       y1="64"
+       x2="136"
+       y2="64"
+       gradientTransform="translate(768,4.0000001e-6)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3919"
+       gradientUnits="userSpaceOnUse"
+       x1="120"
+       y1="192"
+       x2="136"
+       y2="192"
+       gradientTransform="translate(768,4.0000001e-6)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3935"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(255.99999,-1024)"
+       x1="24"
+       y1="128"
+       x2="32"
+       y2="128" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3937"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,1,-1,0,1024,-2e-6)"
+       x1="480"
+       y1="16"
+       x2="512"
+       y2="16" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3939"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,1,-1,0,1024,-2e-6)"
+       x1="480"
+       y1="240"
+       x2="512"
+       y2="240" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3941"
+       gradientUnits="userSpaceOnUse"
+       x1="800"
+       y1="128"
+       x2="1024"
+       y2="128"
+       gradientTransform="matrix(0,1,-1,0,1024,-512)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3943"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(496.00006,-599.99997)"
+       x1="8"
+       y1="-336"
+       x2="24"
+       y2="-336" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3945"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(256,-1024)"
+       x1="120"
+       y1="64"
+       x2="136"
+       y2="64" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3947"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(256,-1024)"
+       x1="120"
+       y1="192"
+       x2="136"
+       y2="192" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3963"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1024.0001,-768.00001)"
+       x1="24"
+       y1="128"
+       x2="32"
+       y2="128" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3965"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1,0,0,-1,1280.0001,768)"
+       x1="480"
+       y1="16"
+       x2="512"
+       y2="16" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3967"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1,0,0,-1,1280.0001,768)"
+       x1="480"
+       y1="240"
+       x2="512"
+       y2="240" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3969"
+       gradientUnits="userSpaceOnUse"
+       x1="800"
+       y1="128"
+       x2="1024"
+       y2="128"
+       gradientTransform="matrix(-1,0,0,-1,1792.0001,768)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3971"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-784.00008,-344)"
+       x1="8"
+       y1="-336"
+       x2="24"
+       y2="-336" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3973"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1024.0001,-768)"
+       x1="120"
+       y1="64"
+       x2="136"
+       y2="64" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3975"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1024.0001,-768)"
+       x1="120"
+       y1="192"
+       x2="136"
+       y2="192" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3991"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1024,767.99999)"
+       x1="24"
+       y1="128"
+       x2="32"
+       y2="128" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3993"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,-1,1,0,768,1280)"
+       x1="480"
+       y1="16"
+       x2="512"
+       y2="16" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3601"
+       id="linearGradient3995"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,-1,1,0,768,1280)"
+       x1="480"
+       y1="240"
+       x2="512"
+       y2="240" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3495"
+       id="linearGradient3997"
+       gradientUnits="userSpaceOnUse"
+       x1="800"
+       y1="128"
+       x2="1024"
+       y2="128"
+       gradientTransform="matrix(0,-1,1,0,768,1792)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient3999"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-784,1192)"
+       x1="8"
+       y1="-336"
+       x2="24"
+       y2="-336" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient4001"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1024,768)"
+       x1="120"
+       y1="64"
+       x2="136"
+       y2="64" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3609"
+       id="linearGradient4003"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-1024,768)"
+       x1="120"
+       y1="192"
+       x2="136"
+       y2="192" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7032562"
+     inkscape:cx="459.64487"
+     inkscape:cy="578.39564"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1600"
+     inkscape:window-height="1126"
+     inkscape:window-x="1675"
+     inkscape:window-y="-3">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3397"
+       visible="true"
+       enabled="true"
+       spacingx="8px"
+       spacingy="8px"
+       dotted="false"
+       empspacing="32" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:url(#linearGradient3833);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1.0"
+       d="M 32,0 L 32,256 L 224,256 L 224,0 L 32,0 z"
+       id="path3825"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad258.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3679);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3375"
+       width="16"
+       height="64"
+       x="120"
+       y="32"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad258.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3671);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3399"
+       width="16"
+       height="64"
+       x="120"
+       y="160"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad258.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3695);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3401"
+       width="8"
+       height="256"
+       x="24"
+       y="0"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad258.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3687);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3403"
+       width="8"
+       height="256"
+       x="224"
+       y="0"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad258.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3837);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 256,288 L 0,288 L 0,480 L 256,480 L 256,288 z"
+       id="path3835"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3663);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3407"
+       width="16"
+       height="64"
+       x="376"
+       y="-224"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3655);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3409"
+       width="16"
+       height="64"
+       x="376"
+       y="-96"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3823);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="M 288,0 L 288,24 L 280,32 L 256,32 L 256,224 L 280,224 L 288,232 L 288,256 L 480,256 L 480,232 L 488,224 L 512,224 L 512,32 L 488,32 L 480,24 L 480,0 L 288,0 z"
+       id="path3815"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3705);fill-opacity:1.0;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 280,256 L 280,240 L 272,232 L 256,232 L 256,224 L 280,224 L 288,232 L 288,256 L 280,256 z"
+       id="path3447"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3703);fill-opacity:1.0;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 512,232 L 496,232 L 488,240 L 488,256 L 480,256 L 480,232 L 488,224 L 512,224 L 512,232 z"
+       id="path3445"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3709);fill-opacity:1.0;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 488,0 L 488,16 L 496,24 L 512,24 L 512,32 L 488,32 L 480,24 L 480,0 L 488,0 z"
+       id="path3443"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3707);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1.0"
+       d="M 256,24 L 272,24 L 280,16 L 280,0 L 288,0 L 288,24 L 280,32 L 256,32 L 256,24 z"
+       id="path3441"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3647);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3457"
+       width="16"
+       height="104"
+       x="0"
+       y="-392"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3623);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3459"
+       width="16"
+       height="104"
+       x="240"
+       y="-480"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad245.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3639);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3461"
+       width="16"
+       height="64"
+       x="120"
+       y="-352"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3631);fill-opacity:1.0;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3463"
+       width="16"
+       height="64"
+       x="120"
+       y="-480"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3733);fill-opacity:1.0;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 256,280 L 272,280 L 280,272 L 280,256 L 288,256 L 288,280 L 280,288 L 256,288 L 256,280 z"
+       id="path3477"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad245.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3501);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1.0"
+       d="M 288,280 L 280,288 L 256,288 L 256,480 L 432,480 L 480,432 L 480,256 L 288,256 L 288,280 z"
+       id="path3493"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad245.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3615);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 256,376 L 352,376 L 376,352 L 376,256 L 392,256 L 392,360 L 360,392 L 256,392 L 256,376 z"
+       id="path3491"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad245.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3607);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1.0"
+       d="M 256,480 L 256,488 L 440,488 L 488,440 L 488,256 L 480,256 L 480,432 L 432,480 L 256,480 z"
+       id="path3599"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad245.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="280"
+       x="0"
+       height="8"
+       width="256"
+       id="rect3735"
+       style="fill:url(#linearGradient3737);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="480"
+       x="0"
+       height="8"
+       width="256"
+       id="rect3739"
+       style="fill:url(#linearGradient3741);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3847);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 744,256 L 744,272 L 752,280 L 768,280 L 768,288 L 744,288 L 736,280 L 736,256 L 744,256 z"
+       id="path3839"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad256.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3849);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 744,288 L 736,280 L 736,256 L 544,256 L 544,432 L 592,480 L 768,480 L 768,288 L 744,288 z"
+       id="path3841"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad256.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3851);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 648,256 L 648,352 L 672,376 L 768,376 L 768,392 L 664,392 L 632,360 L 632,256 L 648,256 z"
+       id="path3843"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad256.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3853);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 544,256 L 536,256 L 536,440 L 584,488 L 768,488 L 768,480 L 592,480 L 544,432 L 544,256 z"
+       id="path3845"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad256.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3863);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 768,744 L 752,744 L 744,752 L 744,768 L 736,768 L 736,744 L 744,736 L 768,736 L 768,744 z"
+       id="path3855"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3865);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 736,744 L 744,736 L 768,736 L 768,544 L 592,544 L 544,592 L 544,768 L 736,768 L 736,744 z"
+       id="path3857"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3867);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 768,648 L 672,648 L 648,672 L 648,768 L 632,768 L 632,664 L 664,632 L 768,632 L 768,648 z"
+       id="path3859"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3869);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 768,544 L 768,536 L 584,536 L 536,584 L 536,768 L 544,768 L 544,592 L 592,544 L 768,544 z"
+       id="path3861"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3879);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 280,768 L 280,752 L 272,744 L 256,744 L 256,736 L 280,736 L 288,744 L 288,768 L 280,768 z"
+       id="path3871"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3881);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 280,736 L 288,744 L 288,768 L 480,768 L 480,592 L 432,544 L 256,544 L 256,736 L 280,736 z"
+       id="path3873"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3883);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 376,768 L 376,672 L 352,648 L 256,648 L 256,632 L 360,632 L 392,664 L 392,768 L 376,768 z"
+       id="path3875"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3885);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 480,768 L 488,768 L 488,584 L 440,536 L 256,536 L 256,544 L 432,544 L 480,592 L 480,768 z"
+       id="path3877"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3889);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3887"
+       width="8"
+       height="256"
+       x="792"
+       y="-5.7220459e-06"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3893);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1000,5.6843419e-14 L 1000,16 L 1008,24 L 1024,24 L 1024,32 L 1000,32 L 992,24 L 992,5.6843419e-14 L 1000,5.6843419e-14 z"
+       id="path3891"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3897);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1024,232 L 1008,232 L 1000,240 L 1000,256 L 992,256 L 992,232 L 1000,224 L 1024,224 L 1024,232 z"
+       id="path3895"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3907);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1.0"
+       d="M 800,0 L 800,256 L 992,256 L 992,232 L 1000,224 L 1024,224 L 1024,32 L 1000,32 L 992,24 L 992,0 L 800,0 z"
+       id="path3899"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3911);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3909"
+       width="16"
+       height="104"
+       x="1008"
+       y="32"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3917);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3913"
+       width="16"
+       height="64"
+       x="888"
+       y="32"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3919);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3915"
+       width="16"
+       height="64"
+       x="888"
+       y="160.00002"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3935);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3921"
+       width="8"
+       height="256"
+       x="280"
+       y="-1024"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3937);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1024,488.00001 L 1008,488.00001 L 1000,496.00006 L 1000,512.00006 L 992,512.00006 L 992,488.00001 L 1000,480.00001 L 1024,480.00001 L 1024,488.00001 z"
+       id="path3923"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3939);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 791.99997,512.00006 L 791.99997,496.00006 L 783.99997,488.00001 L 767.99997,488.00001 L 767.99997,480.00001 L 791.99997,480.00001 L 799.99997,488.00001 L 799.99997,512.00006 L 791.99997,512.00006 z"
+       id="path3925"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3941);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1024,288 L 767.99997,288 L 767.99997,480.00001 L 791.99997,480.00001 L 799.99997,488.00001 L 799.99997,512.00006 L 992,512.00006 L 992,488.00001 L 1000,480.00001 L 1024,480.00001 L 1024,288 z"
+       id="path3927"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3943);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3929"
+       width="16"
+       height="104"
+       x="496.00006"
+       y="-991.99988"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3945);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3931"
+       width="16"
+       height="64"
+       x="376.00006"
+       y="-991.99988"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3947);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3933"
+       width="16"
+       height="64"
+       x="376.00006"
+       y="-863.99994"
+       transform="matrix(0,1,-1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3963);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3949"
+       width="8"
+       height="256"
+       x="-1000.0001"
+       y="-768"
+       transform="scale(-1,-1)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3965);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 792.00008,768 L 792.00008,752 L 784.00008,744 L 768.00008,744 L 768.00008,736 L 792.00008,736 L 800.00008,744 L 800.00008,768 L 792.00008,768 z"
+       id="path3951"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3967);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 768.00008,536 L 784.00008,536 L 792.00008,528 L 792.00008,512 L 800.00008,512 L 800.00008,536 L 792.00008,544 L 768.00008,544 L 768.00008,536 z"
+       id="path3953"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3969);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 992.00006,768 L 992.00006,512 L 800.00008,512 L 800.00008,536 L 792.00008,544 L 768.00008,544 L 768.00008,736 L 792.00008,736 L 800.00008,744 L 800.00008,768 L 992.00006,768 z"
+       id="path3955"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3971);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3957"
+       width="16"
+       height="104"
+       x="-784"
+       y="-736"
+       transform="scale(-1,-1)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3973);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3959"
+       width="16"
+       height="64"
+       x="-904"
+       y="-736"
+       transform="scale(-1,-1)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3975);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3961"
+       width="16"
+       height="64"
+       x="-904"
+       y="-608"
+       transform="scale(-1,-1)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3991);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3977"
+       width="8"
+       height="256"
+       x="-1000"
+       y="768"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3993);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 768,792 L 784,792 L 792,784 L 792,768 L 800,768 L 800,792 L 792,800 L 768,800 L 768,792 z"
+       id="path3979"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3995);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1000,768 L 1000,784 L 1008,792 L 1024,792 L 1024,800 L 1000,800 L 992,792 L 992,768 L 1000,768 z"
+       id="path3981"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:url(#linearGradient3997);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 768,992 L 1024,992 L 1024,800 L 1000,800 L 992,792 L 992,768 L 800,768 L 800,792 L 792,800 L 768,800 L 768,992 z"
+       id="path3983"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient3999);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3985"
+       width="16"
+       height="104"
+       x="-784"
+       y="800"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient4001);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3987"
+       width="16"
+       height="64"
+       x="-904"
+       y="800"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:url(#linearGradient4003);fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3989"
+       width="16"
+       height="64"
+       x="-904"
+       y="928"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4005"
+       width="256"
+       height="256"
+       x="-256"
+       y="0" />
+    <rect
+       y="0"
+       x="0"
+       height="256"
+       width="256"
+       id="rect4009"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad258.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4011"
+       width="256"
+       height="256"
+       x="256"
+       y="0"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad24568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="0"
+       x="768"
+       height="256"
+       width="256"
+       id="rect4013"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4015"
+       width="256"
+       height="256"
+       x="768"
+       y="256"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad4568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="512"
+       x="768"
+       height="256"
+       width="256"
+       id="rect4017"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4019"
+       width="256"
+       height="256"
+       x="768"
+       y="768"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad2456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="512"
+       x="512"
+       height="256"
+       width="256"
+       id="rect4021"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad568.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4023"
+       width="256"
+       height="256"
+       x="512"
+       y="256"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad256.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="256"
+       x="256"
+       height="256"
+       width="256"
+       id="rect4025"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad245.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4027"
+       width="256"
+       height="256"
+       x="256"
+       y="512"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad458.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="256"
+       x="0"
+       height="256"
+       width="256"
+       id="rect4029"
+       style="fill:none;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/matevz/games/happyfarmer/data/textures/terrain/dirtroad456.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
