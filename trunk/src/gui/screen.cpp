@@ -3,8 +3,8 @@
 #include <AL/alut.h>
 #include "gui/screen.h"
 
-int Screen::DEFAULT_SCREEN_WIDTH = 800;
-int Screen::DEFAULT_SCREEN_HEIGHT = 600;
+int Screen::DEFAULT_SCREEN_WIDTH = 1024;
+int Screen::DEFAULT_SCREEN_HEIGHT = 768;
 int Screen::DEFAULT_SCREEN_BPP = 32;
 SDL_Surface *Screen::surface = 0;
 int Screen::videoFlags = 0;

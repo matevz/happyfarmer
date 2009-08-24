@@ -4,7 +4,7 @@
 
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "core/point3d.h"
+#include "core/point.h"
 #include "gui/mainwin.h"
 #include "gui/screen.h"
 #include "gui/scene.h"
@@ -55,13 +55,10 @@ void MainWin::show() {
 				handleMouseMotion(event.motion);
 				break;
 			}
-			case SDL_MOUSEBUTTONDOWN:
-				if (event.button.button==SDL_BUTTON_WHEELUP) {
-					_scene->zoomIn();
-				} else if (event.button.button==SDL_BUTTON_WHEELDOWN) {
-					_scene->zoomOut();
-				}
+			case SDL_MOUSEBUTTONDOWN: {
+				handleMouseClick(event.button);
 				break;
+			}
 			case SDL_QUIT:
 				_loop = false;
 				break;
@@ -151,4 +148,8 @@ void MainWin::handleMouseMotion(SDL_MouseMotionEvent& evt) {
 	_mouseY = evt.y;
 
 	_scene->mouseMoveEvent( evt.x, evt.y );
+}
+
+void MainWin::handleMouseClick( SDL_MouseButtonEvent& button ) {
+	_scene->mouseClickEvent( button );
 }

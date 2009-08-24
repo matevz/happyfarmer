@@ -17,6 +17,7 @@ public:
 private:
 	void handleKeyPress( SDL_keysym& );
 	void handleMouseMotion( SDL_MouseMotionEvent& );
+	void handleMouseClick( SDL_MouseButtonEvent& );
 
 	Scene *_scene;
 	bool   _loop;

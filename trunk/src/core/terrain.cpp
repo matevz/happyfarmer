@@ -1,6 +1,6 @@
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "core/point3d.h"
+#include "core/point.h"
 #include <stdlib.h>
 #include <time.h>
 

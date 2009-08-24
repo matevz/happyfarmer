@@ -11,7 +11,6 @@
 #include "gui/screen.h"
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "core/point3d.h"
 #include "core/player.h"
 #include "core/movingobject.h"
 #include "control/resource.h"
@@ -24,12 +23,12 @@
 #include "objects/road.h"
 
 const float Scene::SCROLL_FACTOR = 0.8;
-const float Scene::TERRAIN_ANGLE = -60.0f;
+const float Scene::TERRAIN_ANGLE = 60.0f;
 const float Scene::MAGNIFIER_FACTOR = 256;
 Scene *Scene::_scene = 0;
 
 Scene::Scene()
- : _terrainDispList(0), _timer(0), _speed(0), _userPlayer(0), _objectUpdater(0) {
+ : _terrainDispList(0), _timer(0), _speed(0), _userPlayer(0), _objectUpdater(0), _selectedTile(0) {
 	Scene::_scene = this;
 	initScene();
 }
@@ -117,12 +116,31 @@ int Scene::objectUpdaterFunc(void *s) {
 }
 
 void Scene::mouseMoveEvent( const unsigned short& x, const unsigned short& y ) {
-	float sceneX, sceneY;
+	calculateXY(x,y);
+}
 
-	sceneX = _cameraXPos - (3-_zoomLevel+1)*(Screen::getScreenWidth()/(MAGNIFIER_FACTOR/2))/sqrt(2) +
-	         (3-_zoomLevel+1)*((x*2)/MAGNIFIER_FACTOR)/sqrt(2);
+void Scene::calculateXY(int x, int y) {
+	float centerX = Screen::getScreenWidth()/2, centerY = Screen::getScreenHeight()/2;
 
-	std::cout << sceneX << std::endl;
+	float beta = atan((sqrt(2)/2) / ((sqrt(2)*cos((TERRAIN_ANGLE/180)*M_PI))/2))*2;
+	float alpha = atan( (centerY-y) / (centerX-x) ) + M_PI_2 - (beta/2);
+	float gamma = M_PI - (alpha+beta);
+	float b = sqrt(pow(x-centerX,2) + pow(y-centerY,2));
+	float a = (b / sin(beta)) * sin(alpha*((x-centerX<0)?1:-1)) / sqrt(0.5*(1+pow(cos((TERRAIN_ANGLE/180)*M_PI), 2)));
+	float c = (b / sin(beta)) * sin(gamma*((x-centerX<0)?-1:1)) / sqrt(0.5*(1+pow(cos((TERRAIN_ANGLE/180)*M_PI), 2)));
+
+	_sceneXY.x = _cameraPos.x + (3-_zoomLevel+1)*(c/(MAGNIFIER_FACTOR/4));
+	_sceneXY.y = _cameraPos.y + (3-_zoomLevel+1)*(a/(MAGNIFIER_FACTOR/4));
+}
+
+void Scene::mouseClickEvent( SDL_MouseButtonEvent& button ) {
+	if (button.button==SDL_BUTTON_WHEELUP) {
+		_scene->zoomIn();
+	} else if (button.button==SDL_BUTTON_WHEELDOWN) {
+		_scene->zoomOut();
+	} else if (button.button==SDL_BUTTON_LEFT) {
+		_selectedTile = getTerrain()->getTile((int)_sceneXY.x, (int)_sceneXY.y);
+	}
 }
 
 /*!
@@ -131,10 +149,11 @@ void Scene::mouseMoveEvent( const unsigned short& x, const unsigned short& y ) {
 void Scene::draw() {
     glOrtho( (3-_zoomLevel+1)*(-Screen::getScreenWidth()/(MAGNIFIER_FACTOR/2)), (3-_zoomLevel+1)*(Screen::getScreenWidth()/(MAGNIFIER_FACTOR/2)), (3-_zoomLevel+1)*(-Screen::getScreenHeight()/(MAGNIFIER_FACTOR/2)), (3-_zoomLevel+1)*(Screen::getScreenHeight()/(MAGNIFIER_FACTOR/2)), -500, 500 );
     glPushMatrix();
-	glRotatef( TERRAIN_ANGLE, 1.0f, 0.0f, 0.0f );
+	glRotatef( -TERRAIN_ANGLE, 1.0f, 0.0f, 0.0f );
 	glRotatef( 45.0f, 0.0f, 0.0f, 1.0f );
-	glTranslatef( -_cameraXPos, -_cameraYPos, 0 );
+	glTranslatef( -_cameraPos.x, -_cameraPos.y, 0 );
 
+	// draw tiles
 	for (unsigned int x=0; x<getTerrain()->getWidth(); x++) {
 		for (unsigned int y=0; y<getTerrain()->getHeight(); y++) {
 			Tile *t = getTerrain()->getTile(x,y);
@@ -144,8 +163,35 @@ void Scene::draw() {
 		}
 	}
 
+	// draw moving objects
 	for (unsigned int i=0; i<_objectList.size(); i++) {
 		_objectList[i]->draw( _time );
+	}
+
+	// draw selected tile
+	if (_selectedTile) {
+		float x_m, y_m, z_m;
+		glPushMatrix();
+		glBegin(GL_LINE_LOOP);
+		glColor3f(1.0f, 1.0f, 1.0f);
+		x_m = _selectedTile->getPoint1()->x;
+		y_m = _selectedTile->getPoint1()->y;
+		z_m = _selectedTile->getPoint1()->z+0.02;
+		glVertex3f( x_m, y_m, z_m );
+		x_m = _selectedTile->getPoint2()->x;
+		y_m = _selectedTile->getPoint2()->y;
+		z_m = _selectedTile->getPoint2()->z+0.02;
+		glVertex3f( x_m, y_m, z_m );
+		x_m = _selectedTile->getPoint3()->x;
+		y_m = _selectedTile->getPoint3()->y;
+		z_m = _selectedTile->getPoint3()->z+0.02;
+		glVertex3f( x_m, y_m, z_m );
+		x_m = _selectedTile->getPoint4()->x;
+		y_m = _selectedTile->getPoint4()->y;
+		z_m = _selectedTile->getPoint4()->z+0.02;
+		glVertex3f( x_m, y_m, z_m );
+		glEnd();
+		glPopMatrix();
 	}
 
 	glPopMatrix();
@@ -165,7 +211,7 @@ void Scene::rebuildTerrain() {
 }
 
 void Scene::setCamera( GLfloat x1, GLfloat y1, int zoomLevel ) {
-	_cameraXPos=x1; _cameraYPos=y1; _zoomLevel = zoomLevel;
+	_cameraPos.x=x1; _cameraPos.y=y1; _zoomLevel = zoomLevel;
 
 	ALfloat pos[3] = { x1, y1, 5-zoomLevel };
 	ALfloat vel[3] = { 0, 0, 0 };
@@ -193,36 +239,36 @@ bool Scene::removeMovingObject( MovingObject *o ) {
 
 void Scene::zoomIn() {
 	if (_zoomLevel<3) {
-		setCamera( _cameraXPos, _cameraYPos, _zoomLevel+1 );
+		setCamera( _cameraPos.x, _cameraPos.y, _zoomLevel+1 );
 	}
 }
 
 void Scene::zoomOut() {
 	if (_zoomLevel>0) {
-		setCamera( _cameraXPos, _cameraYPos, _zoomLevel-1 );
+		setCamera( _cameraPos.x, _cameraPos.y, _zoomLevel-1 );
 	}
 }
 
 void Scene::moveDown() {
-	if ( _cameraXPos>0 && _cameraYPos>0 ) {
-		setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraPos.x>0 && _cameraPos.y>0 ) {
+		setCamera( _cameraPos.x-SCROLL_FACTOR, _cameraPos.y-SCROLL_FACTOR, _zoomLevel );
 	}
 }
 
 void Scene::moveUp() {
-	if ( _cameraXPos<_terrain->getWidth() && _cameraYPos<_terrain->getHeight() ) {
-		setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraPos.x<_terrain->getWidth() && _cameraPos.y<_terrain->getHeight() ) {
+		setCamera( _cameraPos.x+SCROLL_FACTOR, _cameraPos.y+SCROLL_FACTOR, _zoomLevel );
 	}
 }
 
 void Scene::moveRight() {
-	if ( _cameraXPos<_terrain->getWidth() && _cameraYPos>0 ) {
-		setCamera( _cameraXPos+1*SCROLL_FACTOR, _cameraYPos-1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraPos.x<_terrain->getWidth() && _cameraPos.y>0 ) {
+		setCamera( _cameraPos.x+SCROLL_FACTOR, _cameraPos.y-SCROLL_FACTOR, _zoomLevel );
 	}
 }
 
 void Scene::moveLeft() {
-	if ( _cameraXPos>0 && _cameraYPos<_terrain->getHeight()-1 ) {
-		setCamera( _cameraXPos-1*SCROLL_FACTOR, _cameraYPos+1*SCROLL_FACTOR, _zoomLevel );
+	if ( _cameraPos.x>0 && _cameraPos.y<_terrain->getHeight()-1 ) {
+		setCamera( _cameraPos.x-SCROLL_FACTOR, _cameraPos.y+SCROLL_FACTOR, _zoomLevel );
 	}
 }
