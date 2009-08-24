@@ -6,10 +6,12 @@
 #include <SDL_timer.h> // needed for time
 #include <alut.h>
 #include "models/modelloader.h"
+#include "core/point.h"
 
 class Terrain;
 class Player;
 class MovingObject;
+class Tile;
 
 using namespace std;
 
@@ -22,12 +24,14 @@ public:
 	bool initScene();
 	void draw();
 	void mouseMoveEvent( const unsigned short& x, const unsigned short& y );
+	void mouseClickEvent( SDL_MouseButtonEvent& button );
 
 	///////////////////////////
 	// Getter/Setter methods //
 	///////////////////////////
 	static Scene* getScene() { return _scene; }
 	std::vector<MovingObject*>& getObjectList() { return _objectList; }
+	Point2d getXY() { return _sceneXY; }
 
 	Terrain *getTerrain() { return _terrain; }
 	void setTerrain( Terrain* t ) { _terrain = t; }
@@ -51,6 +55,7 @@ public:
 
 private:
 	void rebuildTerrain();
+	void calculateXY(int x, int y);
 
 	static const float SCROLL_FACTOR;
 	static const float TERRAIN_ANGLE; // view angle in degrees
@@ -74,9 +79,10 @@ private:
 	static int  objectUpdaterFunc(void*);
 
 	// View
-	double   _cameraXPos;
-	double   _cameraYPos;
-	int      _zoomLevel;
+	Point2d _cameraPos;
+	int     _zoomLevel;
+	Point2d _sceneXY;
+	Tile   *_selectedTile;
 
 	// Static member
 	static Scene *_scene;

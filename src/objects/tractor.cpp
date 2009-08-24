@@ -4,7 +4,7 @@
 #include "gui/scene.h"
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "core/point3d.h"
+#include "core/point.h"
 
 GLuint Tractor::_dispList = 0;
 
@@ -50,5 +50,7 @@ void Tractor::update( const unsigned long long& time ) {
 	float roundY = _y - (int)_y;
 	Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x, (int)_y );
 
-	_z = (tile->getPoint1()->getZ()+tile->getPoint2()->getZ()+tile->getPoint3()->getZ()+tile->getPoint4()->getZ())/4.0;
+	if (tile) {
+		_z = (tile->getPoint1()->z+tile->getPoint2()->z+tile->getPoint3()->z+tile->getPoint4()->z)/4.0;
+	}
 }

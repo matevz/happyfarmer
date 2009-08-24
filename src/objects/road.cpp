@@ -3,7 +3,7 @@
 #include "gui/scene.h"
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "core/point3d.h"
+#include "core/point.h"
 
 GLuint Road::_texture258   = 0;
 GLuint Road::_texture456   = 0;
@@ -160,7 +160,7 @@ GLuint Road::genDispList( GLuint texture ) {
 
 
 void Road::rebuild() {
-	_z = Scene::getScene()->getTerrain()->getTile(_x,_y)->getPoint1()->getZ();
+	_z = Scene::getScene()->getTerrain()->getTile(_x,_y)->getPoint1()->z;
 
 	bool dir2=Scene::getScene()->getTerrain()->getTile(_x,_y+1) && Scene::getScene()->getTerrain()->getTile(_x,_y+1)->contains<Road>();
 	bool dir4=Scene::getScene()->getTerrain()->getTile(_x-1,_y) && Scene::getScene()->getTerrain()->getTile(_x-1,_y)->contains<Road>();

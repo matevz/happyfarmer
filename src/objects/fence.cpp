@@ -4,7 +4,7 @@
 #include "gui/scene.h"
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "core/point3d.h"
+#include "core/point.h"
 
 GLuint Fence::_dispList = 0;
 GLuint Fence::_dispList2 = 0;
@@ -73,7 +73,7 @@ void Fence::init() {
 }
 
 void Fence::rebuild() {
-	_z = Scene::getScene()->getTerrain()->getTile(_x,_y)->getPoint1()->getZ();
+	_z = Scene::getScene()->getTerrain()->getTile(_x,_y)->getPoint1()->z;
 
 	_dispLists.clear();
 	if (Scene::getScene()->getTerrain()->getTile(_x,_y+1) &&
