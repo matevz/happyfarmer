@@ -119,18 +119,20 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 	for(int j=0; j < m->objFiles[objFileNo].materials.size() ; j++) {
 		if ( ! m->objFiles[objFileNo].materials[j].map_Kd.empty() ) {
 			tex.name = m->objFiles[objFileNo].materials[j].map_Kd;
-			textureImage = IMG_Load( m->name.substr(0,m->name.find_last_of('/')+1).append( m->objFiles[objFileNo].materials[j].map_Kd ).c_str() ) ;
+			SDL_RWops *rwop = SDL_RWFromFile( m->name.substr(0,m->name.find_last_of('/')+1).append( m->objFiles[objFileNo].materials[j].map_Kd ).c_str() , "rb");
+			textureImage = IMG_LoadPNG_RW(rwop);
+			delete rwop;
+			if(!textureImage) {
+			    std::cerr << "Resource::loadPng(): Error loading " << m->name.substr(0,m->name.find_last_of('/')+1).append( m->objFiles[objFileNo].materials[j].map_Kd ).c_str() << ", error " << IMG_GetError();
+			    continue;
+			}
 
 			glGenTextures(1, &(tex.glName)); // allocate memory for one texture
-			m->objFiles[objFileNo].textures.push_back(tex); // add the index of our newly created texture to textureIndices
-
 			glBindTexture(GL_TEXTURE_2D, tex.glName); // use our newest texture
-
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // give the best result for texture magnification
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //give the best result for texture minification
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-			gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, textureImage->w , textureImage->h, GL_RGB, GL_UNSIGNED_BYTE, textureImage->pixels); // genereate MipMap levels for our texture
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
+			m->objFiles[objFileNo].textures.push_back(tex); // add the index of our newly created texture to textureIndices
+		    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
+		    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 
 			SDL_FreeSurface(textureImage);
 		}
@@ -149,14 +151,6 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 					glDisable(GL_TEXTURE_2D);
 				}
 
-				glColor3f( m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[0],
-						m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[1],
-						m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[2] );
-//				glMaterialfv(lightside, GL_AMBIENT, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ka );
-//				glMaterialfv(lightside, GL_DIFFUSE, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd );
-//				glMaterialfv(lightside, GL_SPECULAR, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ks );
-//				glMaterialf(lightside, GL_SHININESS, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ns );
-
 				if ( ! m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd.empty() ) {
 					for(int k=0; k < m->objFiles[objFileNo].textures.size(); ++k) {
 						if ( m->objFiles[objFileNo].textures[k].name == m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].map_Kd) {
@@ -164,9 +158,19 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 							k = m->objFiles[objFileNo].textures.size() ;
 						}
 					}
+//					glMaterialfv(lightside, GL_AMBIENT, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ka );
+//					glMaterialfv(lightside, GL_DIFFUSE, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd );
+//					glMaterialfv(lightside, GL_SPECULAR, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ks );
+//					glMaterialf(lightside, GL_SHININESS, m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Ns );
+					glColor3f( 1.0, 1.0, 1.0 );
+
 					glBindTexture(GL_TEXTURE_2D, m->objFiles[objFileNo].textures[texIndex].glName ) ;
 					glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 					glEnable(GL_TEXTURE_2D);
+				} else {
+					glColor3f( m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[0],
+							m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[1],
+							m->objFiles[objFileNo].materials[ m->objFiles[objFileNo].objects[j].faces[i].matIndex ].Kd[2] );
 				}
 			}
 

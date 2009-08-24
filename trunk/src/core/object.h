@@ -12,6 +12,10 @@ public:
 	virtual void draw( const unsigned long long& time ) {};
 	virtual void rebuild() {};
 
+	const float& getX() { return _x; }
+	const float& getY() { return _y; }
+	const float& getZ() { return _z; }
+
 protected:
 	Player *_owner;
 	float   _x;

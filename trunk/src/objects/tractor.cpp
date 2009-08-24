@@ -25,6 +25,7 @@ void Tractor::draw( const unsigned long long& time ) {
     glPushMatrix();
 
 	glTranslatef( _x, _y, _z );
+	glTranslatef( 0.5, 0.0, 0 );
 
 	if (dX > 0) {
     	glRotatef( -90.0f, 0.0, 0.0, 1.0 );
@@ -45,8 +46,8 @@ void Tractor::draw( const unsigned long long& time ) {
 }
 
 void Tractor::update( const unsigned long long& time ) {
-	_y += dY;
-	_x += dX;
+	//_y += dY;
+	//_x += dX;
 	float roundY = _y - (int)_y;
 	Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x, (int)_y );
 
