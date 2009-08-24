@@ -28,6 +28,9 @@ SET( Objects
 	objects/grass.cpp
 	objects/fence.cpp
 	objects/road.cpp
+	objects/house.cpp
+	objects/cow.cpp
+	objects/plant.cpp
 )
 
 ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${Models} ${Control} ${Objects} main.cpp )

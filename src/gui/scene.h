@@ -7,10 +7,10 @@
 #include <alut.h>
 #include "models/modelloader.h"
 #include "core/point.h"
+#include "core/movingobject.h"
 
 class Terrain;
 class Player;
-class MovingObject;
 class Tile;
 
 using namespace std;
@@ -32,6 +32,18 @@ public:
 	static Scene* getScene() { return _scene; }
 	std::vector<MovingObject*>& getObjectList() { return _objectList; }
 	Point2d getXY() { return _sceneXY; }
+
+	template<class T>
+	bool contains(int x, int y) {
+		for (unsigned int i=0; i<_objectList.size(); i++) {
+			if ( ((int)_objectList[i]->getX())==x &&
+			     ((int)_objectList[i]->getY())==y &&
+			     dynamic_cast<T*>(_objectList[i]) ) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	Terrain *getTerrain() { return _terrain; }
 	void setTerrain( Terrain* t ) { _terrain = t; }
@@ -56,6 +68,7 @@ public:
 private:
 	void rebuildTerrain();
 	void calculateXY(int x, int y);
+	void newGame();
 
 	static const float SCROLL_FACTOR;
 	static const float TERRAIN_ANGLE; // view angle in degrees

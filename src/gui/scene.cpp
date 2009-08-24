@@ -12,15 +12,8 @@
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/player.h"
-#include "core/movingobject.h"
 #include "control/resource.h"
 #include "models/modelloader.h"
-
-// new game
-#include "objects/tractor.h"
-#include "objects/grass.h"
-#include "objects/fence.h"
-#include "objects/road.h"
 
 const float Scene::SCROLL_FACTOR = 0.8;
 const float Scene::TERRAIN_ANGLE = 60.0f;
@@ -44,6 +37,25 @@ Scene::~Scene() {
 bool Scene::initScene() {
 	_terrain = new Terrain( 128, 128 );
 
+	_timer = SDL_CreateThread(Scene::timerFunc, this);
+	_objectUpdater = SDL_CreateThread(Scene::objectUpdaterFunc, this);
+
+	setCamera( _terrain->getWidth()/2, _terrain->getHeight()/2, 2 );
+
+	newGame();
+
+	return true;
+}
+
+// new game
+#include "objects/tractor.h"
+#include "objects/grass.h"
+#include "objects/fence.h"
+#include "objects/road.h"
+#include "objects/house.h"
+#include "objects/cow.h"
+#include "objects/plant.h"
+void Scene::newGame() {
 	for (unsigned int x=0; x<_terrain->getWidth(); x++) {
 		for (unsigned int y=0; y<_terrain->getHeight(); y++) {
 			_terrain->getTile(x,y)->addObject( new Grass(0,_terrain->getTile(x,y)) );
@@ -51,42 +63,88 @@ bool Scene::initScene() {
 	}
 	rebuildTerrain();
 
-	_timer = SDL_CreateThread(Scene::timerFunc, this);
-	_objectUpdater = SDL_CreateThread(Scene::objectUpdaterFunc, this);
-
-	setCamera( _terrain->getWidth()/2, _terrain->getHeight()/2, 2 );
-
 	_userPlayer = new Player("Human1");
 	_playerList.push_back( _userPlayer );
-	addMovingObject( new Tractor( _userPlayer, 0.0, 0.0 ) );
+	addMovingObject( new Tractor( _userPlayer, 11.0, 17.0 ) );
+	addMovingObject( new Cow( _userPlayer, 23.0, 17.0 ) );
+	addMovingObject( new Cow( _userPlayer, 24.0, 18.0 ) );
+
 	_terrain->getTile(10,10)->addObject( new Fence(_userPlayer, _terrain->getTile(10,10)) );
 	_terrain->getTile(11,10)->addObject( new Fence(_userPlayer, _terrain->getTile(11,10)) );
 	_terrain->getTile(12,10)->addObject( new Fence(_userPlayer, _terrain->getTile(12,10)) );
 	_terrain->getTile(13,10)->addObject( new Fence(_userPlayer, _terrain->getTile(13,10)) );
+	_terrain->getTile(14,10)->addObject( new Fence(_userPlayer, _terrain->getTile(14,10)) );
+	_terrain->getTile(15,10)->addObject( new Fence(_userPlayer, _terrain->getTile(15,10)) );
+	_terrain->getTile(16,10)->addObject( new Fence(_userPlayer, _terrain->getTile(16,10)) );
+	_terrain->getTile(17,10)->addObject( new Fence(_userPlayer, _terrain->getTile(17,10)) );
+	_terrain->getTile(18,10)->addObject( new Fence(_userPlayer, _terrain->getTile(18,10)) );
+	_terrain->getTile(19,10)->addObject( new Fence(_userPlayer, _terrain->getTile(19,10)) );
+	_terrain->getTile(20,10)->addObject( new Fence(_userPlayer, _terrain->getTile(20,10)) );
+	_terrain->getTile(21,10)->addObject( new Fence(_userPlayer, _terrain->getTile(21,10)) );
+	_terrain->getTile(22,10)->addObject( new Fence(_userPlayer, _terrain->getTile(22,10)) );
+	_terrain->getTile(23,10)->addObject( new Fence(_userPlayer, _terrain->getTile(23,10)) );
+	_terrain->getTile(24,10)->addObject( new Fence(_userPlayer, _terrain->getTile(24,10)) );
+	_terrain->getTile(25,10)->addObject( new Fence(_userPlayer, _terrain->getTile(25,10)) );
+	_terrain->getTile(10,20)->addObject( new Fence(_userPlayer, _terrain->getTile(10,20)) );
+	_terrain->getTile(11,20)->addObject( new Fence(_userPlayer, _terrain->getTile(11,20)) );
+	_terrain->getTile(12,20)->addObject( new Fence(_userPlayer, _terrain->getTile(12,20)) );
+	_terrain->getTile(13,20)->addObject( new Fence(_userPlayer, _terrain->getTile(13,20)) );
+	_terrain->getTile(14,20)->addObject( new Fence(_userPlayer, _terrain->getTile(14,20)) );
+	_terrain->getTile(15,20)->addObject( new Fence(_userPlayer, _terrain->getTile(15,20)) );
+	_terrain->getTile(16,20)->addObject( new Fence(_userPlayer, _terrain->getTile(16,20)) );
+	_terrain->getTile(17,20)->addObject( new Fence(_userPlayer, _terrain->getTile(17,20)) );
+	_terrain->getTile(18,20)->addObject( new Fence(_userPlayer, _terrain->getTile(18,20)) );
+	_terrain->getTile(19,20)->addObject( new Fence(_userPlayer, _terrain->getTile(19,20)) );
+	_terrain->getTile(20,20)->addObject( new Fence(_userPlayer, _terrain->getTile(20,20)) );
+	_terrain->getTile(21,20)->addObject( new Fence(_userPlayer, _terrain->getTile(21,20)) );
+	_terrain->getTile(22,20)->addObject( new Fence(_userPlayer, _terrain->getTile(22,20)) );
+	_terrain->getTile(23,20)->addObject( new Fence(_userPlayer, _terrain->getTile(23,20)) );
+	_terrain->getTile(24,20)->addObject( new Fence(_userPlayer, _terrain->getTile(24,20)) );
+	_terrain->getTile(25,20)->addObject( new Fence(_userPlayer, _terrain->getTile(25,20)) );
 	_terrain->getTile(10,11)->addObject( new Fence(_userPlayer, _terrain->getTile(10,11)) );
-	_terrain->getTile(11,11)->addObject( new Fence(_userPlayer, _terrain->getTile(11,11)) );
-	_terrain->getTile(12,11)->addObject( new Fence(_userPlayer, _terrain->getTile(12,11)) );
-	_terrain->getTile(13,11)->addObject( new Fence(_userPlayer, _terrain->getTile(13,11)) );
 	_terrain->getTile(10,12)->addObject( new Fence(_userPlayer, _terrain->getTile(10,12)) );
-	_terrain->getTile(11,13)->addObject( new Fence(_userPlayer, _terrain->getTile(11,13)) );
-	_terrain->getTile(12,14)->addObject( new Fence(_userPlayer, _terrain->getTile(12,14)) );
-	_terrain->getTile(13,15)->addObject( new Fence(_userPlayer, _terrain->getTile(13,15)) );
-	_terrain->getTile(11,10)->addObject( new Fence(_userPlayer, _terrain->getTile(11,10)) );
-	_terrain->getTile(12,11)->addObject( new Fence(_userPlayer, _terrain->getTile(12,11)) );
-	_terrain->getTile(13,12)->addObject( new Fence(_userPlayer, _terrain->getTile(13,12)) );
-	_terrain->getTile(14,13)->addObject( new Fence(_userPlayer, _terrain->getTile(14,13)) );
+	_terrain->getTile(10,13)->addObject( new Fence(_userPlayer, _terrain->getTile(10,13)) );
+	_terrain->getTile(10,14)->addObject( new Fence(_userPlayer, _terrain->getTile(10,14)) );
+	_terrain->getTile(10,15)->addObject( new Fence(_userPlayer, _terrain->getTile(10,15)) );
+	_terrain->getTile(10,16)->addObject( new Fence(_userPlayer, _terrain->getTile(10,16)) );
+	_terrain->getTile(10,17)->addObject( new Fence(_userPlayer, _terrain->getTile(10,17)) );
+	_terrain->getTile(10,18)->addObject( new Fence(_userPlayer, _terrain->getTile(10,18)) );
+	_terrain->getTile(10,19)->addObject( new Fence(_userPlayer, _terrain->getTile(10,19)) );
+	_terrain->getTile(25,11)->addObject( new Fence(_userPlayer, _terrain->getTile(25,11)) );
+	_terrain->getTile(25,12)->addObject( new Fence(_userPlayer, _terrain->getTile(25,12)) );
+	_terrain->getTile(25,13)->addObject( new Fence(_userPlayer, _terrain->getTile(25,13)) );
+	_terrain->getTile(25,14)->addObject( new Fence(_userPlayer, _terrain->getTile(25,14)) );
+	_terrain->getTile(25,15)->addObject( new Fence(_userPlayer, _terrain->getTile(25,15)) );
+	_terrain->getTile(25,16)->addObject( new Fence(_userPlayer, _terrain->getTile(25,16)) );
+	_terrain->getTile(25,17)->addObject( new Fence(_userPlayer, _terrain->getTile(25,17)) );
+	_terrain->getTile(25,18)->addObject( new Fence(_userPlayer, _terrain->getTile(25,18)) );
+	_terrain->getTile(25,19)->addObject( new Fence(_userPlayer, _terrain->getTile(25,19)) );
+	_terrain->getTile(21,19)->addObject( new Fence(_userPlayer, _terrain->getTile(21,19)) );
+	_terrain->getTile(21,18)->addObject( new Fence(_userPlayer, _terrain->getTile(21,18)) );
+	_terrain->getTile(21,17)->addObject( new Fence(_userPlayer, _terrain->getTile(21,17)) );
+	_terrain->getTile(21,16)->addObject( new Fence(_userPlayer, _terrain->getTile(21,16)) );
+	_terrain->getTile(22,16)->addObject( new Fence(_userPlayer, _terrain->getTile(22,16)) );
+	_terrain->getTile(23,16)->addObject( new Fence(_userPlayer, _terrain->getTile(23,16)) );
+	_terrain->getTile(24,16)->addObject( new Fence(_userPlayer, _terrain->getTile(24,16)) );
 
-	_terrain->getTile(24,13)->addObject( new Road(_userPlayer, _terrain->getTile(24,13)) );
-	_terrain->getTile(25,13)->addObject( new Road(_userPlayer, _terrain->getTile(25,13)) );
-	_terrain->getTile(26,13)->addObject( new Road(_userPlayer, _terrain->getTile(26,13)) );
-	_terrain->getTile(24,14)->addObject( new Road(_userPlayer, _terrain->getTile(24,14)) );
-	_terrain->getTile(25,14)->addObject( new Road(_userPlayer, _terrain->getTile(25,14)) );
-	_terrain->getTile(26,14)->addObject( new Road(_userPlayer, _terrain->getTile(26,14)) );
-	_terrain->getTile(24,15)->addObject( new Road(_userPlayer, _terrain->getTile(24,15)) );
-	_terrain->getTile(25,15)->addObject( new Road(_userPlayer, _terrain->getTile(25,15)) );
-	_terrain->getTile(26,15)->addObject( new Road(_userPlayer, _terrain->getTile(26,15)) );
+	_terrain->getTile(11,17)->addObject( new Road(_userPlayer, _terrain->getTile(11,17)) );
+	_terrain->getTile(12,17)->addObject( new Road(_userPlayer, _terrain->getTile(12,17)) );
+	_terrain->getTile(13,17)->addObject( new Road(_userPlayer, _terrain->getTile(13,17)) );
+	_terrain->getTile(14,17)->addObject( new Road(_userPlayer, _terrain->getTile(14,17)) );
+	_terrain->getTile(15,17)->addObject( new Road(_userPlayer, _terrain->getTile(15,17)) );
+	_terrain->getTile(16,17)->addObject( new Road(_userPlayer, _terrain->getTile(16,17)) );
+	_terrain->getTile(17,17)->addObject( new Road(_userPlayer, _terrain->getTile(17,17)) );
+	_terrain->getTile(18,17)->addObject( new Road(_userPlayer, _terrain->getTile(18,17)) );
+	_terrain->getTile(19,17)->addObject( new Road(_userPlayer, _terrain->getTile(19,17)) );
 
-	return true;
+	_terrain->getTile(11,18)->addObject( new House(_userPlayer, _terrain->getTile(11,18)) );
+
+	_terrain->getTile(11,16)->addObject( new Plant( _userPlayer, _terrain->getTile(11,16) ));
+	_terrain->getTile(12,16)->addObject( new Plant( _userPlayer, _terrain->getTile(12,16) ));
+	_terrain->getTile(11,15)->addObject( new Plant( _userPlayer, _terrain->getTile(11,15) ));
+	_terrain->getTile(12,15)->addObject( new Plant( _userPlayer, _terrain->getTile(12,15) ));
+	_terrain->getTile(11,14)->addObject( new Plant( _userPlayer, _terrain->getTile(11,14) ));
+	_terrain->getTile(12,14)->addObject( new Plant( _userPlayer, _terrain->getTile(12,14) ));
 }
 
 /*!
@@ -158,7 +216,10 @@ void Scene::draw() {
 		for (unsigned int y=0; y<getTerrain()->getHeight(); y++) {
 			Tile *t = getTerrain()->getTile(x,y);
 			for (unsigned int i=0; i<t->getObjectList().size(); i++) {
-				t->getObjectList()[i]->draw( _time );
+				if (t->getObjectList()[i]->getX() == t->getX() &&
+					t->getObjectList()[i]->getY() == t->getY()) {
+					t->getObjectList()[i]->draw( _time );
+				}
 			}
 		}
 	}
