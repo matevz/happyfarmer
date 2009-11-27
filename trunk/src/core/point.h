@@ -18,4 +18,4 @@ struct Point2d {
 	float y;
 };
 
-#endif
+#endif /* POINT_H_ */
