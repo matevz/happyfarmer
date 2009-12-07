@@ -6,6 +6,7 @@
 #include "core/time.h"
 #include "core/economy.h"
 #include "core/world.h"
+#include "gui/graphics.h"
 
 class Game {
 public:
