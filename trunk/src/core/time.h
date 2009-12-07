@@ -8,6 +8,7 @@ public:
 	Time();
 	~Time();
 	void pass(short delta);
+	void import(unsigned char year, char month, char day, char speedmodifier);
 
     char getDay() const
     {
