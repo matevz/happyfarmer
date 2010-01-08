@@ -6,31 +6,14 @@
 class Time {
 public:
 	Time();
+	Time(unsigned long long passed);
 	~Time();
 	void pass(short delta);
-	void import(unsigned char year, char month, char day, char speedmodifier);
-
-    char getDay() const
-    {
-        return _day;
-    }
-
-    char getMonth() const
-    {
-        return _month;
-    }
-
-    char getYear() const
-    {
-        return _year;
-    }
+	void import(unsigned long passed, float speedModifier);
 
 private:
-	unsigned char _year;
-	char _month;
-	char _day;
-	short _passed;
-	char _speedModifier;
+	unsigned long _passed;
+	float _speedModifier;
 };
 
 #endif /* TIME_H_ */

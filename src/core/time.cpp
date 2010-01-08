@@ -1,30 +1,26 @@
 #include "core/time.h"
 
 Time::Time(){
-	_day = 0;
-	_month = 0;
-	_year = 0;
 	_passed = 0;
-	_speedModifier = 0;
+	_speedModifier = 1;
+}
+
+Time::Time(unsigned long passed){
+	_passed = passed;
+	_speedModifier = 1;
 }
 
 Time::~Time(){
-	delete &_day;
-	delete &_month;
-	delete &_year;
 	delete &_passed;
 	delete &_speedModifier;
 }
 
 void Time::pass(short delta){
-	_passed += delta * (short)_speedModifier;
-	_day += _passed/1650;
-	_passed %= 1650;
+	_passed += delta * _speedModifier;
+
 }
 
-void Time::import(unsigned char year, char month, char day, char speedmodifier){
-	_year = year;
-	_month = month;
-	_day = day;
-	_speedModifier = speedmodifier;
+void Time::import(unsigned long passed, float speedModifier){
+	_passed = passed;
+	_speedModifier = speedModifier;
 }
