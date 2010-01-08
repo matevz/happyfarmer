@@ -18,6 +18,7 @@ private:
 	World *world;
 	Economy *economy;
 	Time *time;
+	Graphics *graphics;
 };
 
 #endif /* GAME_H_ */
