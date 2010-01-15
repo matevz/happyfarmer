@@ -7,6 +7,7 @@
 #include "core/economy.h"
 #include "core/world.h"
 #include "gui/graphics.h"
+#include "gui/eventer.h"
 
 class Game {
 public:
