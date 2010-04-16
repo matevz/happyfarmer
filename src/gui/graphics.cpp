@@ -1,7 +1,7 @@
 #include "gui/graphics.h"
 
 Graphics::Graphics(World *gameWorld){
-	world = gameworld;
+	world = gameWorld;
 	init();
 }
 
@@ -136,14 +136,14 @@ void Graphics::resizeEvent(int width, int height) {
 }
 
 void Graphics::genTerrain(){
-	vector<Tile*> *terrain = world->getTerrain();
+	vector<Tile*> *tiles = world->getTerrain();
 	glNewList(terrain, GL_COMPILE);
 		glBegin(GL_QUADS);
-		for(int i = 0; i < terrain->size(); i++){
-			glVertex3f(terrain[i]->getPoint1()->x, terrain[i]->getPoint1()->y, terrain[i]->getPoint1()->z);
-			glVertex3f(terrain[i]->getPoint2()->x, terrain[i]->getPoint2()->y, terrain[i]->getPoint2()->z);
-			glVertex3f(terrain[i]->getPoint3()->x, terrain[i]->getPoint3()->y, terrain[i]->getPoint3()->z);
-			glVertex3f(terrain[i]->getPoint4()->x, terrain[i]->getPoint4()->y, terrain[i]->getPoint4()->z);
+		for(int i = 0; i < tiles->size(); i++){
+			glVertex3f(tiles[i]->getPoint1()->x, tiles[i]->getPoint1()->y, tiles[i]->getPoint1()->z);
+			glVertex3f(tiles[i]->getPoint2()->x, tiles[i]->getPoint2()->y, tiles[i]->getPoint2()->z);
+			glVertex3f(tiles[i]->getPoint3()->x, tiles[i]->getPoint3()->y, tiles[i]->getPoint3()->z);
+			glVertex3f(tiles[i]->getPoint4()->x, tiles[i]->getPoint4()->y, tiles[i]->getPoint4()->z);
 		}
 		glEnd();
 	glEndList();
