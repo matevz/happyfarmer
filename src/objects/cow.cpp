@@ -1,7 +1,7 @@
 #include "objects/cow.h"
 #include "models/modelloader.h"
 #include "control/resource.h"
-#include "gui/scene.h"
+#include "core/game.h"
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point.h"
@@ -65,8 +65,8 @@ void Cow::update( const unsigned long long& time ) {
 		if (!_dx && !_dy) {
 			int dirX = (rand()%3)-1;
 			int dirY = (rand()%3)-1;
-			Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x+dirX, (int)_y+dirY );
-			if (tile && !tile->contains<Fence>() && !Scene::getScene()->contains<Cow>((int)_x+dirX, (int)_y+dirY)) {
+			Tile *tile = Game::getInstance()->getTile( (int)_x+dirX, (int)_y+dirY );
+			if (tile && !tile->contains<Fence>() && !Game::getInstance()->contains<Cow>((int)_x+dirX, (int)_y+dirY)) {
 				_dx = 0.05f*dirX;
 				_dy = 0.05f*dirY;
 				_state=Walk;
@@ -76,7 +76,7 @@ void Cow::update( const unsigned long long& time ) {
 		} else {
 			_x += _dx;
 			_y += _dy;
-			Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x, (int)_y );
+			Tile *tile = Game::getInstance()->getTile( (int)_x, (int)_y );
 
 			double tmp;
 			if ((modf(_x,&tmp)>=0.94 || modf(_x,&tmp)<=0.11) && (modf(_y,&tmp)<=0.11 || modf(_y,&tmp)>=0.94)) {

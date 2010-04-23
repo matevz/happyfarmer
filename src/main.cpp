@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "gui/mainwin.h"
+#include "core/engine.h"
 
 int main( int argc, char *argv[] ) {
-	MainWin *mainWin = new MainWin();
-	mainWin->show();
+	Engine *engine = new Engine();
+	engine->start();
 
 	return 0;
 }

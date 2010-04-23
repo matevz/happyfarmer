@@ -1,15 +1,30 @@
+#include <SDL/SDL.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include "gui/graphics.h"
+#include "core/game.h"
 
-Graphics::Graphics(World *gameWorld){
-	world = gameWorld;
-	init();
+const int Graphics::DEFAULT_SCREEN_WIDTH = 1024;
+const int Graphics::DEFAULT_SCREEN_HEIGHT = 768;
+const int Graphics::DEFAULT_SCREEN_BPP = 32;
+const double Graphics::SCROLL_FACTOR = 0.8;
+const double Graphics::TERRAIN_ANGLE = 60.0f;
+const double Graphics::MAGNIFIER_FACTOR = 256;
+
+/*!
+	\class Graphics
+	Contains graphics subsystem.
+*/
+
+Graphics::Graphics()
+ : _surface(0), _windowWidth(1024), _windowHeight(768), _bpp(32), _videoFlags(0) {
 }
 
-Graphics::~Graphics(){
+Graphics::~Graphics() {
 	SDL_Quit();
 }
 
-void Graphics::init(){
+bool Graphics::init() {
 	bool error = false;
 	SDL_Event event;
 	const SDL_VideoInfo *videoInfo;
@@ -27,27 +42,27 @@ void Graphics::init(){
 		error = true;
 	}
 
-	videoFlags = SDL_OPENGL; // Enable OpenGL in SDL
-	videoFlags |= SDL_GL_DOUBLEBUFFER; // Enable double buffering
-	videoFlags |= SDL_HWPALETTE; // Store the palette in hardware
-	videoFlags |= SDL_RESIZABLE; // Enable window resizing
+	_videoFlags = SDL_OPENGL; // Enable OpenGL in SDL
+	_videoFlags |= SDL_GL_DOUBLEBUFFER; // Enable double buffering
+	_videoFlags |= SDL_HWPALETTE; // Store the palette in hardware
+	_videoFlags |= SDL_RESIZABLE; // Enable window resizing
 
 	// This checks to see if surfaces can be stored in memory
 	if (videoInfo->hw_available) {
-		videoFlags |= SDL_HWSURFACE;
+		_videoFlags |= SDL_HWSURFACE;
 	} else {
-		videoFlags |= SDL_SWSURFACE;
+		_videoFlags |= SDL_SWSURFACE;
 	}
 
 	// This checks if hardware blits can be done
 	if (videoInfo->blit_hw) {
-		videoFlags |= SDL_HWACCEL;
+		_videoFlags |= SDL_HWACCEL;
 	}
 
-	surface = SDL_SetVideoMode(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, DEFAULT_SCREEN_BPP, videoFlags);
+	_surface = SDL_SetVideoMode(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, DEFAULT_SCREEN_BPP, _videoFlags);
 
 	// Verify there is a surface
-	if (!surface) {
+	if (!_surface) {
 		fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
 		error = true;
 	}
@@ -67,44 +82,14 @@ void Graphics::init(){
 	glEnable (GL_BLEND);
 	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
-	Screen::surface = SDL_SetVideoMode(_screen_width, _screen_height, _bpp, videoFlags);
-	if (!Screen::surface) {
-		fprintf(stderr,
-		"Could not get a surface after resize: %s\n",
-		SDL_GetError());
-		error = true;
-	}
-
-	// Height / width ration
-	GLfloat ratio;
-
-	// Protect against a divide by zero
-	if (height == 0)
-		height = 1;
-
-	ratio = (GLfloat) _screen_width / (GLfloat) _screen_height;
-
-	// Setup our viewport.
-	glViewport(0, 0, (GLint) _screen_width, (GLint) _screen_height);
-
-	// change to the projection matrix and set our viewing volume.
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	// Make sure we're chaning the model view and not the projection
-	glMatrixMode(GL_MODELVIEW);
-
-	// Reset The View
-	glLoadIdentity();
-
+	return (!error);
 }
 
-void Graphics::resizeEvent(int width, int height) {
+bool Graphics::resize(int width, int height) {
 	bool error = false;
 
-	Screen::surface = SDL_SetVideoMode(width, height, _bpp, videoFlags);
-	if (!Screen::surface) {
+	Graphics::_surface = SDL_SetVideoMode(width, height, _bpp, _videoFlags);
+	if (!Graphics::_surface) {
 		fprintf(stderr,
 		"Could not get a surface after resize: %s\n",
 		SDL_GetError());
@@ -133,18 +118,41 @@ void Graphics::resizeEvent(int width, int height) {
 	// Reset The View
 	glLoadIdentity();
 
+	return true;
 }
 
-void Graphics::genTerrain(){
-	vector<Tile*> *tiles = world->getTerrain();
-	glNewList(terrain, GL_COMPILE);
-		glBegin(GL_QUADS);
-		for(int i = 0; i < tiles->size(); i++){
-			glVertex3f(tiles[i]->getPoint1()->x, tiles[i]->getPoint1()->y, tiles[i]->getPoint1()->z);
-			glVertex3f(tiles[i]->getPoint2()->x, tiles[i]->getPoint2()->y, tiles[i]->getPoint2()->z);
-			glVertex3f(tiles[i]->getPoint3()->x, tiles[i]->getPoint3()->y, tiles[i]->getPoint3()->z);
-			glVertex3f(tiles[i]->getPoint4()->x, tiles[i]->getPoint4()->y, tiles[i]->getPoint4()->z);
-		}
-		glEnd();
-	glEndList();
+void Graphics::zoomIn() {
+	if (_cameraZoom<3) {
+		setCamera( _cameraX, _cameraY, _cameraZoom+1 );
+	}
+}
+
+void Graphics::zoomOut() {
+	if (_cameraZoom>0) {
+		setCamera( _cameraX, _cameraY, _cameraZoom-1 );
+	}
+}
+
+void Graphics::moveDown() {
+	if ( _cameraX>0 && _cameraY>0 ) {
+		setCamera( _cameraX-SCROLL_FACTOR, _cameraY-SCROLL_FACTOR, _cameraZoom );
+	}
+}
+
+void Graphics::moveUp() {
+	if ( _cameraX<Game::getInstance()->getTerrainWidth() && _cameraY<Game::getInstance()->getTerrainHeight() ) {
+		setCamera( _cameraX+SCROLL_FACTOR, _cameraY+SCROLL_FACTOR, _cameraZoom );
+	}
+}
+
+void Graphics::moveRight() {
+	if ( _cameraX<Game::getInstance()->getTerrainWidth() && _cameraY>0 ) {
+		setCamera( _cameraX+SCROLL_FACTOR, _cameraY-SCROLL_FACTOR, _cameraZoom );
+	}
+}
+
+void Graphics::moveLeft() {
+	if ( _cameraX>0 && _cameraY<Game::getInstance()->getTerrainHeight()-1 ) {
+		setCamera( _cameraX-SCROLL_FACTOR, _cameraY+SCROLL_FACTOR, _cameraZoom );
+	}
 }

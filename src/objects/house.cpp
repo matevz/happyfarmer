@@ -1,7 +1,7 @@
 #include "objects/house.h"
 #include "control/resource.h"
 #include "models/modelloader.h"
-#include "gui/scene.h"
+#include "core/game.h"
 #include "core/terrain.h"
 #include "core/tile.h"
 
@@ -28,7 +28,7 @@ void House::init() {
 		House::_dispList = ModelLoader().loadModel( Resource::locateModel("house/house") );
 	}
 
-	Scene::getScene()->getTerrain()->getTile((int)_x+1, (int)_y)->addObject(this);
-	Scene::getScene()->getTerrain()->getTile((int)_x, (int)_y+1)->addObject(this);
-	Scene::getScene()->getTerrain()->getTile((int)_x+1, (int)_y+1)->addObject(this);
+	Game::getInstance()->getTile((int)_x+1, (int)_y)->addObject(this);
+	Game::getInstance()->getTile((int)_x, (int)_y+1)->addObject(this);
+	Game::getInstance()->getTile((int)_x+1, (int)_y+1)->addObject(this);
 }

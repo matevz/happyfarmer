@@ -1,5 +1,3 @@
-/*Prices and costs.*/
-
 #ifndef ECONOMY_H_
 #define ECONOMY_H_
 

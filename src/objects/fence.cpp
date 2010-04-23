@@ -1,7 +1,7 @@
 #include "objects/fence.h"
 #include "control/resource.h"
 #include "models/modelloader.h"
-#include "gui/scene.h"
+#include "core/game.h"
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point.h"
@@ -73,23 +73,23 @@ void Fence::init() {
 }
 
 void Fence::rebuild() {
-	_z = Scene::getScene()->getTerrain()->getTile(_x,_y)->getPoint1()->z;
+	_z = Game::getInstance()->getTile(_x,_y)->getPoint1()->z;
 
 	_dispLists.clear();
-	if (Scene::getScene()->getTerrain()->getTile(_x,_y+1) &&
-	    Scene::getScene()->getTerrain()->getTile(_x,_y+1)->contains<Fence>()) {
+	if (Game::getInstance()->getTile(_x,_y+1) &&
+		Game::getInstance()->getTile(_x,_y+1)->contains<Fence>()) {
 		_dispLists.push_back( Fence::_dispList2 );
 	}
-	if (Scene::getScene()->getTerrain()->getTile(_x-1,_y) &&
-	    Scene::getScene()->getTerrain()->getTile(_x-1,_y)->contains<Fence>()) {
+	if (Game::getInstance()->getTile(_x-1,_y) &&
+		Game::getInstance()->getTile(_x-1,_y)->contains<Fence>()) {
 		_dispLists.push_back( Fence::_dispList4 );
 	}
-	if (Scene::getScene()->getTerrain()->getTile(_x+1,_y) &&
-	    Scene::getScene()->getTerrain()->getTile(_x+1,_y)->contains<Fence>()) {
+	if (Game::getInstance()->getTile(_x+1,_y) &&
+		Game::getInstance()->getTile(_x+1,_y)->contains<Fence>()) {
 		_dispLists.push_back( Fence::_dispList6 );
 	}
-	if (Scene::getScene()->getTerrain()->getTile(_x,_y-1) &&
-	    Scene::getScene()->getTerrain()->getTile(_x,_y-1)->contains<Fence>()) {
+	if (Game::getInstance()->getTile(_x,_y-1) &&
+		Game::getInstance()->getTile(_x,_y-1)->contains<Fence>()) {
 		_dispLists.push_back( Fence::_dispList8 );
 	}
 
