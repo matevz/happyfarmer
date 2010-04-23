@@ -1,9 +1,10 @@
 #include "objects/road.h"
 #include "control/resource.h"
-#include "gui/scene.h"
+#include "core/game.h"
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point.h"
+#include <SDL/SDL.h>
 
 GLuint Road::_texture258   = 0;
 GLuint Road::_texture456   = 0;
@@ -160,12 +161,12 @@ GLuint Road::genDispList( GLuint texture ) {
 
 
 void Road::rebuild() {
-	_z = Scene::getScene()->getTerrain()->getTile(_x,_y)->getPoint1()->z;
+	_z = Game::getInstance()->getTile(_x,_y)->getPoint1()->z;
 
-	bool dir2=Scene::getScene()->getTerrain()->getTile(_x,_y+1) && Scene::getScene()->getTerrain()->getTile(_x,_y+1)->contains<Road>();
-	bool dir4=Scene::getScene()->getTerrain()->getTile(_x-1,_y) && Scene::getScene()->getTerrain()->getTile(_x-1,_y)->contains<Road>();
-	bool dir6=Scene::getScene()->getTerrain()->getTile(_x+1,_y) && Scene::getScene()->getTerrain()->getTile(_x+1,_y)->contains<Road>();
-	bool dir8=Scene::getScene()->getTerrain()->getTile(_x,_y-1) && Scene::getScene()->getTerrain()->getTile(_x,_y-1)->contains<Road>();
+	bool dir2=Game::getInstance()->getTile(_x,_y+1) && Game::getInstance()->getTile(_x,_y+1)->contains<Road>();
+	bool dir4=Game::getInstance()->getTile(_x-1,_y) && Game::getInstance()->getTile(_x-1,_y)->contains<Road>();
+	bool dir6=Game::getInstance()->getTile(_x+1,_y) && Game::getInstance()->getTile(_x+1,_y)->contains<Road>();
+	bool dir8=Game::getInstance()->getTile(_x,_y-1) && Game::getInstance()->getTile(_x,_y-1)->contains<Road>();
 
 	if (!dir2 && !dir4 && !dir6 && !dir8) { _dispList = &Road::_dispList456; }
 	else if (!dir2 && !dir4 && !dir6 && dir8) { _dispList = &Road::_dispList258; }

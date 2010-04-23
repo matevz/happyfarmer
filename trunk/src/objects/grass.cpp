@@ -1,9 +1,10 @@
 #include "objects/grass.h"
 #include "core/terrain.h"
 #include "core/tile.h"
-#include "gui/scene.h"
+#include "core/game.h"
 #include "core/point.h"
 #include "control/resource.h"
+#include <SDL/SDL.h>
 
 GLuint Grass::_texture = 0;
 
@@ -33,7 +34,7 @@ void Grass::init() {
 }
 
 void Grass::rebuild() {
-	Tile *tile = Scene::getScene()->getTerrain()->getTile((int)_x,(int)_y);
+	Tile *tile = Game::getInstance()->getTile((int)_x,(int)_y);
 	GLfloat x_m, y_m, z_m, u_m, v_m;
 
 	// build new display list

@@ -1,10 +1,10 @@
 #include "objects/tractor.h"
 #include "models/modelloader.h"
 #include "control/resource.h"
-#include "gui/scene.h"
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point.h"
+#include "core/game.h"
 
 GLuint Tractor::_dispList = 0;
 
@@ -49,7 +49,7 @@ void Tractor::update( const unsigned long long& time ) {
 	//_y += dY;
 	//_x += dX;
 	float roundY = _y - (int)_y;
-	Tile *tile = Scene::getScene()->getTerrain()->getTile( (int)_x, (int)_y );
+	Tile *tile = Game::getInstance()->getTile( (int)_x, (int)_y );
 
 	if (tile) {
 		_z = (tile->getPoint1()->z+tile->getPoint2()->z+tile->getPoint3()->z+tile->getPoint4()->z)/4.0;

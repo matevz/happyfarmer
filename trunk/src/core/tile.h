@@ -40,6 +40,7 @@ public:
 	void     setPoint4( Point3d *p ) { _point1 = p; }
 
 private:
+    static const double HEIGHT_FACTOR;
 	int _x; // top-left corner
 	int _y;
 

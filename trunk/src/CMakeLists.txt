@@ -5,12 +5,14 @@ SET( Core
 	core/stationaryobject.cpp
 	core/movingobject.cpp
 	core/player.cpp
+	core/engine.cpp
+	core/game.cpp
 )
 
 SET( Gui
-	gui/mainwin.cpp
-	gui/scene.cpp
-	gui/screen.cpp
+	gui/graphics.cpp
+	gui/sound.cpp
+	gui/eventhandler.cpp
 )
 
 SET( Models

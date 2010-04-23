@@ -1,19 +1,21 @@
-/*Used to keep track of game time as well as speed.*/
-
 #ifndef TIME_H_
 #define TIME_H_
 
 class Time {
 public:
-	Time();
-	Time(unsigned long long passed);
+	Time(unsigned long long passed=0);
 	~Time();
-	void pass(short delta);
-	void import(unsigned long passed, float speedModifier);
+
+	float getSpeed() { return _speedMultiplier; }
+	void setSpeed( float s ) { _speedMultiplier = s; }
+	unsigned long long getTime() { return _time; }
+	void setTime( unsigned long long time ) { _time = time; }
 
 private:
-	unsigned long _passed;
-	float _speedModifier;
+	void pass(short delta);
+
+	unsigned long long _time;
+	float _speedMultiplier;
 };
 
 #endif /* TIME_H_ */

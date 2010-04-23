@@ -1,26 +1,24 @@
 #include "core/time.h"
 
+/*!
+	\class Time
+	This class is used to keep track of the game time and speed.
+*/
+
 Time::Time(){
-	_passed = 0;
-	_speedModifier = 1;
+	_time = 0;
+	_speedMultiplier = 1;
 }
 
-Time::Time(unsigned long passed){
+Time::Time(unsigned long long passed){
 	_passed = passed;
-	_speedModifier = 1;
+	_speedMultiplier = 1;
 }
 
 Time::~Time(){
-	delete &_passed;
-	delete &_speedModifier;
 }
 
 void Time::pass(short delta){
-	_passed += delta * _speedModifier;
+	_time += static_cast<short>(delta * _speedMultiplier);
 
-}
-
-void Time::import(unsigned long passed, float speedModifier){
-	_passed = passed;
-	_speedModifier = speedModifier;
 }

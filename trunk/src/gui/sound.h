@@ -4,8 +4,11 @@
 #define SOUND_H_
 
 class Sound {
+public:
 	Sound();
 	~Sound();
+private:
+	bool init();
 };
 
 #endif /* SOUND_H_ */

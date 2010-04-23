@@ -1,7 +1,7 @@
 #include "objects/plant.h"
 #include "control/resource.h"
 #include "models/modelloader.h"
-#include "gui/scene.h"
+#include "core/game.h"
 #include "core/terrain.h"
 #include "core/tile.h"
 
