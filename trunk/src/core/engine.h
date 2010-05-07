@@ -11,8 +11,11 @@ public:
 	~Engine();
 
 	int start();
+	static Engine* getInstance() { return Engine::_instance; }
 
 private:
+	static Engine* _instance;
+
 	bool _loop;
 	Game *_game;
 	Graphics *_graphics;

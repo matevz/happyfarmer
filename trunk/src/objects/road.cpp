@@ -4,9 +4,8 @@
 #include "core/terrain.h"
 #include "core/tile.h"
 #include "core/point.h"
-#include <SDL/SDL.h>
 
-GLuint Road::_texture258   = 0;
+/*GLuint Road::_texture258   = 0;
 GLuint Road::_texture456   = 0;
 GLuint Road::_texture245   = 0;
 GLuint Road::_texture256   = 0;
@@ -29,9 +28,9 @@ GLuint Road::_dispList2458  = 0;
 GLuint Road::_dispList2568  = 0;
 GLuint Road::_dispList4568  = 0;
 GLuint Road::_dispList24568 = 0;
-
+*/
 Road::Road(Player* p, Tile* t)
- : StationaryObject(p, t), _dispList(0) {
+ : StaticObject(p, t), _node(0) {
 	init();
 }
 
@@ -39,7 +38,7 @@ Road::~Road() {
 }
 
 void Road::init() {
-	// open the texture file
+/*	// open the texture file
 	if (!Road::_texture258) {
 		SDL_Surface *textureImage = 0;
 
@@ -49,7 +48,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList258 = genDispList( Road::_texture258 );
+	    Road::_node258 = gennode( Road::_texture258 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road456.png"));
 		glGenTextures(1, &Road::_texture456);
@@ -57,7 +56,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList456 = genDispList( Road::_texture456 );
+	    Road::_node456 = gennode( Road::_texture456 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road245.png"));
 		glGenTextures(1, &Road::_texture245);
@@ -65,7 +64,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList245 = genDispList( Road::_texture245 );
+	    Road::_node245 = gennode( Road::_texture245 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road256.png"));
 		glGenTextures(1, &Road::_texture256);
@@ -73,7 +72,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList256 = genDispList( Road::_texture256 );
+	    Road::_node256 = gennode( Road::_texture256 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road458.png"));
 		glGenTextures(1, &Road::_texture458);
@@ -81,7 +80,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList458 = genDispList( Road::_texture458 );
+	    Road::_node458 = gennode( Road::_texture458 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road568.png"));
 		glGenTextures(1, &Road::_texture568);
@@ -89,7 +88,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList568 = genDispList( Road::_texture568 );
+	    Road::_node568 = gennode( Road::_texture568 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road2456.png"));
 		glGenTextures(1, &Road::_texture2456);
@@ -97,7 +96,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList2456 = genDispList( Road::_texture2456 );
+	    Road::_node2456 = gennode( Road::_texture2456 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road2458.png"));
 		glGenTextures(1, &Road::_texture2458);
@@ -105,7 +104,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList2458 = genDispList( Road::_texture2458 );
+	    Road::_node2458 = gennode( Road::_texture2458 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road2568.png"));
 		glGenTextures(1, &Road::_texture2568);
@@ -113,7 +112,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList2568 = genDispList( Road::_texture2568 );
+	    Road::_node2568 = gennode( Road::_texture2568 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road4568.png"));
 		glGenTextures(1, &Road::_texture4568);
@@ -121,7 +120,7 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList4568 = genDispList( Road::_texture4568 );
+	    Road::_node4568 = gennode( Road::_texture4568 );
 
 		textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/road24568.png"));
 		glGenTextures(1, &Road::_texture24568);
@@ -129,15 +128,15 @@ void Road::init() {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage->w, textureImage->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureImage->pixels );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-	    Road::_dispList24568 = genDispList( Road::_texture24568 );
+	    Road::_node24568 = gennode( Road::_texture24568 );
 	}
-	rebuild();
+	rebuild();*/
 }
 
-GLuint Road::genDispList( GLuint texture ) {
+/*GLuint Road::gennode( GLuint texture ) {
     // generate display lists
-	GLuint dispList = glGenLists(1);
-	glNewList( dispList, GL_COMPILE );
+	GLuint node = glGenLists(1);
+	glNewList( node, GL_COMPILE );
 
 	// 3d textured tile
 	glEnable(GL_TEXTURE_2D);
@@ -156,39 +155,39 @@ GLuint Road::genDispList( GLuint texture ) {
 	glEnd();
 	glEndList();
 
-	return dispList;
-}
+	return node;
+}*/
 
 
 void Road::rebuild() {
-	_z = Game::getInstance()->getTile(_x,_y)->getPoint1()->z;
+/*	_z = Game::getInstance()->getTile(_x,_y)->getPoint1()->z;
 
 	bool dir2=Game::getInstance()->getTile(_x,_y+1) && Game::getInstance()->getTile(_x,_y+1)->contains<Road>();
 	bool dir4=Game::getInstance()->getTile(_x-1,_y) && Game::getInstance()->getTile(_x-1,_y)->contains<Road>();
 	bool dir6=Game::getInstance()->getTile(_x+1,_y) && Game::getInstance()->getTile(_x+1,_y)->contains<Road>();
 	bool dir8=Game::getInstance()->getTile(_x,_y-1) && Game::getInstance()->getTile(_x,_y-1)->contains<Road>();
 
-	if (!dir2 && !dir4 && !dir6 && !dir8) { _dispList = &Road::_dispList456; }
-	else if (!dir2 && !dir4 && !dir6 && dir8) { _dispList = &Road::_dispList258; }
-	else if (!dir2 && !dir4 && dir6 && !dir8) { _dispList = &Road::_dispList456; }
-	else if (!dir2 && !dir4 && dir6 && dir8) { _dispList = &Road::_dispList568; }
-	else if (!dir2 && dir4 && !dir6 && !dir8) { _dispList = &Road::_dispList456; }
-	else if (!dir2 && dir4 && !dir6 && dir8) { _dispList = &Road::_dispList458; }
-	else if (!dir2 && dir4 && dir6 && !dir8) { _dispList = &Road::_dispList456; }
-	else if (!dir2 && dir4 && dir6 && dir8) { _dispList = &Road::_dispList4568; }
-	else if (dir2 && !dir4 && !dir6 && !dir8) { _dispList = &Road::_dispList258; }
-	else if (dir2 && !dir4 && !dir6 && dir8) { _dispList = &Road::_dispList258; }
-	else if (dir2 && !dir4 && dir6 && !dir8) { _dispList = &Road::_dispList256; }
-	else if (dir2 && !dir4 && dir6 && dir8) { _dispList = &Road::_dispList2568; }
-	else if (dir2 && dir4 && !dir6 && !dir8) { _dispList = &Road::_dispList245; }
-	else if (dir2 && dir4 && !dir6 && dir8) { _dispList = &Road::_dispList2458; }
-	else if (dir2 && dir4 && dir6 && !dir8) { _dispList = &Road::_dispList2456; }
-	else if (dir2 && dir4 && dir6 && dir8) { _dispList = &Road::_dispList24568; }
+	if (!dir2 && !dir4 && !dir6 && !dir8) { _node = &Road::_node456; }
+	else if (!dir2 && !dir4 && !dir6 && dir8) { _node = &Road::_node258; }
+	else if (!dir2 && !dir4 && dir6 && !dir8) { _node = &Road::_node456; }
+	else if (!dir2 && !dir4 && dir6 && dir8) { _node = &Road::_node568; }
+	else if (!dir2 && dir4 && !dir6 && !dir8) { _node = &Road::_node456; }
+	else if (!dir2 && dir4 && !dir6 && dir8) { _node = &Road::_node458; }
+	else if (!dir2 && dir4 && dir6 && !dir8) { _node = &Road::_node456; }
+	else if (!dir2 && dir4 && dir6 && dir8) { _node = &Road::_node4568; }
+	else if (dir2 && !dir4 && !dir6 && !dir8) { _node = &Road::_node258; }
+	else if (dir2 && !dir4 && !dir6 && dir8) { _node = &Road::_node258; }
+	else if (dir2 && !dir4 && dir6 && !dir8) { _node = &Road::_node256; }
+	else if (dir2 && !dir4 && dir6 && dir8) { _node = &Road::_node2568; }
+	else if (dir2 && dir4 && !dir6 && !dir8) { _node = &Road::_node245; }
+	else if (dir2 && dir4 && !dir6 && dir8) { _node = &Road::_node2458; }
+	else if (dir2 && dir4 && dir6 && !dir8) { _node = &Road::_node2456; }
+	else if (dir2 && dir4 && dir6 && dir8) { _node = &Road::_node24568; }*/
 }
 
 void Road::draw( const unsigned long long& time ) {
-	glPushMatrix();
+/*	glPushMatrix();
 	glTranslatef( _x, _y, _z );
-	glCallList( *_dispList );
+	glCallList( *_node );
 	glPopMatrix();
-}
+*/}

@@ -1,8 +1,11 @@
-#include <SDL/SDL.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include "gui/graphics.h"
+#include <osg/Group>
+#include <osgText/Text>
+#include <osg/Geometry>
 #include "core/game.h"
+
+#include "models/modelloader.h" // debug
+#include "control/resource.h"
 
 const int Graphics::DEFAULT_SCREEN_WIDTH = 1024;
 const int Graphics::DEFAULT_SCREEN_HEIGHT = 768;
@@ -16,79 +19,131 @@ const double Graphics::MAGNIFIER_FACTOR = 256;
 	Contains graphics subsystem.
 */
 
-Graphics::Graphics()
- : _surface(0), _windowWidth(1024), _windowHeight(768), _bpp(32), _videoFlags(0) {
+Graphics::Graphics() {
 }
 
 Graphics::~Graphics() {
-	SDL_Quit();
+//	SDL_Quit();
 }
 
 bool Graphics::init() {
 	bool error = false;
-	SDL_Event event;
-	const SDL_VideoInfo *videoInfo;
 
-	// initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		fprintf(stderr, "Video initialization failed: %s\n", SDL_GetError());
-		error = true;
-	}
+	// construct the viewer.
+	_viewer = new osgViewer::Viewer();
+	_sceneNode = ModelLoader().loadModel( Resource::locateModel("cow/cow") ); //new osg::Node();
 
-	videoInfo = SDL_GetVideoInfo();
+	//    SnapImage* postDrawCallback = new SnapImage("PostDrawCallback.png");
+	//  viewer.getCamera()->setPostDrawCallback(postDrawCallback);
+	//    viewer.addEventHandler(new SnapeImageHandler('p',postDrawCallback));
 
-	if (!videoInfo) {
-		fprintf(stderr, "Video query failed: %s\n", SDL_GetError());
-		error = true;
-	}
+	//    SnapImage* finalDrawCallback = new SnapImage("FinalDrawCallback.png");
+	//    viewer.getCamera()->setFinalDrawCallback(finalDrawCallback);
+	//    viewer.addEventHandler(new SnapeImageHandler('f',finalDrawCallback));
 
-	_videoFlags = SDL_OPENGL; // Enable OpenGL in SDL
-	_videoFlags |= SDL_GL_DOUBLEBUFFER; // Enable double buffering
-	_videoFlags |= SDL_HWPALETTE; // Store the palette in hardware
-	_videoFlags |= SDL_RESIZABLE; // Enable window resizing
+	osg::ref_ptr<osg::Group> group = new osg::Group;
 
-	// This checks to see if surfaces can be stored in memory
-	if (videoInfo->hw_available) {
-		_videoFlags |= SDL_HWSURFACE;
-	} else {
-		_videoFlags |= SDL_SWSURFACE;
-	}
+	// add the HUD subgraph.
+	if (_sceneNode.valid())
+		group->addChild(_sceneNode.get());
+	group->addChild(createHud());
 
-	// This checks if hardware blits can be done
-	if (videoInfo->blit_hw) {
-		_videoFlags |= SDL_HWACCEL;
-	}
-
-	_surface = SDL_SetVideoMode(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, DEFAULT_SCREEN_BPP, _videoFlags);
-
-	// Verify there is a surface
-	if (!_surface) {
-		fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
-		error = true;
-	}
-
-	// Enable key repeat
-	if ((SDL_EnableKeyRepeat(100, SDL_DEFAULT_REPEAT_INTERVAL))) {
-		fprintf(stderr, "Setting keyboard repeat failed: %s\n", SDL_GetError());
-		error = true;
-	}
-
-	glEnable(GL_TEXTURE_2D);
-	glShadeModel(GL_SMOOTH);
-	glClearColor(0.0f, 0.0f, 0.6f, 0.0f);
-	glEnable( GL_DEPTH_TEST );
-
-	// Enable transparency
-	glEnable (GL_BLEND);
-	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	// set the scene to render
+	_viewer->setSceneData(group.get());
 
 	return (!error);
+}
+
+osg::Camera *Graphics::createHud() {
+	// create a camera to set up the projection and model view matrices, and the subgraph to draw in the HUD
+	osg::Camera* camera = new osg::Camera;
+
+	// set the projection matrix
+	camera->setProjectionMatrix(osg::Matrix::ortho2D(0, 1280, 0, 1024));
+
+	// set the view matrix
+	camera->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+	camera->setViewMatrix(osg::Matrix::identity());
+
+	// only clear the depth buffer
+	camera->setClearMask(GL_DEPTH_BUFFER_BIT);
+
+	// draw subgraph after main camera view.
+	camera->setRenderOrder(osg::Camera::POST_RENDER);
+
+	// we don't want the camera to grab event focus from the viewers main camera(s).
+	camera->setAllowEventFocus(false);
+
+	// add to this camera a subgraph to render
+	{
+		osg::Geode* geode = new osg::Geode();
+
+		std::string timesFont("data/fonts/LiberationSans-Regular.ttf");
+
+		// turn lighting off for the text and disable depth test to ensure it's always ontop.
+		osg::StateSet* stateset = geode->getOrCreateStateSet();
+		stateset->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+
+		osg::Vec3 position(150.0f, 800.0f, 0.0f);
+		osg::Vec3 delta(0.0f, -120.0f, 0.0f);
+
+		{
+			osgText::Text* text = new osgText::Text;
+			geode->addDrawable(text);
+
+			text->setFont(timesFont);
+			text->setPosition(position);
+			text->setText("Welcome to happy farmer :-)");
+
+			position += delta;
+		}
+
+		{
+			osg::BoundingBox bb;
+			for (unsigned int i = 0; i < geode->getNumDrawables(); ++i) {
+				bb.expandBy(geode->getDrawable(i)->getBound());
+			}
+
+			osg::Geometry* geom = new osg::Geometry;
+
+			osg::Vec3Array* vertices = new osg::Vec3Array;
+			float depth = bb.zMin() - 0.1;
+			vertices->push_back(osg::Vec3(bb.xMin(), bb.yMax(), depth));
+			vertices->push_back(osg::Vec3(bb.xMin(), bb.yMin(), depth));
+			vertices->push_back(osg::Vec3(bb.xMax(), bb.yMin(), depth));
+			vertices->push_back(osg::Vec3(bb.xMax(), bb.yMax(), depth));
+			geom->setVertexArray(vertices);
+
+			osg::Vec3Array* normals = new osg::Vec3Array;
+			normals->push_back(osg::Vec3(0.0f, 0.0f, 1.0f));
+			geom->setNormalArray(normals);
+			geom->setNormalBinding(osg::Geometry::BIND_OVERALL);
+
+			osg::Vec4Array* colors = new osg::Vec4Array;
+			colors->push_back(osg::Vec4(1.0f, 1.0, 0.8f, 0.2f));
+			geom->setColorArray(colors);
+			geom->setColorBinding(osg::Geometry::BIND_OVERALL);
+
+			geom->addPrimitiveSet(new osg::DrawArrays(GL_QUADS, 0, 4));
+
+			osg::StateSet* stateset = geom->getOrCreateStateSet();
+			stateset->setMode(GL_BLEND, osg::StateAttribute::ON);
+			//stateset->setAttribute(new osg::PolygonOffset(1.0f,1.0f),osg::StateAttribute::ON);
+			stateset->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
+
+			geode->addDrawable(geom);
+		}
+
+		camera->addChild(geode);
+	}
+
+	return camera;
 }
 
 bool Graphics::resize(int width, int height) {
 	bool error = false;
 
-	Graphics::_surface = SDL_SetVideoMode(width, height, _bpp, _videoFlags);
+/*	Graphics::_surface = SDL_SetVideoMode(width, height, _bpp, _videoFlags);
 	if (!Graphics::_surface) {
 		fprintf(stderr,
 		"Could not get a surface after resize: %s\n",
@@ -117,7 +172,7 @@ bool Graphics::resize(int width, int height) {
 
 	// Reset The View
 	glLoadIdentity();
-
+*/
 	return true;
 }
 

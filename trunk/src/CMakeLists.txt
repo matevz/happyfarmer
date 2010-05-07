@@ -2,7 +2,7 @@ SET( Core
 	core/tile.cpp
 	core/terrain.cpp
 	core/object.cpp
-	core/stationaryobject.cpp
+	core/staticobject.cpp
 	core/movingobject.cpp
 	core/player.cpp
 	core/engine.cpp
@@ -16,9 +16,9 @@ SET( Gui
 )
 
 SET( Models
-	models/objparser.cpp
+#	models/objparser.cpp
 	models/modelloader.cpp
-	models/modelloaderparser.cpp
+#	models/modelloaderparser.cpp
 )
 
 SET( Control
@@ -36,4 +36,4 @@ SET( Objects
 )
 
 ADD_EXECUTABLE( happyfarmer ${Core} ${Gui} ${Models} ${Control} ${Objects} main.cpp )
-TARGET_LINK_LIBRARIES( happyfarmer "GL" "GLU" "m" "SDL" "SDL_image" "alut" "ogg" "vorbis" "vorbisfile" )
+TARGET_LINK_LIBRARIES( happyfarmer "osg" "osgText" "osgViewer" "alut" "ogg" "vorbis" "vorbisfile" )

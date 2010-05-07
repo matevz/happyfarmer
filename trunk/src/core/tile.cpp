@@ -1,6 +1,6 @@
 #include "core/tile.h"
 #include "core/terrain.h"
-#include "core/stationaryobject.h"
+#include "core/staticobject.h"
 #include "core/game.h"
 #include <algorithm>
 
@@ -14,8 +14,8 @@ Tile::Tile( int x, int y, Point3d *p1, Point3d *p2, Point3d *p3, Point3d *p4 )
 Tile::~Tile() {
 }
 
-bool Tile::removeObject( StationaryObject* o, bool rebuildNeighbors ) {
-	std::vector<StationaryObject*>::iterator pos = std::find(_objectList.begin(), _objectList.end(), o);
+bool Tile::removeObject( StaticObject* o, bool rebuildNeighbors ) {
+	std::vector<StaticObject*>::iterator pos = std::find(_objectList.begin(), _objectList.end(), o);
 
 	if (pos != _objectList.end()) {
 		_objectList.erase(pos);
@@ -25,7 +25,7 @@ bool Tile::removeObject( StationaryObject* o, bool rebuildNeighbors ) {
 	}
 }
 
-void Tile::addObject( StationaryObject*o, bool rebuildNeighbors ) {
+void Tile::addObject( StaticObject*o, bool rebuildNeighbors ) {
 	_objectList.push_back(o);
 
 	if (rebuildNeighbors) {

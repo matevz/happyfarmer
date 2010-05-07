@@ -1,9 +1,9 @@
 #include "models/modelloader.h"
 #include <math.h>
+#include <string.h>
+#include <osgDB/ReadFile>
 
 using namespace std;
-
-vector<Model*> ModelLoader::_models;
 
 /*!
  * Generates a correct filename from the base name + frame number.
@@ -42,8 +42,11 @@ string ModelLoader::genFilenameFromFrame( string modelname, int frame ) {
  * Loads an object named \a objectname from a file \a filename and a frame number \a frame
  * and returns the index of the generated display list.
  */
-GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) {
-	GLuint dlist;
+osg::Node* ModelLoader::loadModel( string modelname, string objectname, int frame ) {
+	string filename = genFilenameFromFrame( modelname, frame );
+	return osgDB::readNodeFile(filename.c_str());
+
+/*	GLuint dlist;
 	int rvalue=-1;
 	string filename = genFilenameFromFrame( modelname, frame );
 	int modelNo = -1;
@@ -235,5 +238,5 @@ GLuint ModelLoader::loadModel( string modelname, string objectname, int frame ) 
 	} else {
 		std::cerr << "ModelLoader::loadModel error: Display list not generated." << std::endl;
 		return 999999;
-	}
+	}*/ return 0;
 }

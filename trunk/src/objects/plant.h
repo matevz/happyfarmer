@@ -1,10 +1,10 @@
 #ifndef PLANT_H_
 #define PLANT_H_
 
-#include "core/stationaryobject.h"
-#include <GL/gl.h>
+#include "core/staticobject.h"
+#include <osg/Node>
 
-class Plant : public StationaryObject {
+class Plant : public StaticObject {
 public:
 	Plant( Player*, Tile* );
 	virtual ~Plant();
@@ -14,7 +14,7 @@ public:
 private:
 	void init();
 
-	static GLuint _dispList;
+	static osg::ref_ptr<osg::Node> _node;
 };
 
 #endif /* PLANT_H_ */

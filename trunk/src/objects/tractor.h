@@ -2,7 +2,7 @@
 #define TRACTOR_H_
 
 #include "core/movingobject.h"
-#include <GL/gl.h>
+#include <osg/Node>
 
 class Tractor : public MovingObject {
 public:
@@ -15,7 +15,7 @@ public:
 	float dX;
 	float dY;
 private:
-	static GLuint _dispList;
+	static osg::ref_ptr<osg::Node> _node;
 };
 
 #endif /* TRACTOR_H_ */

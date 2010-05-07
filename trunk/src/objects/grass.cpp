@@ -4,12 +4,11 @@
 #include "core/game.h"
 #include "core/point.h"
 #include "control/resource.h"
-#include <SDL/SDL.h>
 
-GLuint Grass::_texture = 0;
+//GLuint Grass::_texture = 0;
 
 Grass::Grass(Player* p, Tile* t)
- : StationaryObject(p, t), _dispList(0) {
+ : StaticObject(p, t), _node(0) {
 	init();
 }
 
@@ -17,12 +16,12 @@ Grass::~Grass() {
 }
 
 void Grass::draw( const unsigned long long& time ) {
-	glCallList(_dispList);
+	//glCallList(_node);
 }
 
 void Grass::init() {
 	// open the texture file
-	if (!Grass::_texture) {
+/*	if (!Grass::_texture) {
 		SDL_Surface *textureImage = Resource::loadPng(Resource::locateResource("textures/terrain/grass.png"));
 		glGenTextures(1, &Grass::_texture);
 		glBindTexture(GL_TEXTURE_2D, _texture);
@@ -30,19 +29,19 @@ void Grass::init() {
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
 	    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 	}
-	rebuild();
+*/	rebuild();
 }
 
 void Grass::rebuild() {
-	Tile *tile = Game::getInstance()->getTile((int)_x,(int)_y);
+/*	Tile *tile = Game::getInstance()->getTile((int)_x,(int)_y);
 	GLfloat x_m, y_m, z_m, u_m, v_m;
 
 	// build new display list
-	if (_dispList) {
-		glDeleteLists(_dispList, 1);
+	if (_node) {
+		glDeleteLists(_node, 1);
 	}
-	_dispList = glGenLists(1);
-	glNewList(_dispList, GL_COMPILE);
+	_node = glGenLists(1);
+	glNewList(_node, GL_COMPILE);
 
 	// 3d textured tile
 	glEnable(GL_TEXTURE_2D);
@@ -101,5 +100,5 @@ void Grass::rebuild() {
 	glVertex3f( x_m, y_m, z_m );
 	glEnd();
 
-	glEndList();
+	glEndList();*/
 }

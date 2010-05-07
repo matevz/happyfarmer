@@ -9,7 +9,7 @@ class Economy;
 class Time;
 
 #include "core/movingobject.h"
-#include "core/stationaryobject.h"
+#include "core/staticobject.h"
 
 class Game {
 public:
