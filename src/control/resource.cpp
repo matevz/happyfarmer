@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iostream> //debug
-#include <SDL_image.h>
 #include "control/resource.h"
 
 #ifdef WINDOWS32
@@ -60,7 +59,7 @@ string Resource::locateModel( string relPath ) {
 		return path.substr(0, path.length()-11);
 	}
 
-	std::cerr << "Resource::locateResource(): Unable to find " + relPath << std::endl;
+	std::cerr << "Resource::locateModel(): Unable to find " + relPath << std::endl;
 	return "";
 }
 
@@ -85,7 +84,7 @@ string Resource::fixDelimiters( string path ) {
 	User needs to delete the returned surface, once used.
  */
 SDL_Surface *Resource::loadPng( string path ) {
-	SDL_RWops *rwop = SDL_RWFromFile(path.c_str(), "rb");
+/*	SDL_RWops *rwop = SDL_RWFromFile(path.c_str(), "rb");
 	SDL_Surface *image = IMG_LoadPNG_RW(rwop);
 	if(!image) {
 	    std::cerr << "Resource::loadPng(): Error loading " << path << ", error " << IMG_GetError();
@@ -94,4 +93,4 @@ SDL_Surface *Resource::loadPng( string path ) {
 	delete rwop;
 
 	return image;
-}
+*/}

@@ -6,12 +6,12 @@
 #include "core/point.h"
 #include "core/game.h"
 
-GLuint Tractor::_dispList = 0;
+osg::ref_ptr<osg::Node> Tractor::_node = 0;
 
 Tractor::Tractor( Player* p, const float& x, const float& y )
  : MovingObject( p, x, y, 0 ) {
-	if (!Tractor::_dispList) {
-		_dispList = ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
+	if (!Tractor::_node) {
+		_node = ModelLoader().loadModel( Resource::locateModel("tractor/tractor") );
 	}
 
 	dX = 0.10;
@@ -22,7 +22,7 @@ Tractor::~Tractor() {
 }
 
 void Tractor::draw( const unsigned long long& time ) {
-    glPushMatrix();
+/*    glPushMatrix();
 
 	glTranslatef( _x, _y, _z );
 	glTranslatef( 0.5, 0.0, 0 );
@@ -41,8 +41,8 @@ void Tractor::draw( const unsigned long long& time ) {
     }
 
 	glTranslatef( -0.5, -0.5, 0 );
-	glCallList( Tractor::_dispList );
-	glPopMatrix();
+	glCallList( Tractor::_node );
+	glPopMatrix();*/
 }
 
 void Tractor::update( const unsigned long long& time ) {

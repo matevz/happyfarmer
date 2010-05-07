@@ -5,10 +5,10 @@
 #include "core/terrain.h"
 #include "core/tile.h"
 
-GLuint House::_dispList = 0;
+osg::ref_ptr<osg::Node> House::_node = 0;
 
 House::House( Player* p, Tile* t )
- : StationaryObject(p,t) {
+ : StaticObject(p,t) {
 	init();
 }
 
@@ -16,16 +16,16 @@ House::~House() {
 }
 
 void House::draw( const unsigned long long& time ) {
-    glPushMatrix();
+/*    glPushMatrix();
 	glTranslatef( _x, _y, _z );
 
-	glCallList( _dispList );
+	glCallList( _node );
 	glPopMatrix();
-}
+*/}
 
 void House::init() {
-	if (!House::_dispList) {
-		House::_dispList = ModelLoader().loadModel( Resource::locateModel("house/house") );
+	if (!House::_node) {
+		House::_node = ModelLoader().loadModel( Resource::locateModel("house/house") );
 	}
 
 	Game::getInstance()->getTile((int)_x+1, (int)_y)->addObject(this);

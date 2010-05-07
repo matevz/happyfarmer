@@ -4,16 +4,16 @@
 #include <vector>
 
 class Point3d;
-class StationaryObject;
+class StaticObject;
 
 class Tile {
 public:
 	Tile( int x, int y, Point3d *p1, Point3d *p2, Point3d *p3, Point3d *p4 );
 	virtual ~Tile();
 
-	const std::vector<StationaryObject*>& getObjectList() { return _objectList; }
-	void addObject( StationaryObject* o, bool rebuildNeighbors=true );
-	bool removeObject( StationaryObject* o, bool rebuildNeighbors=true );
+	const std::vector<StaticObject*>& getObjectList() { return _objectList; }
+	void addObject( StaticObject* o, bool rebuildNeighbors=true );
+	bool removeObject( StaticObject* o, bool rebuildNeighbors=true );
 	void rebuild();
 
 	template<class T>
@@ -55,7 +55,7 @@ private:
 	////////////////////////
 	// Non-moving objects //
 	////////////////////////
-	std::vector<StationaryObject*> _objectList;
+	std::vector<StaticObject*> _objectList;
 };
 
 #endif

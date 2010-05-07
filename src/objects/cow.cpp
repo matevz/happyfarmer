@@ -7,13 +7,14 @@
 #include "core/point.h"
 #include "objects/fence.h"
 #include <math.h>
+#include <stdlib.h>
 
-GLuint Cow::_dispList = 0;
+osg::ref_ptr<osg::Node> Cow::_node = 0;
 
 Cow::Cow( Player* p, const float& x, const float& y )
  : MovingObject( p, x, y, 0 ), _dx(0), _dy(0), _dz(0), _state(Stand) {
-	if (!Cow::_dispList) {
-		_dispList = ModelLoader().loadModel( Resource::locateModel("cow/cow") );
+	if (!Cow::_node) {
+		_node = ModelLoader().loadModel( Resource::locateModel("cow/cow") );
 	}
 }
 
@@ -21,7 +22,7 @@ Cow::~Cow() {
 }
 
 void Cow::draw( const unsigned long long& time ) {
-    glPushMatrix();
+/*    glPushMatrix();
 
 	glTranslatef( 0.25, 0.25, 0 );
 	glTranslatef( _x, _y, _z );
@@ -51,8 +52,8 @@ void Cow::draw( const unsigned long long& time ) {
     }
 	glTranslatef( -0.25, -0.25, 0 );
 
-	glCallList( Cow::_dispList );
-	glPopMatrix();
+	glCallList( Cow::_node );
+	glPopMatrix();*/
 }
 
 void Cow::update( const unsigned long long& time ) {

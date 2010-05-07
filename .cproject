@@ -28,6 +28,8 @@
 <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.2062050524" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 <option id="gnu.cpp.compiler.option.include.paths.805583012" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/happyfarmer/src}&quot;"/>
+<listOptionValue builtIn="false" value="/usr/include/SDL"/>
+<listOptionValue builtIn="false" value="/usr/include/AL"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.314670334" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
@@ -302,6 +304,7 @@
 </profile>
 </scannerConfigBuildInfo>
 </storageModule>
+<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">

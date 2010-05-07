@@ -5,10 +5,10 @@
 #include "core/terrain.h"
 #include "core/tile.h"
 
-GLuint Plant::_dispList = 0;
+osg::ref_ptr<osg::Node> Plant::_node = 0;
 
 Plant::Plant( Player* p, Tile* t )
- : StationaryObject(p,t) {
+ : StaticObject(p,t) {
 	init();
 }
 
@@ -16,17 +16,17 @@ Plant::~Plant() {
 }
 
 void Plant::draw( const unsigned long long& time ) {
-    glPushMatrix();
+/*    glPushMatrix();
 	glTranslatef( _x, _y, _z );
 
-	glCallList( _dispList );
+	glCallList( _node );
 	glPopMatrix();
-}
+*/}
 
 void Plant::init() {
-	if (!Plant::_dispList) {
-		Plant::_dispList = ModelLoader().loadModel( Resource::locateModel("plant/plant") );
+/*	if (!Plant::_node) {
+		Plant::_node = ModelLoader().loadModel( Resource::locateModel("plant/plant") );
 	}
 
 	_z += 0.02;
-}
+*/}

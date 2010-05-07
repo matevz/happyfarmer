@@ -1,11 +1,11 @@
 #ifndef FENCE_H_
 #define FENCE_H_
 
-#include "core/stationaryobject.h"
-#include <GL/gl.h>
+#include "core/staticobject.h"
+#include <osg/Node>
 #include <vector>
 
-class Fence : public StationaryObject {
+class Fence : public StaticObject {
 public:
 	Fence( Player*, Tile* );
 	virtual ~Fence();
@@ -16,14 +16,14 @@ public:
 private:
 	void init();
 
-	std::vector<GLuint> _dispLists; // fence parts used in actual object
+	std::vector< osg::ref_ptr<osg::Node> > _nodes; // fence parts used in actual object
 
-	static GLuint _dispList;
+	static osg::ref_ptr<osg::Node>  _node;
 
-	static GLuint _dispList2; // top
-	static GLuint _dispList4; // right
-	static GLuint _dispList6; // left
-	static GLuint _dispList8; // bottom
+	static osg::ref_ptr<osg::Node>  _node2; // top
+	static osg::ref_ptr<osg::Node>  _node4; // right
+	static osg::ref_ptr<osg::Node>  _node6; // left
+	static osg::ref_ptr<osg::Node>  _node8; // bottom
 };
 
 #endif /* FENCE_H_ */

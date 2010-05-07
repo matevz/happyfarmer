@@ -1,7 +1,8 @@
 #ifndef GRAPHICS_H_
 #define GRAPHICS_H_
 
-class SDL_Surface;
+#include <osgViewer/Viewer>
+#include <osg/CameraNode>
 
 class Graphics {
 public:
@@ -11,10 +12,8 @@ public:
 	bool init();
 	bool resize(int w, int h);
 
-	inline int getWindowWidth() { return _windowWidth; }
-	inline int getWindowHeight() { return _windowHeight; }
-
 	// game actions
+	osgViewer::Viewer *getViewer() { return _viewer; }
 	double getCameraX() { return _cameraX; }
 	double getCameraY() { return _cameraY; }
 	double getCameraZoom() { return _cameraZoom; }
@@ -28,12 +27,12 @@ public:
 	void moveDown();
 
 private:
+	osg::Camera *createHud();
+
 	// system properties
-	SDL_Surface *_surface;
-	int _windowWidth;
-	int _windowHeight;
-	int _bpp;
-	int _videoFlags;
+	osg::ref_ptr<osgViewer::Viewer> _viewer;
+	osg::ref_ptr<osg::CameraNode>   _cameraNode;
+	osg::ref_ptr<osg::Node>         _sceneNode;
 
 	static const int DEFAULT_SCREEN_WIDTH;
 	static const int DEFAULT_SCREEN_HEIGHT;

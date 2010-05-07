@@ -2,7 +2,7 @@
 #define COW_H_
 
 #include "core/movingobject.h"
-#include <GL/gl.h>
+#include <osg/Node>
 
 class Cow: public MovingObject {
 public:
@@ -20,7 +20,7 @@ private:
 
 	float _dx, _dy, _dz;
 	State _state;
-	static GLuint _dispList;
+	static osg::ref_ptr<osg::Node> _node;
 };
 
 #endif /* COW_H_ */

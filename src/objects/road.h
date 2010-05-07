@@ -1,10 +1,10 @@
 #ifndef ROAD_H_
 #define ROAD_H_
 
-#include "core/stationaryobject.h"
-#include <GL/gl.h>
+#include "core/staticobject.h"
+#include <osg/Node>
 
-class Road : public StationaryObject {
+class Road : public StaticObject {
 public:
 	Road( Player*, Tile* );
 	virtual ~Road();
@@ -14,11 +14,11 @@ public:
 	void draw( const unsigned long long& time );
 
 private:
-	GLuint genDispList( GLuint texture );
+/*	GLuint genDispList( GLuint texture );
+*/
+	osg::ref_ptr<osg::Node> _node;
 
-	GLuint *_dispList;
-
-	static GLuint _texture258;
+/*	static GLuint _texture258;
 	static GLuint _texture456;
 	static GLuint _texture245;
 	static GLuint _texture256;
@@ -30,17 +30,17 @@ private:
 	static GLuint _texture4568;
 	static GLuint _texture24568;
 
-	static GLuint _dispList258;
-	static GLuint _dispList456;
-	static GLuint _dispList245;
-	static GLuint _dispList256;
-	static GLuint _dispList458;
-	static GLuint _dispList568;
-	static GLuint _dispList2456;
-	static GLuint _dispList2458;
-	static GLuint _dispList2568;
-	static GLuint _dispList4568;
-	static GLuint _dispList24568;
+	static GLuint _node258;
+	static GLuint _node456;
+	static GLuint _node245;
+	static GLuint _node256;
+	static GLuint _node458;
+	static GLuint _node568;
+	static GLuint _node2456;
+	static GLuint _node2458;
+	static GLuint _node2568;
+	static GLuint _node4568;
+	static GLuint _node24568;*/
 };
 
 #endif /* ROAD_H_ */

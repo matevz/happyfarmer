@@ -1,10 +1,10 @@
 #ifndef HOUSE_H_
 #define HOUSE_H_
 
-#include "core/stationaryobject.h"
-#include <GL/gl.h>
+#include "core/staticobject.h"
+#include <osg/Node>
 
-class House: public StationaryObject {
+class House: public StaticObject {
 public:
 	House( Player*, Tile* );
 	virtual ~House();
@@ -14,7 +14,7 @@ public:
 private:
 	void init();
 
-	static GLuint _dispList;
+	static osg::ref_ptr<osg::Node> _node;
 };
 
 #endif /* HOUSE_H_ */
