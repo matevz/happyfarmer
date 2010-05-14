@@ -5,10 +5,6 @@
 	This class is used to keep track of the game time and speed.
 */
 
-Time::Time()
- : _time(0), _speedMultiplier(1) {
-}
-
 Time::Time(unsigned long long passed)
  : _time(passed), _speedMultiplier(1) {
 }
