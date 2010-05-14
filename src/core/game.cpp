@@ -1,5 +1,6 @@
 #include "core/game.h"
 #include "core/tile.h"
+#include "core/time.h"
 
 Game *Game::_game = 0;
 
@@ -12,6 +13,7 @@ Game *Game::_game = 0;
 Game::Game( int h, int w)
  : _terrainWidth(w), _terrainHeight(h) {
 	Game::_game = this;
+	_time = new Time();
 }
 
 Game::~Game(){
