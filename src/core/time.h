@@ -3,7 +3,6 @@
 
 class Time {
 public:
-	Time();
 	Time(unsigned long long passed=0);
 	~Time();
 
