@@ -7,6 +7,7 @@ SET( Core
 	core/player.cpp
 	core/engine.cpp
 	core/game.cpp
+	core/time.cpp
 )
 
 SET( Gui

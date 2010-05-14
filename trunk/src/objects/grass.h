@@ -13,6 +13,7 @@ public:
 	void rebuild();
 	void draw( const unsigned long long& time );
 
+
 private:
 	//static GLuint _texture;
 	osg::ref_ptr<osg::Node> _node;
