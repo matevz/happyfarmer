@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="happyfarmer" root=".">
+      <df name="CMakeFiles">
+        <df name="CMakeTmp">
+          <df name="CMakeFiles">
+            <df name="cmTryCompileExec.dir">
+            </df>
+          </df>
+        </df>
+        <df name="CompilerIdC">
+          <in>CMakeCCompilerId.c</in>
+        </df>
+        <df name="CompilerIdCXX">
+          <in>CMakeCXXCompilerId.cpp</in>
+        </df>
+        <df name="uninstall.dir">
+        </df>
+      </df>
+      <df name="data">
+        <df name="terrain">
+          <df name="grass">
+          </df>
+        </df>
+      </df>
+      <df name="src">
+        <df name=".svn">
+          <df name="prop-base">
+          </df>
+          <df name="props">
+          </df>
+          <df name="text-base">
+          </df>
+          <df name="tmp">
+            <df name="prop-base">
+            </df>
+            <df name="props">
+            </df>
+            <df name="text-base">
+            </df>
+          </df>
+          <in>entries</in>
+        </df>
+        <df name="CMakeFiles">
+          <df name="happyfarmer.dir">
+            <df name="drawable">
+              <df name="terrain">
+              </df>
+            </df>
+            <df name="model">
+              <df name="terrain">
+              </df>
+            </df>
+            <df name="ui">
+            </df>
+            <df name="widget">
+            </df>
+          </df>
+        </df>
+        <df name="drawable">
+          <df name=".svn">
+            <df name="prop-base">
+            </df>
+            <df name="props">
+            </df>
+            <df name="text-base">
+            </df>
+            <df name="tmp">
+              <df name="prop-base">
+              </df>
+              <df name="props">
+              </df>
+              <df name="text-base">
+              </df>
+            </df>
+            <in>entries</in>
+          </df>
+          <df name="drawable.h">
+          </df>
+          <df name="terrain">
+            <in>grass.cpp</in>
+          </df>
+          <in>drawable.cpp</in>
+          <in>drawable.h</in>
+        </df>
+        <df name="lang">
+        </df>
+        <df name="model">
+          <df name="terrain">
+            <in>grass.cpp</in>
+            <in>grass.h</in>
+          </df>
+          <in>game.cpp</in>
+          <in>game.h</in>
+          <in>resource.cpp</in>
+          <in>resource.h</in>
+          <in>terrain.cpp</in>
+          <in>terrain.h</in>
+        </df>
+        <df name="ui">
+          <in>mainwin.cpp</in>
+          <in>mainwin.h</in>
+          <in>moc_mainwin.cxx</in>
+        </df>
+        <df name="widget">
+          <in>gameview.cpp</in>
+          <in>gameview.h</in>
+          <in>moc_gameview.cxx</in>
+        </df>
+        <in>main.cpp</in>
+        <in>ui_mainwin.h</in>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>default</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>src/happyfarmer</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>/usr/include/qt4/QtXml</pElem>
+              <pElem>/usr/include/qt4</pElem>
+              <pElem>/usr/include/qt4/QtGui</pElem>
+              <pElem>src</pElem>
+              <pElem>/usr/include/qt4/QtSvg</pElem>
+              <pElem>/usr/include/qt4/QtCore</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>DEFAULT_DATA_DIR="/usr/local/share/happyfarmer"</Elem>
+              <Elem>HF_VERSION="0.1"</Elem>
+              <Elem>QT_CORE_LIB</Elem>
+              <Elem>QT_DEBUG</Elem>
+              <Elem>QT_GUI_LIB</Elem>
+              <Elem>QT_SVG_LIB</Elem>
+              <Elem>QT_XML_LIB</Elem>
+              <Elem>__LINUX_ALSASEQ__</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="CMakeFiles/CompilerIdC/CMakeCCompilerId.c"
+            ex="true"
+            tool="0"
+            flavor="0">
+      </item>
+      <item path="CMakeFiles/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+            ex="true"
+            tool="1"
+            flavor="0">
+      </item>
+      <item path="src/main.cpp" ex="false" tool="1" flavor="4">
+      </item>
+      <item path="src/ui/mainwin.cpp" ex="false" tool="1" flavor="4">
+      </item>
+      <item path="src/ui/moc_mainwin.cxx" ex="false" tool="1" flavor="4">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
