@@ -6,11 +6,17 @@
 */
 
 #include <drawable/terrain/grass.h>
+#include <model/terrain/grass.h>
 #include <model/resource.h>
 
-HFDTerrGrass::HFDTerrGrass()
- : HFDrawable() {
-	_back = new QGraphicsPixmapItem(*HFResource::PIXMAP_GRASS_256, this, nullptr);
+HFDTerrGrass::HFDTerrGrass( HFTerrGrass *grass )
+ : HFDrawable(), _grass(grass) {
+	QString combination;
+	for (int i=0; i<4; i++) {
+		combination += QString::number(grass->height()[i]);
+	}
+	
+	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_GRASS[combination], this, nullptr);
 }
 
 HFDTerrGrass::~HFDTerrGrass() {

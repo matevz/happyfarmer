@@ -10,10 +10,17 @@
 
 #include <drawable/drawable.h>
 
+class HFTerrGrass;
+
 class HFDTerrGrass : public HFDrawable {
 public:
-	HFDTerrGrass();
+	HFDTerrGrass( HFTerrGrass *grass );
 	virtual ~HFDTerrGrass();
+	
+	HFTerrGrass *grass() { return _grass; }
+	
+private:
+	HFTerrGrass *_grass;	
 };
 
 #endif

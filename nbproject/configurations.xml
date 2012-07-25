@@ -24,24 +24,11 @@
           </df>
         </df>
       </df>
-      <df name="src">
-        <df name=".svn">
-          <df name="prop-base">
-          </df>
-          <df name="props">
-          </df>
-          <df name="text-base">
-          </df>
-          <df name="tmp">
-            <df name="prop-base">
-            </df>
-            <df name="props">
-            </df>
-            <df name="text-base">
-            </df>
-          </df>
-          <in>entries</in>
+      <df name="doc">
+        <df name="uml">
         </df>
+      </df>
+      <df name="src">
         <df name="CMakeFiles">
           <df name="happyfarmer.dir">
             <df name="drawable">
@@ -59,27 +46,9 @@
           </df>
         </df>
         <df name="drawable">
-          <df name=".svn">
-            <df name="prop-base">
-            </df>
-            <df name="props">
-            </df>
-            <df name="text-base">
-            </df>
-            <df name="tmp">
-              <df name="prop-base">
-              </df>
-              <df name="props">
-              </df>
-              <df name="text-base">
-              </df>
-            </df>
-            <in>entries</in>
-          </df>
-          <df name="drawable.h">
-          </df>
           <df name="terrain">
             <in>grass.cpp</in>
+            <in>grass.h</in>
           </df>
           <in>drawable.cpp</in>
           <in>drawable.h</in>
@@ -89,14 +58,15 @@
         <df name="model">
           <df name="terrain">
             <in>grass.cpp</in>
-            <in>grass.h</in>
+          </df>
+          <df name="tile.h">
           </df>
           <in>game.cpp</in>
           <in>game.h</in>
           <in>resource.cpp</in>
           <in>resource.h</in>
-          <in>terrain.cpp</in>
-          <in>terrain.h</in>
+          <in>tile.cpp</in>
+          <in>tile.h</in>
         </df>
         <df name="ui">
           <in>mainwin.cpp</in>

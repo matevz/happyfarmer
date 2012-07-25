@@ -59,7 +59,7 @@ QT4_WRAP_CPP(HF_Core_MOC_Srcs ${HF_Core_MOCs})
 SET(HF_Core_Srcs		# Core sources
 	model/game.cpp
 	model/resource.cpp
-	model/terrain.cpp
+	model/tile.cpp
 	model/terrain/grass.cpp
 )
 
