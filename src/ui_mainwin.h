@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwin.ui'
 **
-** Created: Tue Jul 24 02:15:30 2012
+** Created: Thu Jul 26 01:01:33 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -61,6 +61,7 @@ public:
         if (MainWin->objectName().isEmpty())
             MainWin->setObjectName(QString::fromUtf8("MainWin"));
         MainWin->resize(800, 600);
+        MainWin->setMouseTracking(true);
         actionExit = new QAction(MainWin);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionLoad = new QAction(MainWin);
@@ -119,6 +120,8 @@ public:
 
         gameView = new HFGameView(centralwidget);
         gameView->setObjectName(QString::fromUtf8("gameView"));
+        gameView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        gameView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
         horizontalLayout->addWidget(gameView);
 
