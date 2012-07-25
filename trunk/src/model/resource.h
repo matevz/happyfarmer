@@ -9,6 +9,9 @@
 #define	HFRESOURCE_H
 
 #include <QPixmap>
+#include <QStringList>
+#include <QHash>
+
 #include <model/resource.h>
 
 class HFResource {
@@ -16,8 +19,10 @@ public:
 	HFResource();
 	virtual ~HFResource();
 
+	static QStringList TILE_HEIGHT_COMBINATIONS;
+	
 	// pixmaps
-	static QPixmap *PIXMAP_GRASS_256;
+	static QHash<QString, QPixmap> PIXMAP_GRASS;
 };
 
 #endif

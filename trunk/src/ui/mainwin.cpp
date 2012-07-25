@@ -15,6 +15,7 @@
 #include <drawable/terrain/grass.h>
 #include <drawable/drawable.h>
 
+#include <model/terrain/grass.h>
 
 HFMainWin::HFMainWin(QMainWindow *parent)
  : QMainWindow( parent ),
@@ -30,16 +31,16 @@ HFMainWin::~HFMainWin() {
 }
 
 void HFMainWin::newGame() {
-	_game = new HFGame(512, 512);
+	_game = new HFGame(5, 5);
 	_scene = new QGraphicsScene();
 	
 	for (int j=0; j<_game->height(); j++) {
 		for (int i=0; i<_game->width(); i++) {
-			HFDTerrGrass *item = new HFDTerrGrass();
+			HFDTerrGrass *item = new HFDTerrGrass( static_cast<HFTerrGrass*>(_game->tileAt(i, j)) ) ;
 			
 			_scene->addItem(item);
-			item->moveBy((i+j)*128, (-i+j)*64);
-			item->setZValue(j);
+			item->moveBy((i+j)*128, (-i+j)*64 - _game->tileAt(i, j)->z()*24);
+			item->setZValue( (-i+j)*64 );
 		}
 	}
 		

@@ -5,16 +5,16 @@
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
 */
 
-#ifndef HFTERRAIN_H
-#define	HFTERRAIN_H
+#include <model/tile.h>
 
-class HFTerrain {
-public:
-	HFTerrain();
-	virtual ~HFTerrain();
-private:
+HFTile::HFTile(int x, int y, int z, int height[4])
+ : _x(x), _y(y), _z(z) {
+	for (int i=0; i<4; i++) {
+		_height[i] = height[i];
+	}
+}
 
-};
 
-#endif	/* HFTERRAIN_H */
+HFTile::~HFTile() {
+}
 

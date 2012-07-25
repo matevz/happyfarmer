@@ -8,11 +8,11 @@
 #ifndef HFTERRGRASS_H
 #define	HFTERRGRASS_H
 
-#include <model/terrain.h>
+#include <model/tile.h>
 
-class HFTerrGrass : public HFTerrain {
+class HFTerrGrass : public HFTile {
 public:
-	HFTerrGrass();
+	HFTerrGrass(int x, int y, int z, int height[4]);
 	virtual ~HFTerrGrass();
 private:
 

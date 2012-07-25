@@ -8,14 +8,14 @@
 #ifndef HFGAME_H
 #define	HFGAME_H
 
-class HFTerrain;
+class HFTile;
 
 class HFGame {
 public:
 	HFGame(int w, int h);
 	virtual ~HFGame();
 	
-	HFTerrain *terrainAt(int x, int y);
+	HFTile *tileAt(int x, int y);
 	
 	inline const int width() const { return _width; }
 	inline const int height() const { return _height; }
@@ -23,9 +23,11 @@ public:
 private:
 	void init();
 	
+	void genRndGame();
+	
 	int _width;
 	int _height;
-	HFTerrain **_terrain;
+	HFTile **_tiles;
 	
 };
 

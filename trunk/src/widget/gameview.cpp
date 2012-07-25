@@ -9,7 +9,8 @@
 
 #include <QMouseEvent>
 
-#include "drawable/terrain/grass.h"
+#include <drawable/terrain/grass.h>
+#include <model/terrain/grass.h>
 
 #include <iostream>
 
@@ -20,8 +21,8 @@ HFGameView::HFGameView(QWidget* parent)
 
 void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 	if (itemAt(event->pos())) {
-		std::cout << dynamic_cast<QGraphicsItem*>(itemAt(event->pos()))->parentItem()->x()/128 << " "
-				  << dynamic_cast<QGraphicsItem*>(itemAt(event->pos()))->parentItem()->y()/64 << std::endl;
+		std::cout << dynamic_cast<HFDTerrGrass*>(itemAt(event->pos())->parentItem())->grass()->x() << " "
+				  << dynamic_cast<HFDTerrGrass*>(itemAt(event->pos())->parentItem())->grass()->y() << std::endl;
 	}
 }
 

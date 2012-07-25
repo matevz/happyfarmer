@@ -270,30 +270,6 @@ model/resource.cpp.s:
 	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/resource.cpp.s
 .PHONY : model/resource.cpp.s
 
-model/terrain.o: model/terrain.cpp.o
-.PHONY : model/terrain.o
-
-# target to build an object file
-model/terrain.cpp.o:
-	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/terrain.cpp.o
-.PHONY : model/terrain.cpp.o
-
-model/terrain.i: model/terrain.cpp.i
-.PHONY : model/terrain.i
-
-# target to preprocess a source file
-model/terrain.cpp.i:
-	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/terrain.cpp.i
-.PHONY : model/terrain.cpp.i
-
-model/terrain.s: model/terrain.cpp.s
-.PHONY : model/terrain.s
-
-# target to generate assembly for a file
-model/terrain.cpp.s:
-	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/terrain.cpp.s
-.PHONY : model/terrain.cpp.s
-
 model/terrain/grass.o: model/terrain/grass.cpp.o
 .PHONY : model/terrain/grass.o
 
@@ -317,6 +293,30 @@ model/terrain/grass.s: model/terrain/grass.cpp.s
 model/terrain/grass.cpp.s:
 	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/terrain/grass.cpp.s
 .PHONY : model/terrain/grass.cpp.s
+
+model/tile.o: model/tile.cpp.o
+.PHONY : model/tile.o
+
+# target to build an object file
+model/tile.cpp.o:
+	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/tile.cpp.o
+.PHONY : model/tile.cpp.o
+
+model/tile.i: model/tile.cpp.i
+.PHONY : model/tile.i
+
+# target to preprocess a source file
+model/tile.cpp.i:
+	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/tile.cpp.i
+.PHONY : model/tile.cpp.i
+
+model/tile.s: model/tile.cpp.s
+.PHONY : model/tile.s
+
+# target to generate assembly for a file
+model/tile.cpp.s:
+	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/tile.cpp.s
+.PHONY : model/tile.cpp.s
 
 ui/mainwin.o: ui/mainwin.cpp.o
 .PHONY : ui/mainwin.o
@@ -442,12 +442,12 @@ help:
 	@echo "... model/resource.o"
 	@echo "... model/resource.i"
 	@echo "... model/resource.s"
-	@echo "... model/terrain.o"
-	@echo "... model/terrain.i"
-	@echo "... model/terrain.s"
 	@echo "... model/terrain/grass.o"
 	@echo "... model/terrain/grass.i"
 	@echo "... model/terrain/grass.s"
+	@echo "... model/tile.o"
+	@echo "... model/tile.i"
+	@echo "... model/tile.s"
 	@echo "... ui/mainwin.o"
 	@echo "... ui/mainwin.i"
 	@echo "... ui/mainwin.s"
