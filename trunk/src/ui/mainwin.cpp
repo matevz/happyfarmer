@@ -8,21 +8,26 @@
 #include <ui/mainwin.h>
 
 #include <QGraphicsScene>
+#include <QMouseEvent>
 
 #include <model/game.h>
 #include <model/resource.h>
+#include <model/settings.h>
 
 #include <drawable/terrain/grass.h>
 #include <drawable/drawable.h>
 
 #include <model/terrain/grass.h>
+#include <iostream>
 
 HFMainWin::HFMainWin(QMainWindow *parent)
  : QMainWindow( parent ),
    _game( nullptr ), _scene( nullptr ) {
 	_resource = new HFResource();
+	_settings = new HFSettings();
 	
 	setupUi( this ); // initialize elements created by Qt Designer
+	gameView->setScrollable(true);
 	
 	newGame();
 }
@@ -31,7 +36,7 @@ HFMainWin::~HFMainWin() {
 }
 
 void HFMainWin::newGame() {
-	_game = new HFGame(5, 5);
+	_game = new HFGame(256, 256);
 	_scene = new QGraphicsScene();
 	
 	for (int j=0; j<_game->height(); j++) {
@@ -39,7 +44,7 @@ void HFMainWin::newGame() {
 			HFDTerrGrass *item = new HFDTerrGrass( static_cast<HFTerrGrass*>(_game->tileAt(i, j)) ) ;
 			
 			_scene->addItem(item);
-			item->moveBy((i+j)*128, (-i+j)*64 - _game->tileAt(i, j)->z()*24);
+			item->moveBy((i+j)*128, (-i+j)*64 - _game->tileAt(i, j)->z()*24 - item->childrenBoundingRect().height());
 			item->setZValue( (-i+j)*64 );
 		}
 	}

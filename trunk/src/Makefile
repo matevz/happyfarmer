@@ -270,6 +270,30 @@ model/resource.cpp.s:
 	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/resource.cpp.s
 .PHONY : model/resource.cpp.s
 
+model/settings.o: model/settings.cpp.o
+.PHONY : model/settings.o
+
+# target to build an object file
+model/settings.cpp.o:
+	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/settings.cpp.o
+.PHONY : model/settings.cpp.o
+
+model/settings.i: model/settings.cpp.i
+.PHONY : model/settings.i
+
+# target to preprocess a source file
+model/settings.cpp.i:
+	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/settings.cpp.i
+.PHONY : model/settings.cpp.i
+
+model/settings.s: model/settings.cpp.s
+.PHONY : model/settings.s
+
+# target to generate assembly for a file
+model/settings.cpp.s:
+	cd /home/matevz/games/happyfarmer && $(MAKE) -f src/CMakeFiles/happyfarmer.dir/build.make src/CMakeFiles/happyfarmer.dir/model/settings.cpp.s
+.PHONY : model/settings.cpp.s
+
 model/terrain/grass.o: model/terrain/grass.cpp.o
 .PHONY : model/terrain/grass.o
 
@@ -442,6 +466,9 @@ help:
 	@echo "... model/resource.o"
 	@echo "... model/resource.i"
 	@echo "... model/resource.s"
+	@echo "... model/settings.o"
+	@echo "... model/settings.i"
+	@echo "... model/settings.s"
 	@echo "... model/terrain/grass.o"
 	@echo "... model/terrain/grass.i"
 	@echo "... model/terrain/grass.s"

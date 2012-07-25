@@ -58,13 +58,14 @@
         <df name="model">
           <df name="terrain">
             <in>grass.cpp</in>
-          </df>
-          <df name="tile.h">
+            <in>grass.h</in>
           </df>
           <in>game.cpp</in>
           <in>game.h</in>
           <in>resource.cpp</in>
           <in>resource.h</in>
+          <in>settings.cpp</in>
+          <in>settings.h</in>
           <in>tile.cpp</in>
           <in>tile.h</in>
         </df>

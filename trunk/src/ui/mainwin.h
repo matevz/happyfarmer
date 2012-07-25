@@ -15,7 +15,10 @@
 
 class HFGame;
 class HFResource;
+class HFSettings;
+
 class QGraphicsScene;
+class QMouseEvent;
 
 class HFMainWin : public QMainWindow, private Ui::MainWin
 {
@@ -26,11 +29,12 @@ public:
 	~HFMainWin();
 	
 	void newGame();
-		
+
 private:
 	HFGame *_game;
 	QGraphicsScene *_scene;
 	HFResource *_resource;
+	HFSettings *_settings;
 };
 
 #endif
