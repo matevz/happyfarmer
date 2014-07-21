@@ -62,6 +62,14 @@ SET(HF_Core_Srcs		# Core sources
 	model/settings.cpp
 	model/tile.cpp
 	model/terrain/grass.cpp
+
+	model/construction.cpp
+	model/construction/road.cpp
+)
+
+SET(HF_Ctl_Srcs		# Control sources
+	control/constructctl.cpp
+	control/drawablectl.cpp
 )
 
 SET(HF_Widget_Srcs  	# Sources for all custom widgets present in Happy Farmer
@@ -76,6 +84,8 @@ SET(HF_Drawable_Srcs	# Drawable instances of the data
 	drawable/drawable.cpp
 	
 	drawable/terrain/grass.cpp
+
+	drawable/construction/road.cpp
 )
 
 SET(HF_Srcs
@@ -84,6 +94,7 @@ SET(HF_Srcs
 	${HF_Core_Srcs}
 	${HF_Ui_Srcs}
 	${HF_Widget_Srcs}
+	${HF_Ctl_Srcs}
 	${HF_Drawable_Srcs}
 )
 

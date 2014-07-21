@@ -20,9 +20,11 @@ public:
 	virtual ~HFResource();
 
 	static QStringList TILE_HEIGHT_COMBINATIONS;
+	static QStringList ROAD_COMBINATIONS;
 	
 	// pixmaps
 	static QHash<QString, QPixmap> PIXMAP_GRASS;
+	static QHash<QString, QPixmap> PIXMAP_ROAD;
 };
 
 #endif

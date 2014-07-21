@@ -7,8 +7,8 @@
 
 #include <model/terrain/grass.h>
 
-HFTerrGrass::HFTerrGrass(int x, int y, int z, int height[4])
- : HFTile(x, y, z, height) {
+HFTerrGrass::HFTerrGrass(HFGame *game, int x, int y, int z, int height[4])
+ : HFTile(game, x, y, z, height) {
 }
 
 

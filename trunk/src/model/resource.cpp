@@ -8,6 +8,7 @@
 #include <model/resource.h>
 
 #include <QPixmap>
+#include <QFile>
 
 QStringList HFResource::TILE_HEIGHT_COMBINATIONS = QStringList() <<
 		"0000" <<
@@ -15,15 +16,31 @@ QStringList HFResource::TILE_HEIGHT_COMBINATIONS = QStringList() <<
 		"1000" << "1001" << "1010" << "1011" << "1100" << "1101" << "1110" <<
 		"0121" << "1012" << "2101" << "1210";
 	
+// possible road combinations: Tile is divided into 9 sub-tiles from top-left to bottom-right
+// one denotes that the sub-tile contains road, zero that it doesn't
+QStringList HFResource::ROAD_COMBINATIONS = QStringList() <<
+		"010010010" << "000111000" << // straight roads
+		"010111010" << // 4-way junction
+		"000111010" << "010110010" << "010111000" << "010011010" << // T junctions
+		"000110010" << "010110000" << "010011000" << "000011010"; // curves
+
 QHash<QString, QPixmap> HFResource::PIXMAP_GRASS = QHash<QString, QPixmap>();
+QHash<QString, QPixmap> HFResource::PIXMAP_ROAD = QHash<QString, QPixmap>();
 
 // TODO: Implement priority list for checking presence of resources. For now, it's hardcoded to "data" directory. -Matevz
 #undef DEFAULT_DATA_DIR
 #define DEFAULT_DATA_DIR "data"
 
 HFResource::HFResource() {
-	for (QString &combination: HFResource::TILE_HEIGHT_COMBINATIONS) {
-		HFResource::PIXMAP_GRASS[combination] = QPixmap(QString(DEFAULT_DATA_DIR)+"/terrain/grass/grass-"+combination+".png");
+	for (QString &height: HFResource::TILE_HEIGHT_COMBINATIONS) {
+		HFResource::PIXMAP_GRASS[height] = QPixmap(QString(DEFAULT_DATA_DIR)+"/terrain/grass/grass-"+height+".png");
+		
+		for (QString &road: HFResource::ROAD_COMBINATIONS) {
+			QString name=QString(DEFAULT_DATA_DIR)+"/construction/road/asphaltroad/road-"+height+"-"+road+".png";
+			if (QFile::exists(name)) {
+				HFResource::PIXMAP_ROAD[height+road] = QPixmap(name);
+			}
+		}
 	}
 }
 

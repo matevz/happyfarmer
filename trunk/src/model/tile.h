@@ -5,12 +5,17 @@
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
 */
 
-#ifndef HFTERRAIN_H
-#define	HFTERRAIN_H
+#ifndef HFTILE_H
+#define	HFTILE_H
+
+#include <QString>
+
+class HFConstruction;
+class HFGame;
 
 class HFTile {
 public:
-	HFTile(int x, int y, int z, int height[4]);
+	HFTile(HFGame *game, int x, int y, int z, int height[4]);
 	virtual ~HFTile();
 	
 	const int &x() const { return _x; }
@@ -19,11 +24,21 @@ public:
 	
 	int *height() { return _height; }
 	
+	inline HFConstruction *construction() { return _construction; }
+	void setConstruction( HFConstruction *cons ) { _construction = cons; }
+	
+	static QString heightToString(int *);
+	
+	HFGame *game() { return _game; }
+	
 private:
 	int _x;
 	int _y;
 	int _z;
 	int _height[4];
+	HFGame *_game;
+	
+	HFConstruction *_construction;
 };
 
 #endif	/* HFTERRAIN_H */

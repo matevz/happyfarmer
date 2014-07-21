@@ -53,7 +53,7 @@ void HFGame::genRndGame() {
 				z = 1;
 			}
 			
-			_tiles[i*_width + j] = new HFTerrGrass(j, i, z, height);
+			_tiles[i*_width + j] = new HFTerrGrass(this, j, i, z, height);
 		}
 	}
 }

@@ -10,8 +10,10 @@
 #define GAMEVIEW_H
 
 #include <QGraphicsView> 
+#include <QPoint>
 
 class QTimer;
+class HFTile;
 
 class HFGameView : public QGraphicsView {
 	Q_OBJECT
@@ -22,24 +24,19 @@ public:
 	bool setZoomLevel( const int& zoomLevel );
 	const int& zoomLevel() { return _zoomLevel; }
 
-	void setScrollable( const bool& scrollable );
-	bool isScrollable() { return _scrollTimer; }
-	
+	HFTile *tileAt( const QPoint &pos );
+
+signals:
+	void mousePress( QMouseEvent* );
+	void mouseMove( QMouseEvent* );
+
 protected:
 	void mousePressEvent( QMouseEvent* );
 	void mouseMoveEvent( QMouseEvent* );
-	void leaveEvent( QEvent* );
 	void wheelEvent( QWheelEvent* );
 
-protected slots:
-	void onScrollTimerTimeout();
-
 private:
-	QTimer *_scrollTimer; // timer for scrolling when mouse cursor reaches widget border, default NULL
-	
 	int _zoomLevel; // 1 - most zoom out, 4 - most zoom in
-	int _hScrollDirection; // current horizontal scroll direction: -1 left, 1 right, 0 none
-	int _vScrollDirection; // current vertical scroll direction: -1 up, 1 down, 0 none
 };
 		
 #endif /* GAMEVIEW_H */ 

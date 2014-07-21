@@ -11,10 +11,22 @@
 #include <QGraphicsItemGroup>
 #include <QGraphicsPixmapItem>
 
+class HFTile;
+
 class HFDrawable : public QGraphicsItemGroup {
+public:
+	HFDrawable(HFTile *tile=nullptr);
+	virtual ~HFDrawable();
+	
+	inline HFTile *tile() { return _tile; }
+	inline void setTile( HFTile* t ) { _tile = t; }
+	
 protected:
 	QGraphicsPixmapItem *_front;
 	QGraphicsPixmapItem *_back;
+	
+	HFTile *_tile;
+	
 };
 
 #endif
