@@ -9,11 +9,11 @@
 #include <model/terrain/grass.h>
 #include <model/resource.h>
 
-HFDTerrGrass::HFDTerrGrass( HFTerrGrass *grass )
- : HFDrawable(), _grass(grass) {
+HFDTerrGrass::HFDTerrGrass( HFTile *tile )
+ : HFDrawable(tile) {
 	QString combination;
 	for (int i=0; i<4; i++) {
-		combination += QString::number(grass->height()[i]);
+		combination += QString::number(tile->height()[i]);
 	}
 	
 	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_GRASS[combination], this, nullptr);

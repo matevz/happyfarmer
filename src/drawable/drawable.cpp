@@ -7,3 +7,11 @@
 
 #include <drawable/drawable.h>
 
+HFDrawable::HFDrawable(HFTile* tile)
+ : _tile(tile) {
+	
+}
+
+HFDrawable::~HFDrawable() {
+	
+}

@@ -6,9 +6,9 @@
 */
 
 #include <model/tile.h>
-
-HFTile::HFTile(int x, int y, int z, int height[4])
- : _x(x), _y(y), _z(z) {
+#include <iostream>
+HFTile::HFTile(HFGame *game, int x, int y, int z, int height[4])
+ : _game(game), _x(x), _y(y), _z(z), _construction(nullptr) {
 	for (int i=0; i<4; i++) {
 		_height[i] = height[i];
 	}
@@ -18,3 +18,10 @@ HFTile::HFTile(int x, int y, int z, int height[4])
 HFTile::~HFTile() {
 }
 
+QString HFTile::heightToString(int* height) {
+	QString hStr;
+	for (int i=0; i<4; i++) {
+		hStr += QString::number(height[i]);
+	}
+	return hStr;
+}

@@ -12,10 +12,8 @@
 
 class HFTerrGrass : public HFTile {
 public:
-	HFTerrGrass(int x, int y, int z, int height[4]);
+	HFTerrGrass(HFGame *game, int x, int y, int z, int height[4]);
 	virtual ~HFTerrGrass();
-private:
-
 };
 
 #endif	/* HFTERRGRASS_H */

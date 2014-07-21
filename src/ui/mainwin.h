@@ -13,6 +13,9 @@
 
 #include "ui_mainwin.h"
 
+#include <control/drawablectl.h>
+#include <control/constructctl.h>
+
 class HFGame;
 class HFResource;
 class HFSettings;
@@ -29,12 +32,26 @@ public:
 	~HFMainWin();
 	
 	void newGame();
-
+	
+public slots:
+	void on_roadBtn_toggled(bool);
+	void on_dirtRoadBtn_toggled(bool);
+	
+	void on_gameView_mousePress( QMouseEvent* );
+	void on_gameView_mouseRelease( QMouseEvent* );
+	void on_gameView_mouseMove( QMouseEvent* );
+	
 private:
 	HFGame *_game;
 	QGraphicsScene *_scene;
 	HFResource *_resource;
 	HFSettings *_settings;
+	
+	HFDrawableCtl _drawableCtl;
+	HFConstructCtl _constructCtl;
+	
+	QPoint  _gameViewLastClickPos;
+	HFTile *_gameViewDragStartTile;
 };
 
 #endif

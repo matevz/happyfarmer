@@ -14,13 +14,8 @@ class HFTerrGrass;
 
 class HFDTerrGrass : public HFDrawable {
 public:
-	HFDTerrGrass( HFTerrGrass *grass );
+	HFDTerrGrass( HFTile *tile );
 	virtual ~HFDTerrGrass();
-	
-	HFTerrGrass *grass() { return _grass; }
-	
-private:
-	HFTerrGrass *_grass;	
 };
 
 #endif

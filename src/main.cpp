@@ -10,7 +10,6 @@
 #include <QFont>
 #include <QFile>
 
-// Python.h needs to be loaded first!
 #include "ui/mainwin.h"
 
 #include <iostream>
