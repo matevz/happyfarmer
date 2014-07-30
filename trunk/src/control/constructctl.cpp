@@ -5,20 +5,41 @@
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
 */
 
-#include <control/constructctl.h>
+#include "control/constructctl.h"
 
-#include <model/tile.h>
-
-#include <model/construction/road.h>
+#include "model/game.h"
+#include "model/tile.h"
+#include "model/construction/road.h"
 
 #include <iostream>
 
-#include "model/game.h"
-
-HFConstructCtl::HFConstructCtl() {
+HFConstructCtl::HFConstructCtl( HFGame *g )
+ : _game(g) {
 }
 
 HFConstructCtl::~HFConstructCtl() {
+}
+
+QList<HFTile*> HFConstructCtl::place(HFConstruction::HFConsType type, const QRect& selectionArea) {
+	QList<HFTile*> placedTiles;
+	
+	switch (type) {
+	case HFConstruction::AsphaltRoad:
+	case HFConstruction::DirtRoad:
+		for (int i=qMin(selectionArea.x(), selectionArea.right()); i<=qMax(selectionArea.x(),selectionArea.right()); i++) {
+			for (int j=qMin(selectionArea.y(), selectionArea.bottom()); j<=qMax(selectionArea.y(),selectionArea.bottom()); j++) {
+				HFTile *tile = _game->tileAt(i,j);
+				if (tile) {
+					if (check(type, tile)) {
+						place(type, tile);
+						placedTiles << tile;
+					}
+				}
+			}
+		}
+	}
+	
+	return placedTiles;
 }
 
 bool HFConstructCtl::check(HFConstruction::HFConsType type, HFTile* tile) {
@@ -27,7 +48,6 @@ bool HFConstructCtl::check(HFConstruction::HFConsType type, HFTile* tile) {
 	}
 	
 	// if construction already exists, new construction cannot be placed on the same tile
-	std::cout << tile->construction() << std::endl;
 	if (tile->construction()) {
 		return false;
 	}		

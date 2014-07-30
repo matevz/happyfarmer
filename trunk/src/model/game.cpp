@@ -59,5 +59,9 @@ void HFGame::genRndGame() {
 }
 
 HFTile *HFGame::tileAt(int x, int y) {
-	return _tiles[y*_width + x];
+	if (x>=0 && y>=0 && x<_width && y<_height) {
+		return _tiles[y*_width + x];
+	} else {
+		return nullptr;
+	}
 }

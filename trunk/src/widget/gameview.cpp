@@ -5,26 +5,30 @@
         Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
 */
 
-#include <widget/gameview.h>
+#include "widget/gameview.h"
 
 #include <QMouseEvent>
 #include <QTransform>
 #include <QTimer>
 #include <QList>
 
-#include <drawable/drawable.h>
-#include <drawable/terrain/grass.h>
-#include <model/terrain/grass.h>
-#include <model/tile.h>
+#include "drawable/drawable.h"
+#include "drawable/terrain/grass.h"
+#include "model/terrain/grass.h"
+#include "model/tile.h"
+#include "control/drawablectl.h"
 
 #include <iostream>
 
-#include <model/settings.h>
+#include "model/settings.h"
+
+#include "gameview.h"
 
 class QGraphicsItem;
 
 HFGameView::HFGameView(QWidget* parent)
- : QGraphicsView(parent)
+ : QGraphicsView(parent),
+   _drawableCtl( nullptr )
 {
 	setMouseTracking(true);
 	setZoomLevel( 3 );
@@ -32,11 +36,49 @@ HFGameView::HFGameView(QWidget* parent)
 }
 
 void HFGameView::mouseMoveEvent(QMouseEvent* event) {
+	float TRANSLATE_WEIGHT=6.0/_zoomLevel;
+	if (event->buttons()&Qt::RightButton) {
+		translate( (event->x()-_lastMovePos.x())*TRANSLATE_WEIGHT, (event->y()-_lastMovePos.y())*TRANSLATE_WEIGHT );
+	}
+	
+	if (_drawableCtl->selectionMode()==HFDrawableCtl::HorizontalVertical) {
+		HFTile *t = tileAt( event->pos() );
+		if (t) {
+			QRect sa = _drawableCtl->selectionArea();
+			if (event->buttons()&Qt::LeftButton) {
+				if (qAbs(_drawableCtl->selectionArea().x() - t->x())>qAbs(_drawableCtl->selectionArea().y() - t->y())) {
+					// horizontal selection
+					sa.setWidth( t->x()-sa.x()+1 );
+					sa.setHeight( 1 );
+				} else {
+					// vertical selection
+					sa.setWidth( 1 );
+					sa.setHeight( t->y()-sa.y()+1 );
+				}
+			} else {
+				sa = QRect( t->x(), t->y(), 1, 1 );
+			}
+			if (_drawableCtl->selectionArea()!=sa) {
+				_drawableCtl->setSelectionArea( sa );
+//				std::cout << "HFGameView::mouseMoveEvent(): x: " << sa.x() << " y: " << sa.y() << " r: " << sa.right() << " b: " << sa.bottom() << std::endl;
+				_drawableCtl->updateHelpers();
+			}
+		}
+	}
+
+	
+	_lastMovePos = event->pos();
 	emit mouseMove(event);
 }
 
 void HFGameView::mousePressEvent(QMouseEvent* event) {
+	_lastMovePos = event->pos();
+	
 	emit mousePress(event);
+}
+
+void HFGameView::mouseReleaseEvent(QMouseEvent* event) {
+	emit mouseRelease(event);
 }
 
 void HFGameView::wheelEvent(QWheelEvent* event) {
