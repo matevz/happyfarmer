@@ -23,6 +23,7 @@ public:
 	static QStringList ROAD_COMBINATIONS;
 	
 	// pixmaps
+	static QHash<QString, QPixmap> PIXMAP_HELPERTILE;
 	static QHash<QString, QPixmap> PIXMAP_GRASS;
 	static QHash<QString, QPixmap> PIXMAP_ROAD;
 };

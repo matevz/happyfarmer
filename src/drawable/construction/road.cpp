@@ -5,10 +5,10 @@
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
 */
 
-#include <drawable/construction/road.h>
-#include <model/construction/road.h>
-#include <model/resource.h>
-#include <model/tile.h>
+#include "drawable/construction/road.h"
+#include "model/construction/road.h"
+#include "model/resource.h"
+#include "model/tile.h"
 
 #include <iostream>
 

@@ -31,9 +31,13 @@ public:
 	HFMainWin(QMainWindow *parent = 0);
 	~HFMainWin();
 	
+	
+	HFGame *game() { return _game; }
 	void newGame();
 	
 public slots:
+	void on_cursorBtn_toggled(bool);
+	void on_magnifierBtn_toggled(bool);
 	void on_roadBtn_toggled(bool);
 	void on_dirtRoadBtn_toggled(bool);
 	
@@ -49,9 +53,6 @@ private:
 	
 	HFDrawableCtl _drawableCtl;
 	HFConstructCtl _constructCtl;
-	
-	QPoint  _gameViewLastClickPos;
-	HFTile *_gameViewDragStartTile;
 };
 
 #endif

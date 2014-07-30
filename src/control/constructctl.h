@@ -8,17 +8,24 @@
 #ifndef HFCONSTRUCTCTL_H
 #define	HFCONSTRUCTCTL_H
 
-#include <model/construction.h>
+#include <QRect>
+#include <QList>
+#include "model/construction.h"
 
 class HFTile;
+class HFGame;
 
 class HFConstructCtl {
 public:
-	HFConstructCtl();
+	HFConstructCtl(HFGame *g);
 	virtual ~HFConstructCtl();
+	QList<HFTile*> place(HFConstruction::HFConsType type, const QRect& area);
 	
+private:
 	bool check(HFConstruction::HFConsType type, HFTile *tile);
 	bool place(HFConstruction::HFConsType type, HFTile *tile);
+	
+	HFGame *_game;
 };
 
 #endif

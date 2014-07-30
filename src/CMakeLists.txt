@@ -86,6 +86,8 @@ SET(HF_Drawable_Srcs	# Drawable instances of the data
 	drawable/terrain/grass.cpp
 
 	drawable/construction/road.cpp
+
+	drawable/helper/tile.cpp
 )
 
 SET(HF_Srcs
