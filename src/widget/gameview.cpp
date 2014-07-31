@@ -79,6 +79,12 @@ void HFGameView::mousePressEvent(QMouseEvent* event) {
 
 void HFGameView::mouseReleaseEvent(QMouseEvent* event) {
 	emit mouseRelease(event);
+	
+	if (event->button()==Qt::LeftButton) {
+		HFTile *t = tileAt( event->pos() );
+		_drawableCtl->setSelectionArea( QRect( t->x(), t->y(), 1, 1 ) );
+		_drawableCtl->updateHelpers();
+	}
 }
 
 void HFGameView::wheelEvent(QWheelEvent* event) {
