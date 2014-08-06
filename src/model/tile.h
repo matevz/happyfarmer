@@ -9,9 +9,11 @@
 #define	HFTILE_H
 
 #include <QString>
+#include <QList>
 
 class HFConstruction;
 class HFGame;
+class HFObject;
 
 class HFTile {
 public:
@@ -31,6 +33,8 @@ public:
 	
 	HFGame *game() { return _game; }
 	
+	QList<HFObject*>& objects() { return _objects; }
+	
 private:
 	int _x;
 	int _y;
@@ -39,6 +43,7 @@ private:
 	HFGame *_game;
 	
 	HFConstruction *_construction;
+	QList<HFObject*> _objects;
 };
 
 #endif	/* HFTERRAIN_H */

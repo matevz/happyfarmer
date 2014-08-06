@@ -53,6 +53,9 @@ void HFMainWin::on_gameView_mouseRelease( QMouseEvent* event ) {
 		if (roadBtn->isChecked()) {
 			changedTiles = _constructCtl.place(HFConstruction::AsphaltRoad, _drawableCtl.selectionArea());
 		}
+		if (animalBtn->isChecked()) {
+			
+		}
 	}
 	
 	for (int i=0; i<changedTiles.size(); i++) {
@@ -78,11 +81,14 @@ void HFMainWin::on_magnifierBtn_toggled(bool checked) {
 	_drawableCtl.setSelectionMode(HFDrawableCtl::None);
 }
 
-
 void HFMainWin::on_roadBtn_toggled(bool checked) {
 	_drawableCtl.setSelectionMode(HFDrawableCtl::HorizontalVertical);
 }
 
 void HFMainWin::on_dirtRoadBtn_toggled(bool checked) {
 	_drawableCtl.setSelectionMode(HFDrawableCtl::HorizontalVertical);
+}
+
+void HFMainWin::on_animalBtn_toggled(bool checked) {
+	_drawableCtl.setSelectionMode(HFDrawableCtl::None);
 }

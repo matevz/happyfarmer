@@ -27,6 +27,7 @@ QStringList HFResource::ROAD_COMBINATIONS = QStringList() <<
 QHash<QString, QPixmap> HFResource::PIXMAP_HELPERTILE = QHash<QString, QPixmap>();
 QHash<QString, QPixmap> HFResource::PIXMAP_GRASS = QHash<QString, QPixmap>();
 QHash<QString, QPixmap> HFResource::PIXMAP_ROAD = QHash<QString, QPixmap>();
+QHash<QString, QPixmap> HFResource::PIXMAP_SHEEP = QHash<QString, QPixmap>();
 
 // TODO: Implement priority list for checking presence of resources. For now, it's hardcoded to "data" directory. -Matevz
 #undef DEFAULT_DATA_DIR
@@ -44,6 +45,9 @@ HFResource::HFResource() {
 			}
 		}
 	}
+	
+	HFResource::PIXMAP_ROAD["0"] = QPixmap(QString(DEFAULT_DATA_DIR)+"/animal/sheep-0.png");
+	HFResource::PIXMAP_ROAD["4"] = QPixmap(QString(DEFAULT_DATA_DIR)+"/animal/sheep-4.png");
 }
 
 HFResource::~HFResource() {
