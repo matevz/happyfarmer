@@ -44,7 +44,7 @@ void HFGame::genRndGame() {
 	
 	for (int i=0; i<_height; i++) {
 		for (int j=0; j<_width; j++) {
-			int height[] = { heightMap[i*(_width+1) + j+1], heightMap[i*(_width+1) + j], heightMap[(i+1)*(_width+1) + j], heightMap[(i+1)*(_width+1) + j+1] };
+			int height[] = { heightMap[i*(_width+1) + j], heightMap[i*(_width+1) + j+1], heightMap[(i+1)*(_width+1) + j+1], heightMap[(i+1)*(_width+1) + j] };
 			int z = 0;
 			
 			if (heightMap[i*(_width+1) + j+1]==1 && heightMap[i*(_width+1) + j]==1 &&

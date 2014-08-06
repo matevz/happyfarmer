@@ -12,8 +12,6 @@
 #include <QStringList>
 #include <QHash>
 
-#include <model/resource.h>
-
 class HFResource {
 public:
 	HFResource();
@@ -26,6 +24,7 @@ public:
 	static QHash<QString, QPixmap> PIXMAP_HELPERTILE;
 	static QHash<QString, QPixmap> PIXMAP_GRASS;
 	static QHash<QString, QPixmap> PIXMAP_ROAD;
+	static QHash<QString, QPixmap> PIXMAP_SHEEP;
 };
 
 #endif

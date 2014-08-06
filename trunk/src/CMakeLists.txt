@@ -65,6 +65,9 @@ SET(HF_Core_Srcs		# Core sources
 
 	model/construction.cpp
 	model/construction/road.cpp
+
+	model/object.cpp
+	model/animal/sheep.cpp
 )
 
 SET(HF_Ctl_Srcs		# Control sources
@@ -86,6 +89,8 @@ SET(HF_Drawable_Srcs	# Drawable instances of the data
 	drawable/terrain/grass.cpp
 
 	drawable/construction/road.cpp
+
+	drawable/animal/sheep.cpp
 
 	drawable/helper/tile.cpp
 )

@@ -40,6 +40,7 @@ public slots:
 	void on_magnifierBtn_toggled(bool);
 	void on_roadBtn_toggled(bool);
 	void on_dirtRoadBtn_toggled(bool);
+	void on_animalBtn_toggled(bool);
 	
 	void on_gameView_mousePress( QMouseEvent* );
 	void on_gameView_mouseRelease( QMouseEvent* );
