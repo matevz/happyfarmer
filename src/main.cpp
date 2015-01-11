@@ -9,6 +9,8 @@
 #include <QSplashScreen>
 #include <QFont>
 #include <QFile>
+#include <QDir>
+#include <QDebug>
 
 #include "ui/mainwin.h"
 
@@ -24,6 +26,8 @@ void catch_sig(int)
 
 int main(int argc, char *argv[]) {
 	QApplication mainApp(argc, argv);
+	qDebug() << qApp->applicationDirPath() + "/../data/icons/" + "arrow.png";
+	QDir::addSearchPath("icons", qApp->applicationDirPath() + "/../data/icons/");
 
 #ifdef Q_WS_X11
 	signal(SIGINT, catch_sig);
