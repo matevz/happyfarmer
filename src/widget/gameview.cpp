@@ -41,7 +41,8 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 		translate( (event->x()-_lastMovePos.x())*TRANSLATE_WEIGHT, (event->y()-_lastMovePos.y())*TRANSLATE_WEIGHT );
 	}
 	
-	if (_drawableCtl->selectionMode()!=HFDrawableCtl::None) {
+	if ( (_drawableCtl->selectionMode()!=HFDrawableCtl::None) &&
+	     (_drawableCtl->selectionMode()!=HFDrawableCtl::Dot) ) {
 		HFTile *t = tileAt( event->pos() );
 		if (t) {
 			QRect sa = _drawableCtl->selectionArea();
@@ -74,8 +75,20 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 				_drawableCtl->updateHelpers();
 			}
 		}
+	} else
+	if (_drawableCtl->selectionMode()==HFDrawableCtl::Dot) {
+		QList<QGraphicsItem*> itemsList = items(event->pos());
+		if (!itemsList.isEmpty()) {
+			HFDrawable *dTile = static_cast<HFDrawable*>(itemsList.last());
+			std::cout << event->pos().x() << " " << mapToScene(event->pos()).x() << std::endl;
+			std::cout << "t: " << dTile->sceneBoundingRect().x() << " " << dTile->sceneBoundingRect().width() << std::endl;
+			if (mapToScene(event->pos()).x() < dTile->sceneBoundingRect().x() + dTile->sceneBoundingRect().width()/2.0) {
+				std::cout << "left part" << std::endl;
+			} else {
+				std::cout << "right part" << std::endl;
+			}
+		}
 	}
-
 	
 	_lastMovePos = event->pos();
 	emit mouseMove(event);

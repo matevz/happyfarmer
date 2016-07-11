@@ -105,3 +105,12 @@ void HFMainWin::on_dirtRoadBtn_toggled(bool checked) {
 void HFMainWin::on_animalBtn_toggled(bool checked) {
 	_drawableCtl.setSelectionMode(HFDrawableCtl::Rectangular);
 }
+
+void HFMainWin::on_terrainUpBtn_toggled(bool checked) {
+	_drawableCtl.setSelectionMode(HFDrawableCtl::Dot);
+}
+
+void HFMainWin::on_terrainDownBtn_toggled(bool checked) {
+	_drawableCtl.setSelectionMode(HFDrawableCtl::Dot);
+}
+

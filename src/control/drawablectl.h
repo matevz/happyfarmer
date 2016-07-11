@@ -30,6 +30,7 @@ public:
 		HorizontalVertical,
 		Rectangular,
 		Fixed,
+		Dot,
 	};
 	
 	static const QRect NO_SELECTION;
