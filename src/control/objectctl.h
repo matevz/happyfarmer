@@ -19,10 +19,11 @@ class HFObjectCtl {
 public:
 	HFObjectCtl(HFGame *g);
 	virtual ~HFObjectCtl();
-	HFObject *place(HFObject::HFObjType type, HFTile *tile);
+	QList<HFObject*> place(HFObject::HFObjType type, const QRect& selectionArea);
 	
 private:
-	bool check(HFObject::HFObjType type, HFTile *tile);
+	bool check(HFObject::HFObjType type, const HFTile *tile);
+	HFObject *place(HFObject::HFObjType type, HFTile *tile);
 	
 	HFGame *_game;
 };

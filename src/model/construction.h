@@ -23,7 +23,7 @@ public:
 	HFConstruction( HFConsType, HFTile* );
 	virtual ~HFConstruction();
 	
-	inline HFConsType consType() { return _consType; }
+	inline const HFConsType consType() const { return _consType; }
 	inline HFTile* tile() { return _tile; }
 
 	QString &orientation() { return _orientation; }

@@ -8,7 +8,9 @@
 #ifndef HFOBJECT_H
 #define	HFOBJECT_H
 
-#include <QPoint>
+class HFGame;
+
+#include <QVector3D>
 
 /**
  * Movable objects like tractors, animals etc.
@@ -31,18 +33,30 @@ public:
 		SW=7
 	};
 	
-	HFObject(HFObjType type, QPointF pos);
+	HFObject(HFGame *game, HFObjType type, QVector3D pos);
 	HFObject(const HFObject& orig);
 	virtual ~HFObject();
 	
-	void setPos(QPointF pos) { _x=pos.x(); _y=pos.y(); }
-	QPointF pos() { return QPointF(_x,_y); }
+	void setPos(QVector3D pos) { _pos = pos; }
+	const QVector3D& pos() const { return _pos; }	
+	const float x() const { return _pos.x(); }
+	const float y() const { return _pos.y(); }
+	const float z() const { return _pos.z(); }
+	
+	const HFObjType objType() const { return _type; }
+	
+	virtual bool wakeUp(qint64 curTime) { return false; }
 
+protected:
+	QVector3D _pos;
+	HFOrientation _orientation;	
+	HFGame *_game;
+	
 private:
 	HFObjType _type;
-	double _x, _y;
-	HFOrientation _orientation;
 };
+
+typedef QList<HFObject*> HFObjectList; // hack to solve connecting signal with QList<HFObject*> argument to the slot
 
 #endif	/* HFOBJECT_H */
 

@@ -16,7 +16,11 @@
 
 HFDObjSheep::HFDObjSheep( HFObjSheep *s )
  : HFDrawable(nullptr) {
-	_front = new QGraphicsPixmapItem(HFResource::PIXMAP_SHEEP[0], this, nullptr);
+	if (qrand()%2) {
+		_front = new QGraphicsPixmapItem(HFResource::PIXMAP_SHEEP["0"], this);
+	} else {
+		_front = new QGraphicsPixmapItem(HFResource::PIXMAP_SHEEP["4"], this);
+	}
 }
 
 HFDObjSheep::~HFDObjSheep() {

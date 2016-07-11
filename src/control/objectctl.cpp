@@ -20,26 +20,49 @@ HFObjectCtl::HFObjectCtl( HFGame *g )
 HFObjectCtl::~HFObjectCtl() {
 }
 
-HFObject* HFObjectCtl::place(HFObject::HFObjType type, const HFTile* tile) {
+QList<HFObject*> HFObjectCtl::place(HFObject::HFObjType type, const QRect& selectionArea) {
+	QList<HFObject*> placedObjects;
+	
+	switch (type) {
+	case HFObject::AnimalSheep:
+		for (int i=qMin(selectionArea.x(), selectionArea.right()); i<=qMax(selectionArea.x(),selectionArea.right()); i++) {
+			for (int j=qMin(selectionArea.y(), selectionArea.bottom()); j<=qMax(selectionArea.y(),selectionArea.bottom()); j++) {
+				HFTile *tile = _game->tileAt(i,j);
+				if (tile) {
+					if (check(type, tile)) {
+						HFObject *placedObj = place(type, tile);
+						placedObjects << placedObj;
+					}
+				}
+			}
+		}
+		break;
+	}
+	
+	return placedObjects;
+}
+
+HFObject* HFObjectCtl::place(HFObject::HFObjType type, HFTile* tile) {
 	HFObject* obj = nullptr;
 	
 	switch (type) {
 		case HFObject::AnimalSheep:
 			if (check(type, tile)) {
-				obj = new HFObjSheep(QPointF(tile->x(), tile->y()));
-				tile->objects() << obj;
+				obj = new HFObjSheep(_game, QVector3D(tile->x(), tile->y(), tile->z()));
+				tile->addObject(obj);
 			}
+			break;
 	}
 	
 	return obj;
 }
 
-bool HFObjectCtl::check(HFObject::HFObjType type, HFTile* tile) {
+bool HFObjectCtl::check(HFObject::HFObjType type, const HFTile* tile) {
 	if (!tile) {
 		return false;
 	}
 	
-	// if construction already exists, new construction cannot be placed on the same tile
+	// if objects are already on the tile, new objects cannot be placed there
 	if (tile->objects().size()) {
 		return false;
 	}		

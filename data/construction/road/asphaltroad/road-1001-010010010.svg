@@ -10,12 +10,12 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="256"
-   height="152"
+   height="128"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="road-1001-010010010.svg"
-   inkscape:export-filename="/home/matevz/games/happyfarmer/data/road/road/road-1001-010010010.png"
+   sodipodi:docname="grass-0110.svg"
+   inkscape:export-filename="/home/matevz/games/happyfarmer/data/road/road/road-0110-010010010.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.9999999"
-     inkscape:cx="104.87566"
-     inkscape:cy="53.043935"
+     inkscape:zoom="3"
+     inkscape:cx="126.8025"
+     inkscape:cy="60.437537"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -63,22 +63,22 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-900.36214)">
+     transform="translate(0,-924.36214)">
     <path
-       style="fill:#007000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 0,988.36214 128,63.99996 128,-87.99996 -128,-64 z"
+       style="fill:#009000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 128,1028.3621 128,-39.99996 -128,-64 -128,40 z"
        id="path2987"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
     <path
        style="fill:#999999;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 240,956.36214 -96,-48 -128,88 96,47.99996 z"
+       d="m 240,980.36214 -96,-48 -128,40 96,47.99996 z"
        id="path2984"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 192,932.36214 64,1020.3621"
+       d="m 192,956.36214 -128,40"
        id="path2986"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />

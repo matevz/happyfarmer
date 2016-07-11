@@ -46,8 +46,8 @@ HFResource::HFResource() {
 		}
 	}
 	
-	HFResource::PIXMAP_ROAD["0"] = QPixmap(QString(DEFAULT_DATA_DIR)+"/animal/sheep-0.png");
-	HFResource::PIXMAP_ROAD["4"] = QPixmap(QString(DEFAULT_DATA_DIR)+"/animal/sheep-4.png");
+	HFResource::PIXMAP_SHEEP["0"] = QPixmap(QString(DEFAULT_DATA_DIR)+"/animal/sheep/sheep-0.png");
+	HFResource::PIXMAP_SHEEP["4"] = QPixmap(QString(DEFAULT_DATA_DIR)+"/animal/sheep/sheep-4.png");
 }
 
 HFResource::~HFResource() {

@@ -6,6 +6,7 @@
 */
 
 #include <model/game.h>
+#include <model/gameloop.h>
 
 #include <model/tile.h>
 #include <model/terrain/grass.h>
@@ -13,8 +14,8 @@
 #include <stdlib.h>
 #include <iostream>
 
-HFGame::HFGame(int w, int h) :
- _tiles(nullptr), _width(w), _height(h) {
+HFGame::HFGame(int w, int h, QDateTime dt) :
+ _tiles(nullptr), _width(w), _height(h), _speed(Pause), _dateTime(dt), _gameLoop(this) {
 	init();
 }
 
@@ -64,4 +65,26 @@ HFTile *HFGame::tileAt(int x, int y) {
 	} else {
 		return nullptr;
 	}
+}
+
+HFTile *HFGame::tileAt(QPointF pos) {
+	return tileAt((int) pos.x(), (int) pos.y());
+}
+
+HFTile *HFGame::tileAt(QVector3D pos) {
+	return tileAt((int) pos.x(), (int) pos.y());
+}
+
+/*!
+	Starts the simulation loop.
+ */
+void HFGame::start() {
+	_gameLoop.start();
+}
+
+/*!
+	Ends the simulation loop.
+ */
+void HFGame::end() {
+	_gameLoop.exit(0);
 }

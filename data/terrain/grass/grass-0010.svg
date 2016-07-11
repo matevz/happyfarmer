@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="grass-0010.svg"
-   inkscape:export-filename="/home/matevz/games/happyfarmer/data/terrain/grass/grass-0010.png"
+   sodipodi:docname="grass-0001.svg"
+   inkscape:export-filename="/home/matevz/games/happyfarmer/data/terrain/grass/grass-0001.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.1213203"
-     inkscape:cx="224.44147"
-     inkscape:cy="25.499747"
+     inkscape:zoom="3"
+     inkscape:cx="183.79265"
+     inkscape:cy="60.35703"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -66,15 +66,15 @@
      transform="translate(0,-924.36214)">
     <path
        style="fill:#008000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 0,988.36214 256,0 -128,-64 z"
+       d="M 128,1052.3621 0,988.36214 l 128,-64 z"
        id="path2987"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
     <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
-       id="path3800"
-       d="m 0,988.36214 256,0 -128,39.99996 z"
-       style="fill:#008000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       id="path3011"
+       d="m 128,1052.3621 0,-127.99996 128,40 z"
+       style="fill:#006000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
   </g>
 </svg>

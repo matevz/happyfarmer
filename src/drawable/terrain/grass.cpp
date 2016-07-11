@@ -16,7 +16,7 @@ HFDTerrGrass::HFDTerrGrass( HFTile *tile )
 		combination += QString::number(tile->height()[i]);
 	}
 	
-	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_GRASS[combination], this, nullptr);
+	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_GRASS[combination], this);
 }
 
 HFDTerrGrass::~HFDTerrGrass() {

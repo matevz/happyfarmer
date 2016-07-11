@@ -41,19 +41,29 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 		translate( (event->x()-_lastMovePos.x())*TRANSLATE_WEIGHT, (event->y()-_lastMovePos.y())*TRANSLATE_WEIGHT );
 	}
 	
-	if (_drawableCtl->selectionMode()==HFDrawableCtl::HorizontalVertical) {
+	if (_drawableCtl->selectionMode()!=HFDrawableCtl::None) {
 		HFTile *t = tileAt( event->pos() );
 		if (t) {
 			QRect sa = _drawableCtl->selectionArea();
 			if (event->buttons()&Qt::LeftButton) {
-				if (qAbs(_drawableCtl->selectionArea().x() - t->x())>qAbs(_drawableCtl->selectionArea().y() - t->y())) {
-					// horizontal selection
-					sa.setWidth( t->x()-sa.x()+1 );
-					sa.setHeight( 1 );
-				} else {
-					// vertical selection
-					sa.setWidth( 1 );
-					sa.setHeight( t->y()-sa.y()+1 );
+				switch (_drawableCtl->selectionMode()) {
+					case HFDrawableCtl::HorizontalVertical: {
+						if (qAbs(_drawableCtl->selectionArea().x() - t->x())>qAbs(_drawableCtl->selectionArea().y() - t->y())) {
+							// horizontal selection
+							sa.setWidth( t->x()-sa.x()+1 );
+							sa.setHeight( 1 );
+						} else {
+							// vertical selection
+							sa.setWidth( 1 );
+							sa.setHeight( t->y()-sa.y()+1 );
+						}
+						break;
+					}
+					case HFDrawableCtl::Rectangular: {
+						sa.setWidth( t->x()-sa.x()+1 );
+						sa.setHeight( t->y()-sa.y()+1 );
+						break;
+					}
 				}
 			} else {
 				sa = QRect( t->x(), t->y(), 1, 1 );

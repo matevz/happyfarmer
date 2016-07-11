@@ -15,6 +15,7 @@
 
 #include <control/drawablectl.h>
 #include <control/constructctl.h>
+#include <control/objectctl.h>
 
 class HFGame;
 class HFResource;
@@ -54,6 +55,7 @@ private:
 	
 	HFDrawableCtl _drawableCtl;
 	HFConstructCtl _constructCtl;
+	HFObjectCtl _objectCtl;
 };
 
 #endif

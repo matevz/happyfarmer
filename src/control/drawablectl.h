@@ -16,9 +16,12 @@ class HFDrawable;
 #include <QGraphicsScene>
 #include <QHash>
 
+#include "model/object.h"
+
 class HFDHelperTile;
 
-class HFDrawableCtl {
+class HFDrawableCtl : public QObject {
+	Q_OBJECT
 public:
 	enum SelectionMode {
 		None=0,
@@ -46,10 +49,14 @@ public:
 	const QRect& selectionArea() { return _selectionArea; }
 
 	void updateHelpers();
+
+private slots:
+	void on_objects_updated(HFObjectList objs);
 	
 private:
 	QGraphicsScene _scene;
-	QHash<HFTile*, HFDrawable*> _drawableTiles; // drawable tiles and constructions
+	QHash<HFTile*, HFDrawable*> _drawableTiles;     // drawable tiles and constructions
+	QHash<HFObject*, HFDrawable*> _drawableObjects; // drawable objects
 	
 	HFGame *_game;
 	QList<HFDHelperTile*> _selectionHelpers; // white rectangles

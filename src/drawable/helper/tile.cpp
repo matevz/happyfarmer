@@ -15,7 +15,7 @@
 
 HFDHelperTile::HFDHelperTile( HFTile *tile )
  : HFDrawable(tile) {
-	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_HELPERTILE[HFTile::heightToString(tile->height())], this, nullptr);
+	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_HELPERTILE[HFTile::heightToString(tile->height())], this);
 }
 
 HFDHelperTile::~HFDHelperTile() {

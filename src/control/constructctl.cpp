@@ -37,6 +37,7 @@ QList<HFTile*> HFConstructCtl::place(HFConstruction::HFConsType type, const QRec
 				}
 			}
 		}
+		break;
 	}
 	
 	return placedTiles;

@@ -10,13 +10,15 @@
 #include "model/tile.h"
 #include "model/construction.h"
 #include "model/construction/road.h"
+#include "model/object.h"
+#include "model/animal/sheep.h"
 
 #include "drawable/drawable.h"
-
 #include "drawable/helper/tile.h"
-
 #include "drawable/terrain/grass.h"
 #include "drawable/construction/road.h"
+#include "drawable/animal/sheep.h"
+#include "gameview.h"
 
 const QRect HFDrawableCtl::NO_SELECTION = QRect(0, 0, 0, 0);
 
@@ -82,6 +84,29 @@ void HFDrawableCtl::rebuildTile(HFTile *tile, bool rebuildAdjacentTiles) {
 			rebuildTile( t, false );
 		}
 	}
+	
+	QList<HFObject*> objects = tile->objects(); // make a copy
+	for (int i=0; i<objects.size(); i++) {
+		HFObject *obj = objects[i];
+		HFDrawable *dObj = nullptr;
+		
+		if (_drawableObjects[obj]) {
+			delete _drawableObjects[obj];
+			_drawableObjects.remove(obj);
+		}
+		
+		switch (obj->objType()) {
+			case HFObject::AnimalSheep:
+				dObj = new HFDObjSheep(static_cast<HFObjSheep*>(obj));
+				break;
+		}
+		
+		_scene.addItem(dObj);
+		_drawableObjects[obj] = dObj;
+		
+		dObj->moveBy((obj->x()+obj->y())*128, (-obj->x()+obj->y())*64 - obj->z()*24 - dObj->childrenBoundingRect().height());
+		dObj->setZValue( (-obj->x()+obj->y())*64 );
+	}
 }
 
 void HFDrawableCtl::updateHelpers() {
@@ -91,6 +116,7 @@ void HFDrawableCtl::updateHelpers() {
 	
 	switch (_selectionMode) {
 	case HorizontalVertical:
+	case Rectangular:
 		for (int i=qMin(_selectionArea.x(), _selectionArea.right()); i<=qMax(_selectionArea.x(),_selectionArea.right()); i++) {
 			for (int j=qMin(_selectionArea.y(), _selectionArea.bottom()); j<=qMax(_selectionArea.y(),_selectionArea.bottom()); j++) {
 				HFTile *tile = _game->tileAt( i,j );
@@ -103,5 +129,15 @@ void HFDrawableCtl::updateHelpers() {
 		}
 		break;
 	}
+}
 
+void HFDrawableCtl::on_objects_updated(HFObjectList objs) {
+	for (int i=0; i<objs.size(); i++) {
+		HFObject *obj = objs[i];
+		HFDrawable *dObj = _drawableObjects[obj];
+		if (dObj) {
+			_drawableObjects[obj]->setPos((obj->x()+obj->y())*128, (-obj->x()+obj->y())*64 - obj->z()*24 - dObj->childrenBoundingRect().height());
+			dObj->setZValue( (-obj->x()+obj->y()+1)*64 );
+		}
+	}
 }

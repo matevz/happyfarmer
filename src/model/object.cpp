@@ -7,8 +7,8 @@
 
 #include "model/object.h"
 
-HFObject::HFObject( HFObjType t, QPointF pos )
- : _type(t), _x(pos.x()), _y(pos.y()) {
+HFObject::HFObject( HFGame *game, HFObjType t, QVector3D pos )
+ : _type(t), _pos(pos), _game(game) {
 }
 
 HFObject::HFObject(const HFObject& orig) {

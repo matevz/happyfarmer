@@ -33,7 +33,9 @@ public:
 	
 	HFGame *game() { return _game; }
 	
-	QList<HFObject*>& objects() { return _objects; }
+	const QList<HFObject*>& objects() const { return _objects; }
+	void addObject(HFObject *obj) { _objects << obj; }
+	void removeObject(HFObject *obj) { _objects.removeAll(obj); }
 	
 private:
 	int _x;

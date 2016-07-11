@@ -12,8 +12,13 @@
 
 class HFObjSheep : public HFObject {
 public:
-	HFObjSheep( QPointF pos );
+	HFObjSheep( HFGame *game, QVector3D pos );
 	virtual ~HFObjSheep();
+	
+	bool wakeUp(qint64 curTime);
+
+private:
+	QPointF _direction;
 };
 
 #endif	/* HFOBJSHEEP_H */

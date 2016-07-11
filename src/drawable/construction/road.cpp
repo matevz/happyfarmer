@@ -16,7 +16,7 @@
 
 HFDConsRoad::HFDConsRoad( HFConsRoad *road )
  : HFDrawable(road->tile()) {
-	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_ROAD[HFTile::heightToString(road->tile()->height())+road->orientation()], this, nullptr);
+	_back = new QGraphicsPixmapItem(HFResource::PIXMAP_ROAD[HFTile::heightToString(road->tile()->height())+road->orientation()], this);
 }
 
 HFDConsRoad::~HFDConsRoad() {
