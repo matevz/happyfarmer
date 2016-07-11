@@ -10,12 +10,15 @@ To compile the game, you first need to have the Qt5 development framework
 installed (http://www.qt.io).
 
 To compile the game, type in bash:
-    cmake .
-    make
+```
+cmake .
+make
+```
 
 Run the game by typing
-    src/happyfarmer
-
+```
+src/happyfarmer
+```
 
 Matevž Jekovec
 matevz.jekovec@gmail.com
