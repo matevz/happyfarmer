@@ -1,5 +1,5 @@
 /*!
-	Copyright (c) 2012, Matevž Jekovec, Happy Farmer development team
+	Copyright (c) 2012-2019, Matevž Jekovec, Happy Farmer development team
 	All Rights Reserved. See AUTHORS for a complete list of authors.
 
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
@@ -21,7 +21,8 @@ public:
 	static QStringList ROAD_COMBINATIONS;
 	
 	// pixmaps
-	static QHash<QString, QPixmap> PIXMAP_HELPERTILE;
+	static QHash<QString, QPixmap> PIXMAP_HELPER_TILE;
+	static QPixmap *PIXMAP_HELPER_DOT;
 	static QHash<QString, QPixmap> PIXMAP_GRASS;
 	static QHash<QString, QPixmap> PIXMAP_ROAD;
 	static QHash<QString, QPixmap> PIXMAP_SHEEP;

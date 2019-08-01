@@ -1,5 +1,5 @@
 /*!
-	Copyright (c) 2012, Matevž Jekovec, Happy Farmer development team
+	Copyright (c) 2012-2019, Matevž Jekovec, Happy Farmer development team
 	All Rights Reserved. See AUTHORS for a complete list of authors.
 
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
@@ -24,7 +24,8 @@ QStringList HFResource::ROAD_COMBINATIONS = QStringList() <<
 		"000111010" << "010110010" << "010111000" << "010011010" << // T junctions
 		"000110010" << "010110000" << "010011000" << "000011010"; // curves
 
-QHash<QString, QPixmap> HFResource::PIXMAP_HELPERTILE = QHash<QString, QPixmap>();
+QHash<QString, QPixmap> HFResource::PIXMAP_HELPER_TILE = QHash<QString, QPixmap>();
+QPixmap *HFResource::PIXMAP_HELPER_DOT;
 QHash<QString, QPixmap> HFResource::PIXMAP_GRASS = QHash<QString, QPixmap>();
 QHash<QString, QPixmap> HFResource::PIXMAP_ROAD = QHash<QString, QPixmap>();
 QHash<QString, QPixmap> HFResource::PIXMAP_SHEEP = QHash<QString, QPixmap>();
@@ -34,9 +35,10 @@ QHash<QString, QPixmap> HFResource::PIXMAP_SHEEP = QHash<QString, QPixmap>();
 #define DEFAULT_DATA_DIR "data"
 
 HFResource::HFResource() {
+	HFResource::PIXMAP_HELPER_DOT = new QPixmap(QString(DEFAULT_DATA_DIR)+"/helper/dot/dot.png");
 	for (QString &height: HFResource::TILE_HEIGHT_COMBINATIONS) {
 		HFResource::PIXMAP_GRASS[height] = QPixmap(QString(DEFAULT_DATA_DIR)+"/terrain/grass/grass-"+height+".png");
-		HFResource::PIXMAP_HELPERTILE[height] = QPixmap(QString(DEFAULT_DATA_DIR)+"/helper/tile/tile-"+height+".png");
+		HFResource::PIXMAP_HELPER_TILE[height] = QPixmap(QString(DEFAULT_DATA_DIR)+"/helper/tile/tile-"+height+".png");
 		
 		for (QString &road: HFResource::ROAD_COMBINATIONS) {
 			QString name=QString(DEFAULT_DATA_DIR)+"/construction/road/asphaltroad/road-"+height+"-"+road+".png";

@@ -89,6 +89,7 @@ SET(HF_Drawable_Srcs	# Drawable instances of the data
 	drawable/animal/sheep.cpp
 
 	drawable/helper/tile.cpp
+	drawable/helper/dot.cpp
 )
 
 SET(HF_Srcs

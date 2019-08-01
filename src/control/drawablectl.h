@@ -60,7 +60,7 @@ private:
 	QHash<HFObject*, HFDrawable*> _drawableObjects; // drawable objects
 	
 	HFGame *_game;
-	QList<HFDHelperTile*> _selectionHelpers; // white rectangles
+	QList<HFDrawable*> _selectionHelpers; // white rectangles
 	SelectionMode _selectionMode; // selection helpers drawn?
 	QRect _selectionArea; // selected rectangular area of tiles
 };

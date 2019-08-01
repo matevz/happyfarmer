@@ -1,5 +1,5 @@
 /*!
-        Copyright (c) 2012, Matevž Jekovec, Happy farmer development team
+		Copyright (c) 2012-2019, Matevž Jekovec, Happy farmer development team
         All Rights Reserved. See AUTHORS for a complete list of authors.
 
         Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
@@ -86,6 +86,11 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 				std::cout << "left part" << std::endl;
 			} else {
 				std::cout << "right part" << std::endl;
+			}
+			QRect sa = QRect( dTile->tile()->x(), dTile->tile()->y(), 1, 1 );
+			if (_drawableCtl->selectionArea()!=sa) {
+				_drawableCtl->setSelectionArea( sa );
+				_drawableCtl->updateHelpers();
 			}
 		}
 	}

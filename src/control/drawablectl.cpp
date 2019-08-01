@@ -15,10 +15,13 @@
 
 #include "drawable/drawable.h"
 #include "drawable/helper/tile.h"
+#include "drawable/helper/dot.h"
 #include "drawable/terrain/grass.h"
 #include "drawable/construction/road.h"
 #include "drawable/animal/sheep.h"
 #include "gameview.h"
+
+#include <QDebug>
 
 const QRect HFDrawableCtl::NO_SELECTION = QRect(0, 0, 0, 0);
 
@@ -115,6 +118,8 @@ void HFDrawableCtl::updateHelpers() {
 	}
 	
 	switch (_selectionMode) {
+	case None:
+		break;
 	case HorizontalVertical:
 	case Rectangular:
 		for (int i=qMin(_selectionArea.x(), _selectionArea.right()); i<=qMax(_selectionArea.x(),_selectionArea.right()); i++) {
@@ -127,6 +132,23 @@ void HFDrawableCtl::updateHelpers() {
 				item->setZValue( (-tile->x()+1+tile->y()+1)*64 );
 			}
 		}
+		break;
+	case Dot: {
+		HFTile *tile = _game->tileAt( _selectionArea.x(), _selectionArea.y() );
+		qDebug() << "HFDrawableCtl::updateHelpers() _selectionArea:" << _selectionArea << "\n";
+		if (tile) {
+			HFDHelperDot *item = new HFDHelperDot( tile );
+			_selectionHelpers << item;
+			_scene.addItem(item);
+			item->moveBy((tile->x()+tile->y())*128, (-tile->x()+tile->y())*64 - tile->z()*24 - item->childrenBoundingRect().height());
+			item->setZValue( (-tile->x()+1+tile->y()+1)*64 );
+		}
+		break;
+	}
+	case Horizontal:
+	case Vertical:
+	case Fixed:
+		// TODO
 		break;
 	}
 }
