@@ -135,7 +135,7 @@ void HFDrawableCtl::updateHelpers() {
 		break;
 	case Dot: {
 		HFTile *tile = _game->tileAt( _selectionArea.x(), _selectionArea.y() );
-		qDebug() << "HFDrawableCtl::updateHelpers() _selectionArea:" << _selectionArea << "\n";
+		qDebug() << "HFDrawableCtl::updateHelpers() _selectionArea:" << _selectionArea;
 		if (tile) {
 			HFDHelperDot *item = new HFDHelperDot( tile );
 			_selectionHelpers << item;

@@ -11,14 +11,13 @@
 #include <QTransform>
 #include <QTimer>
 #include <QList>
+#include <QDebug>
 
 #include "drawable/drawable.h"
 #include "drawable/terrain/grass.h"
 #include "model/terrain/grass.h"
 #include "model/tile.h"
 #include "control/drawablectl.h"
-
-#include <iostream>
 
 #include "model/settings.h"
 
@@ -71,7 +70,6 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 			}
 			if (_drawableCtl->selectionArea()!=sa) {
 				_drawableCtl->setSelectionArea( sa );
-//				std::cout << "HFGameView::mouseMoveEvent(): x: " << sa.x() << " y: " << sa.y() << " r: " << sa.right() << " b: " << sa.bottom() << std::endl;
 				_drawableCtl->updateHelpers();
 			}
 		}
@@ -80,14 +78,15 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 		QList<QGraphicsItem*> itemsList = items(event->pos());
 		if (!itemsList.isEmpty()) {
 			HFDrawable *dTile = static_cast<HFDrawable*>(itemsList.last());
-			std::cout << event->pos().x() << " " << mapToScene(event->pos()).x() << std::endl;
-			std::cout << "t: " << dTile->sceneBoundingRect().x() << " " << dTile->sceneBoundingRect().width() << std::endl;
+			qDebug() << event->pos().x() << " " << mapToScene(event->pos()).x();
+			qDebug() << "t: " << dTile->sceneBoundingRect().x() << " " << dTile->sceneBoundingRect().width();
 			if (mapToScene(event->pos()).x() < dTile->sceneBoundingRect().x() + dTile->sceneBoundingRect().width()/2.0) {
-				std::cout << "left part" << std::endl;
+				qDebug() << "left part";
 			} else {
-				std::cout << "right part" << std::endl;
+				qDebug() << "right part";
 			}
-			QRect sa = QRect( dTile->tile()->x(), dTile->tile()->y(), 1, 1 );
+			HFTile *t = tileAt( event->pos() );
+			QRect sa = QRect( t->x(), t->y(), 1, 1 );
 			if (_drawableCtl->selectionArea()!=sa) {
 				_drawableCtl->setSelectionArea( sa );
 				_drawableCtl->updateHelpers();
