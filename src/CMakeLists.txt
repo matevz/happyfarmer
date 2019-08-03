@@ -161,18 +161,15 @@ TARGET_LINK_LIBRARIES(happyfarmer Qt5::Widgets Qt5::Core Qt5::Gui Qt5::Svg Qt5::
 ###############
 # Translation #
 ###############
-ADD_CUSTOM_COMMAND(
-	TARGET happyfarmer
-	PRE_BUILD
-	COMMAND lupdate
-	ARGS -noobsolete ${HF_UIC_Srcs} ${HF_Srcs} -ts ${HF_Translation_Srcs} lang/template.ts
+ADD_CUSTOM_TARGET(tr
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/src
+	DEPENDS ${HF_UIC_Srcs}
+	COMMAND ${Qt5_LUPDATE_EXECUTABLE} -noobsolete ${HF_UIC_Srcs} ${HF_Srcs} -ts ${HF_Translation_Srcs} lang/template.ts
 )
-ADD_CUSTOM_COMMAND(
-	TARGET happyfarmer
-	PRE_BUILD
-	COMMAND lrelease
-	ARGS ${HF_Translation_Srcs}
-)
+
+qt5_add_translation(HF_Translation_Bins ${HF_Translation_Srcs})
+ADD_CUSTOM_TARGET(happyfarmer_qm DEPENDS ${HF_Translation_Bins})
+ADD_DEPENDENCIES(happyfarmer happyfarmer_qm)
 
 ################
 # Installation #
