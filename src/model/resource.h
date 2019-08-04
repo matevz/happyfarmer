@@ -24,7 +24,8 @@ public:
 	static QHash<QString, QPixmap> PIXMAP_HELPER_TILE;
 	static QPixmap *PIXMAP_HELPER_DOT;
 	static QHash<QString, QPixmap> PIXMAP_GRASS;
-	static QHash<QString, QPixmap> PIXMAP_ROAD;
+	static QHash<QString, QPixmap> PIXMAP_ASPHALT_ROAD;
+	static QHash<QString, QPixmap> PIXMAP_DIRT_ROAD;
 	static QHash<QString, QPixmap> PIXMAP_SHEEP;
 };
 

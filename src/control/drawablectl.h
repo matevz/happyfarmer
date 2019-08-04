@@ -62,7 +62,7 @@ private:
 	HFGame *_game;
 	QList<HFDrawable*> _selectionHelpers; // white rectangles
 	SelectionMode _selectionMode; // selection helpers drawn?
-	QRect _selectionArea; // selected rectangular area of tiles
+	QRect _selectionArea; // selected rectangular area of tiles/dots
 };
 
 #endif

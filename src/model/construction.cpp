@@ -33,27 +33,43 @@ void HFConstruction::calculateOrientation() {
 		HFTile *t;
 		
 		_orientation += "0";
-		if ((t=_tile->game()->tileAt( _tile->x()+1, _tile->y() )) && t->construction() && t->construction()->consType()==consType()) {
+		if ((t=_tile->game()->tileAt( _tile->x()+1, _tile->y() )) &&
+			t->construction() &&
+			t->construction()->consType()&HFConstruction::ROAD_MASK &&
+			(t->construction()->consType()&HFConstruction::ROAD_MASK)==(consType()&HFConstruction::ROAD_MASK)
+		   ) {
 			_orientation += "1";
 		} else {
 			_orientation += "0";
 		}
 		_orientation += "0";
 		
-		if ((t=_tile->game()->tileAt( _tile->x(), _tile->y()-1 )) && t->construction() && t->construction()->consType()==consType()) {
+		if ((t=_tile->game()->tileAt( _tile->x(), _tile->y()-1 )) &&
+			t->construction() &&
+			t->construction()->consType()&HFConstruction::ROAD_MASK &&
+			(t->construction()->consType()&HFConstruction::ROAD_MASK)==(consType()&HFConstruction::ROAD_MASK)
+		   ) {
 			_orientation += "1";
 		} else {
 			_orientation += "0";
 		}
 		_orientation += "1";
-		if ((t=_tile->game()->tileAt( _tile->x(), _tile->y()+1 )) && t->construction() && t->construction()->consType()==consType()) {
+		if ((t=_tile->game()->tileAt( _tile->x(), _tile->y()+1 )) &&
+			t->construction() &&
+			t->construction()->consType()&HFConstruction::ROAD_MASK &&
+			(t->construction()->consType()&HFConstruction::ROAD_MASK)==(consType()&HFConstruction::ROAD_MASK)
+		   ) {
 			_orientation += "1";
 		} else {
 			_orientation += "0";
 		}
 		
 		_orientation += "0";
-		if ((t=_tile->game()->tileAt( _tile->x()-1, _tile->y() )) && t->construction() && t->construction()->consType()==consType()) {
+		if ((t=_tile->game()->tileAt( _tile->x()-1, _tile->y() )) &&
+			t->construction() &&
+			t->construction()->consType()&HFConstruction::ROAD_MASK &&
+			(t->construction()->consType()&HFConstruction::ROAD_MASK)==(consType()&HFConstruction::ROAD_MASK)
+		   ) {
 			_orientation += "1";
 		} else {
 			_orientation += "0";

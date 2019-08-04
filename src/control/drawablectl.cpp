@@ -9,7 +9,8 @@
 #include "model/game.h"
 #include "model/tile.h"
 #include "model/construction.h"
-#include "model/construction/road.h"
+#include "model/construction/asphalt_road.h"
+#include "model/construction/dirt_road.h"
 #include "model/object.h"
 #include "model/animal/sheep.h"
 
@@ -17,7 +18,8 @@
 #include "drawable/helper/tile.h"
 #include "drawable/helper/dot.h"
 #include "drawable/terrain/grass.h"
-#include "drawable/construction/road.h"
+#include "drawable/construction/asphalt_road.h"
+#include "drawable/construction/dirt_road.h"
 #include "drawable/animal/sheep.h"
 #include "gameview.h"
 
@@ -61,7 +63,10 @@ void HFDrawableCtl::rebuildTile(HFTile *tile, bool rebuildAdjacentTiles) {
 	} else {
 		switch (tile->construction()->consType()) {
 			case HFConstruction::AsphaltRoad:
-				item = new HFDConsRoad( static_cast<HFConsRoad*>(tile->construction()) );
+				item = new HFDConsAsphaltRoad( static_cast<HFConsAsphaltRoad*>(tile->construction()) );
+				break;
+			case HFConstruction::DirtRoad:
+				item = new HFDConsDirtRoad( static_cast<HFConsDirtRoad*>(tile->construction()) );
 				break;
 		}
 	}

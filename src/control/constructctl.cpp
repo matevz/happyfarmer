@@ -9,7 +9,8 @@
 
 #include "model/game.h"
 #include "model/tile.h"
-#include "model/construction/road.h"
+#include "model/construction/asphalt_road.h"
+#include "model/construction/dirt_road.h"
 
 #include <iostream>
 
@@ -83,7 +84,10 @@ bool HFConstructCtl::place(HFConstruction::HFConsType type, HFTile* tile) {
 	
 	switch (type) {
 		case HFConstruction::AsphaltRoad:
-			construction = new HFConsRoad(tile);
+			construction = new HFConsAsphaltRoad(tile);
+			break;
+		case HFConstruction::DirtRoad:
+			construction = new HFConsDirtRoad(tile);
 			break;
 	}
 	

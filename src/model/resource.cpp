@@ -27,7 +27,8 @@ QStringList HFResource::ROAD_COMBINATIONS = QStringList() <<
 QHash<QString, QPixmap> HFResource::PIXMAP_HELPER_TILE = QHash<QString, QPixmap>();
 QPixmap *HFResource::PIXMAP_HELPER_DOT;
 QHash<QString, QPixmap> HFResource::PIXMAP_GRASS = QHash<QString, QPixmap>();
-QHash<QString, QPixmap> HFResource::PIXMAP_ROAD = QHash<QString, QPixmap>();
+QHash<QString, QPixmap> HFResource::PIXMAP_ASPHALT_ROAD = QHash<QString, QPixmap>();
+QHash<QString, QPixmap> HFResource::PIXMAP_DIRT_ROAD = QHash<QString, QPixmap>();
 QHash<QString, QPixmap> HFResource::PIXMAP_SHEEP = QHash<QString, QPixmap>();
 
 // TODO: Implement priority list for checking presence of resources. For now, it's hardcoded to "data" directory. -Matevz
@@ -41,9 +42,15 @@ HFResource::HFResource() {
 		HFResource::PIXMAP_HELPER_TILE[height] = QPixmap(QString(DEFAULT_DATA_DIR)+"/helper/tile/tile-"+height+".png");
 		
 		for (QString &road: HFResource::ROAD_COMBINATIONS) {
-			QString name=QString(DEFAULT_DATA_DIR)+"/construction/road/asphaltroad/road-"+height+"-"+road+".png";
+			QString name=QString(DEFAULT_DATA_DIR)+"/construction/road/asphalt_road/road-"+height+"-"+road+".png";
 			if (QFile::exists(name)) {
-				HFResource::PIXMAP_ROAD[height+road] = QPixmap(name);
+				HFResource::PIXMAP_ASPHALT_ROAD[height+road] = QPixmap(name);
+			}
+		}
+		for (QString &road: HFResource::ROAD_COMBINATIONS) {
+			QString name=QString(DEFAULT_DATA_DIR)+"/construction/road/dirt_road/road-"+height+"-"+road+".png";
+			if (QFile::exists(name)) {
+				HFResource::PIXMAP_DIRT_ROAD[height+road] = QPixmap(name);
 			}
 		}
 	}

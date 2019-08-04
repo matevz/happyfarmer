@@ -1,5 +1,5 @@
 /*!
-	Copyright (c) 2012, Matevž Jekovec, Happy Farmer development team
+	Copyright (c) 2012-2019, Matevž Jekovec, Happy Farmer development team
 	All Rights Reserved. See AUTHORS for a complete list of authors.
 
 	Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
@@ -15,11 +15,12 @@ class HFTile;
 class HFConstruction {
 public:
 	enum HFConsType {
-		AsphaltRoad,
-		DirtRoad,
-		Tree
+		AsphaltRoad=0x10,
+		DirtRoad=0x11,
 	};
-	
+
+	const unsigned int ROAD_MASK=0x10;
+
 	HFConstruction( HFConsType, HFTile* );
 	virtual ~HFConstruction();
 	

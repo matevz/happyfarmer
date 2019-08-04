@@ -59,7 +59,8 @@ SET(HF_Core_Srcs		# Core sources
 	model/terrain/grass.cpp
 
 	model/construction.cpp
-	model/construction/road.cpp
+	model/construction/asphalt_road.cpp
+	model/construction/dirt_road.cpp
 
 	model/object.cpp
 	model/animal/sheep.cpp
@@ -84,7 +85,8 @@ SET(HF_Drawable_Srcs	# Drawable instances of the data
 	
 	drawable/terrain/grass.cpp
 
-	drawable/construction/road.cpp
+	drawable/construction/asphalt_road.cpp
+	drawable/construction/dirt_road.cpp
 
 	drawable/animal/sheep.cpp
 

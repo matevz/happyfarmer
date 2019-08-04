@@ -55,9 +55,12 @@ void HFMainWin::on_gameView_mouseRelease( QMouseEvent* event ) {
 	QList<HFObject*> placedObjects;
 	
 	if (event->button()==Qt::LeftButton) {
-		if (roadBtn->isChecked()) {
+		if (asphaltRoadBtn->isChecked()) {
 			changedTiles = _constructCtl.place(HFConstruction::AsphaltRoad, _drawableCtl.selectionArea());
-		}
+		} else
+		if (dirtRoadBtn->isChecked()) {
+			changedTiles = _constructCtl.place(HFConstruction::DirtRoad, _drawableCtl.selectionArea());
+		} else
 		if (animalBtn->isChecked()) {
 			placedObjects = _objectCtl.place(HFObject::AnimalSheep, _drawableCtl.selectionArea());
 			for (int i=0; i<placedObjects.size(); i++) {
