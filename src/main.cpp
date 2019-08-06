@@ -26,7 +26,6 @@ void catch_sig(int)
 
 int main(int argc, char *argv[]) {
 	QApplication mainApp(argc, argv);
-	qDebug() << qApp->applicationDirPath() + "/../data/icons/" + "arrow.png";
 	QDir::addSearchPath("icons", qApp->applicationDirPath() + "/../data/icons/");
 
 #ifdef Q_WS_X11

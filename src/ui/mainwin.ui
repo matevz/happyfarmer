@@ -96,13 +96,13 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QToolButton" name="roadBtn">
+        <widget class="QToolButton" name="asphaltRoadBtn">
          <property name="toolTip">
           <string>Asphalt Road</string>
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>icons:roadbtn.png</normaloff>icons:roadbtn.png</iconset>
+           <normaloff>icons:asphaltroadbtn.png</normaloff>icons:asphaltroadbtn.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -231,12 +231,12 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionLoad"/>
     <addaction name="actionSave"/>
@@ -258,42 +258,42 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>&amp;Exit</string>
    </property>
   </action>
   <action name="actionLoad">
    <property name="text">
-    <string>Load game</string>
+    <string>&amp;Load game</string>
    </property>
   </action>
   <action name="actionSave">
    <property name="text">
-    <string>Save game</string>
+    <string>&amp;Save game</string>
    </property>
   </action>
   <action name="actionUltra">
    <property name="text">
-    <string>Ultra</string>
+    <string>&amp;Ultra</string>
    </property>
   </action>
   <action name="actionFast">
    <property name="text">
-    <string>Fast</string>
+    <string>&amp;Fast</string>
    </property>
   </action>
   <action name="actionNormal">
    <property name="text">
-    <string>Normal</string>
+    <string>&amp;Normal</string>
    </property>
   </action>
   <action name="actionSlow">
    <property name="text">
-    <string>Slow</string>
+    <string>&amp;Slow</string>
    </property>
   </action>
   <action name="actionPause">
    <property name="text">
-    <string>Pause</string>
+    <string>&amp;Pause</string>
    </property>
   </action>
  </widget>
@@ -308,7 +308,7 @@
  <connections>
   <connection>
    <sender>actionExit</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>MainWin</receiver>
    <slot>close()</slot>
    <hints>

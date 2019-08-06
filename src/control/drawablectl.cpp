@@ -28,7 +28,8 @@
 const QRect HFDrawableCtl::NO_SELECTION = QRect(0, 0, 0, 0);
 
 HFDrawableCtl::HFDrawableCtl()
- : _selectionMode( HFDrawableCtl::None ), _selectionArea( HFDrawableCtl::NO_SELECTION ), _game( nullptr )
+ : _game( nullptr ),
+   _selectionMode( None ), _selectionTileArea( NO_SELECTION ), _selectionDotArea( NO_SELECTION )
 {
 }
 
@@ -127,8 +128,8 @@ void HFDrawableCtl::updateHelpers() {
 		break;
 	case HorizontalVertical:
 	case Rectangular:
-		for (int i=qMin(_selectionArea.x(), _selectionArea.right()); i<=qMax(_selectionArea.x(),_selectionArea.right()); i++) {
-			for (int j=qMin(_selectionArea.y(), _selectionArea.bottom()); j<=qMax(_selectionArea.y(),_selectionArea.bottom()); j++) {
+		for (int i=qMin(_selectionTileArea.x(), _selectionTileArea.right()); i<=qMax(_selectionTileArea.x(),_selectionTileArea.right()); i++) {
+			for (int j=qMin(_selectionTileArea.y(), _selectionTileArea.bottom()); j<=qMax(_selectionTileArea.y(),_selectionTileArea.bottom()); j++) {
 				HFTile *tile = _game->tileAt( i,j );
 				HFDHelperTile *item = new HFDHelperTile( tile );
 				_selectionHelpers << item;
@@ -139,8 +140,8 @@ void HFDrawableCtl::updateHelpers() {
 		}
 		break;
 	case Dot: {
-		HFTile *tile = _game->tileAt( _selectionArea.x(), _selectionArea.y() );
-		qDebug() << "HFDrawableCtl::updateHelpers() _selectionArea:" << _selectionArea;
+		HFTile *tile = _game->tileAt( _selectionDotArea.x(), _selectionDotArea.y() );
+		qDebug() << "HFDrawableCtl::updateHelpers() _selectionDotArea:" << _selectionDotArea;
 		if (tile) {
 			HFDHelperDot *item = new HFDHelperDot( tile );
 			_selectionHelpers << item;

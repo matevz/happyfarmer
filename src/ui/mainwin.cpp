@@ -1,5 +1,5 @@
 /*!
-        Copyright (c) 2012, Matevž Jekovec, Happy farmer development team
+		Copyright (c) 2012-2019, Matevž Jekovec, Happy farmer development team
         All Rights Reserved. See AUTHORS for a complete list of authors.
 
         Licensed under the GNU GENERAL PUBLIC LICENSE. See COPYING for details.
@@ -56,13 +56,13 @@ void HFMainWin::on_gameView_mouseRelease( QMouseEvent* event ) {
 	
 	if (event->button()==Qt::LeftButton) {
 		if (asphaltRoadBtn->isChecked()) {
-			changedTiles = _constructCtl.place(HFConstruction::AsphaltRoad, _drawableCtl.selectionArea());
+			changedTiles = _constructCtl.place(HFConstruction::AsphaltRoad, _drawableCtl.selectionTileArea());
 		} else
 		if (dirtRoadBtn->isChecked()) {
-			changedTiles = _constructCtl.place(HFConstruction::DirtRoad, _drawableCtl.selectionArea());
+			changedTiles = _constructCtl.place(HFConstruction::DirtRoad, _drawableCtl.selectionTileArea());
 		} else
 		if (animalBtn->isChecked()) {
-			placedObjects = _objectCtl.place(HFObject::AnimalSheep, _drawableCtl.selectionArea());
+			placedObjects = _objectCtl.place(HFObject::AnimalSheep, _drawableCtl.selectionTileArea());
 			for (int i=0; i<placedObjects.size(); i++) {
 				changedTiles << _game->tileAt( placedObjects[i]->pos() );
 			}
@@ -97,7 +97,7 @@ void HFMainWin::on_magnifierBtn_toggled(bool checked) {
 	_drawableCtl.setSelectionMode(HFDrawableCtl::None);
 }
 
-void HFMainWin::on_roadBtn_toggled(bool checked) {
+void HFMainWin::on_asphaltRoadBtn_toggled(bool checked) {
 	_drawableCtl.setSelectionMode(HFDrawableCtl::HorizontalVertical);
 }
 

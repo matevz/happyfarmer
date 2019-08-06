@@ -37,18 +37,22 @@ public:
 	void newGame();
 	
 public slots:
+	// Editor buttons //
+	////////////////////
 	void on_cursorBtn_toggled(bool);
 	void on_magnifierBtn_toggled(bool);
-	void on_roadBtn_toggled(bool);
+	void on_asphaltRoadBtn_toggled(bool);
 	void on_dirtRoadBtn_toggled(bool);
 	void on_animalBtn_toggled(bool);
 	void on_terrainUpBtn_toggled(bool);
 	void on_terrainDownBtn_toggled(bool);
 	
+	// GameView actions //
+	//////////////////////
 	void on_gameView_mousePress( QMouseEvent* );
 	void on_gameView_mouseRelease( QMouseEvent* );
 	void on_gameView_mouseMove( QMouseEvent* );
-	
+
 private:
 	HFGame *_game;
 	QGraphicsScene *_scene;

@@ -44,11 +44,11 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 	     (_drawableCtl->selectionMode()!=HFDrawableCtl::Dot) ) {
 		HFTile *t = tileAt( event->pos() );
 		if (t) {
-			QRect sa = _drawableCtl->selectionArea();
+			QRect sa = _drawableCtl->selectionTileArea();
 			if (event->buttons()&Qt::LeftButton) {
 				switch (_drawableCtl->selectionMode()) {
 					case HFDrawableCtl::HorizontalVertical: {
-						if (qAbs(_drawableCtl->selectionArea().x() - t->x())>qAbs(_drawableCtl->selectionArea().y() - t->y())) {
+						if (qAbs(_drawableCtl->selectionTileArea().x() - t->x())>qAbs(_drawableCtl->selectionTileArea().y() - t->y())) {
 							// horizontal selection
 							sa.setWidth( t->x()-sa.x()+1 );
 							sa.setHeight( 1 );
@@ -68,8 +68,8 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 			} else {
 				sa = QRect( t->x(), t->y(), 1, 1 );
 			}
-			if (_drawableCtl->selectionArea()!=sa) {
-				_drawableCtl->setSelectionArea( sa );
+			if (_drawableCtl->selectionTileArea()!=sa) {
+				_drawableCtl->setSelectionTileArea( sa );
 				_drawableCtl->updateHelpers();
 			}
 		}
@@ -87,8 +87,8 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 			}
 			HFTile *t = tileAt( event->pos() );
 			QRect sa = QRect( t->x(), t->y(), 1, 1 );
-			if (_drawableCtl->selectionArea()!=sa) {
-				_drawableCtl->setSelectionArea( sa );
+			if (_drawableCtl->selectionDotArea()!=sa) {
+				_drawableCtl->setSelectionDotArea( sa );
 				_drawableCtl->updateHelpers();
 			}
 		}
@@ -110,7 +110,7 @@ void HFGameView::mouseReleaseEvent(QMouseEvent* event) {
 	if (event->button()==Qt::LeftButton) {
 		HFTile *t = tileAt( event->pos() );
 		if (t) {
-			_drawableCtl->setSelectionArea( QRect( t->x(), t->y(), 1, 1 ) );
+			_drawableCtl->setSelectionTileArea( QRect( t->x(), t->y(), 1, 1 ) );
 			_drawableCtl->updateHelpers();
 		}
 	}

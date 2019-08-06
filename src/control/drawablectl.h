@@ -22,6 +22,7 @@ class HFDHelperTile;
 
 class HFDrawableCtl : public QObject {
 	Q_OBJECT
+
 public:
 	enum SelectionMode {
 		None=0,
@@ -43,26 +44,41 @@ public:
 	
 	inline QGraphicsScene *scene() { return &_scene; }
 	
-	void setSelectionMode( const SelectionMode& sm ) { _selectionMode = sm; }
-	const SelectionMode& selectionMode() { return _selectionMode; }
-	
-	void setSelectionArea( const QRect& s ) { _selectionArea = s; }
-	const QRect& selectionArea() { return _selectionArea; }
-
 	void updateHelpers();
+
+	SelectionMode selectionMode() const { return _selectionMode; }
+	void setSelectionMode(SelectionMode m) { _selectionMode = m; }
+
+	const QRect& selectionTileArea() const { return _selectionTileArea; }
+	void setSelectionTileArea(const QRect& s) { _selectionTileArea = s; }
+
+	const QRect& selectionDotArea() const { return _selectionDotArea; }
+	void setSelectionDotArea(const QRect& s) { _selectionDotArea = s; }
 
 private slots:
 	void on_objects_updated(HFObjectList objs);
 	
 private:
+	HFGame *_game;
+
+	// Scene //
+	///////////
 	QGraphicsScene _scene;
 	QHash<HFTile*, HFDrawable*> _drawableTiles;     // drawable tiles and constructions
 	QHash<HFObject*, HFDrawable*> _drawableObjects; // drawable objects
 	
-	HFGame *_game;
-	QList<HFDrawable*> _selectionHelpers; // white rectangles
-	SelectionMode _selectionMode; // selection helpers drawn?
-	QRect _selectionArea; // selected rectangular area of tiles/dots
+	// Helpers //
+	/////////////
+	// selection helpers drawn?
+	SelectionMode _selectionMode;
+	// selected area of tiles
+	QRect _selectionTileArea;
+	// selected area of dots
+	QRect _selectionDotArea;
+
+	// drawable white rectangles/dots instances
+	QList<HFDrawable*> _selectionHelpers;
+
 };
 
 #endif
