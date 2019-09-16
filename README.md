@@ -3,6 +3,8 @@ Happy Farmer
 
 Happy farmer is a new-generation clone of the original Maxis Sim Farm game.
 
+![screenshot](doc/screenshot_02a12859.png)
+
 Compilation
 -----------
 
