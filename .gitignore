@@ -1,0 +1,16 @@
+# CMake files.
+Makefile
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+
+# Targets.
+src/happyfarmer
+
+# Generated files.
+*.qm
+moc_*.cpp*
+ui_*.h
+
+# Qt Creator-specific files.
+CMakeLists.txt.user
