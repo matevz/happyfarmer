@@ -8,8 +8,9 @@
 #ifndef HFTILE_H
 #define	HFTILE_H
 
-#include <QString>
 #include <QList>
+#include <QPoint>
+#include <QString>
 
 class HFConstruction;
 class HFGame;
@@ -21,9 +22,10 @@ public:
 	virtual ~HFTile();
 	
 	const int &x() const { return _x; }
-	const int &y() const { return _y; }
+    const int &y() const { return _y; }
 	const int &z() const { return _z; }
-	
+    const QPoint pos() const { return QPoint(_x, _y); }
+
 	int *height() { return _height; }
 	
 	inline HFConstruction *construction() { return _construction; }

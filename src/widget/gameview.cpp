@@ -80,13 +80,24 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 			HFDrawable *dTile = static_cast<HFDrawable*>(itemsList.last());
 			qDebug() << event->pos().x() << " " << mapToScene(event->pos()).x();
 			qDebug() << "t: " << dTile->sceneBoundingRect().x() << " " << dTile->sceneBoundingRect().width();
-			if (mapToScene(event->pos()).x() < dTile->sceneBoundingRect().x() + dTile->sceneBoundingRect().width()/2.0) {
-				qDebug() << "left part";
-			} else {
+            // Dot 0,0 corresponds to the left vertex of the tile 0,0. Initially, use this mapping.
+            // If mouse cursor is near the other of 3 vertices, re-map it accordingly.
+            auto pos = tileAt( event->pos() )->pos();
+            if (mapToScene(event->pos()).x() > dTile->sceneBoundingRect().x() + dTile->sceneBoundingRect().width()*0.7) {
+                pos += QPoint(1, 1);
 				qDebug() << "right part";
-			}
-			HFTile *t = tileAt( event->pos() );
-			QRect sa = QRect( t->x(), t->y(), 1, 1 );
+            } else
+            if (mapToScene(event->pos()).y() < dTile->sceneBoundingRect().y() + dTile->sceneBoundingRect().height()*0.3) {
+                pos += QPoint(1, 0);
+                qDebug() << "top part";
+            } else
+            if (mapToScene(event->pos()).y() > dTile->sceneBoundingRect().y() + dTile->sceneBoundingRect().height()*0.7) {
+                pos += QPoint(1, 0);
+                qDebug() << "bottom part";
+            } else {
+                qDebug() << "left part";
+            }
+            QRect sa = QRect( pos.x(), pos.y(), 1, 1 );
 			if (_drawableCtl->selectionDotArea()!=sa) {
 				_drawableCtl->setSelectionDotArea( sa );
 				_drawableCtl->updateHelpers();
