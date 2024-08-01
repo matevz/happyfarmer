@@ -80,8 +80,8 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
 			HFDrawable *dTile = static_cast<HFDrawable*>(itemsList.last());
 			qDebug() << event->pos().x() << " " << mapToScene(event->pos()).x();
 			qDebug() << "t: " << dTile->sceneBoundingRect().x() << " " << dTile->sceneBoundingRect().width();
-            // Dot 0,0 corresponds to the left vertex of the tile 0,0. Initially, use this mapping.
-            // If mouse cursor is near the other of 3 vertices, re-map it accordingly.
+            // Dot 0,0 corresponds to the left vertex of the tile 0,0. Use it by default.
+            // If the mouse cursor is closer the other 3 vertices, re-map it accordingly.
             auto pos = tileAt( event->pos() )->pos();
             if (mapToScene(event->pos()).x() > dTile->sceneBoundingRect().x() + dTile->sceneBoundingRect().width()*0.7) {
                 pos += QPoint(1, 1);
@@ -92,7 +92,7 @@ void HFGameView::mouseMoveEvent(QMouseEvent* event) {
                 qDebug() << "top part";
             } else
             if (mapToScene(event->pos()).y() > dTile->sceneBoundingRect().y() + dTile->sceneBoundingRect().height()*0.7) {
-                pos += QPoint(1, 0);
+                pos += QPoint(0, 1);
                 qDebug() << "bottom part";
             } else {
                 qDebug() << "left part";

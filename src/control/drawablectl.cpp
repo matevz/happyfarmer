@@ -146,7 +146,10 @@ void HFDrawableCtl::updateHelpers() {
 			HFDHelperDot *item = new HFDHelperDot( tile );
 			_selectionHelpers << item;
 			_scene.addItem(item);
-			item->moveBy((tile->x()+tile->y())*128, (-tile->x()+tile->y())*64 - tile->z()*24 - item->childrenBoundingRect().height());
+			HFDrawable *dTile = _drawableTiles[tile];
+			item->moveBy(dTile->sceneBoundingRect().x(), dTile->sceneBoundingRect().y()+(dTile->childrenBoundingRect().height()/2));
+			// Center the dot.
+			item->moveBy(-item->childrenBoundingRect().width()/2, -item->childrenBoundingRect().height()/2);
 			item->setZValue( (-tile->x()+1+tile->y()+1)*64 );
 		}
 		break;
