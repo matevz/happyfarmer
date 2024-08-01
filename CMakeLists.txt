@@ -1,7 +1,7 @@
 PROJECT("Happy Farmer")
 
 # Don't build anything unless the version of CMake is high enough.
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.22)
 
 # Set MingW bin dir, if MingW present
 IF(MINGW)
